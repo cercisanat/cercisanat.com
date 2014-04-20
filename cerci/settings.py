@@ -231,13 +231,6 @@ HAYSTACK_CONNECTIONS = {
 SERVER_EMAIL = 'noreply@cercisanat.com'
 EMAIL_SUBJECT_PREFIX = u'Çerçi Sanat | '
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-EMAIL_HOST = 'smtp.mandrillapp.com'
-EMAIL_HOST_USER = 'noreply@cercisanat.com'
-EMAIL_HOST_PASSWORD = 'HZFec-fiJLWZmhJFwG_cfw'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
 
 from settings_main import *
 if ENVIRONMENT == 'localhost':
