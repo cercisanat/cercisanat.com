@@ -1,0 +1,25 @@
+{% load static from staticfiles %}{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block head %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static "css/author.css" %}" type="text/css"/>
+{% endblock %}
+
+{% block content %}
+<section class="author">
+    <h1>{{ author.name }}
+    {% if user.is_staff %}
+        <a href="{% url admin:cerci_content_author_change author.id %}"><i class="icon-edit"></i></a>
+    {% endif %}
+    </h1>
+    <section class="description">
+        <img class="author-image pull-left span4" src="{% thumbnail author.image 360x430 box=author.cropping crop detail bw %}" alt="{{ author.name }}" title="{{ author.name }}" />
+        {% if author.biography %}
+            {{ author.biography }}
+        {% else %}
+            <div class="clearfix"></div>
+        {% endif %}
+    </section>
+</section>
+{% endblock %}

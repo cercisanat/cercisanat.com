@@ -52,3 +52,13 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
+*.pyc
+wiki
+cerci.db
+.DS_Store
+media
+static
+cerci/whoosh_index
+
+# seperate apps and libs
+django-ajax-forms

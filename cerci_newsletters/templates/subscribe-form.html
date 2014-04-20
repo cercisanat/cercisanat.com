@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="." method="post" class="ajax-form">
+{% csrf_token %}
+{{ form.as_p }}
+<button type="submit" class="btn">Gonder</button>
+</form>
+
+<script type="text/javascript">
+$(document).ready(
+    function() {
+        $('.ajax-form').validate({
+            type: 'p',
+            fields: ['id_email', 'id_name'],
+            event: 'focusout',
+            fieldSuccessCallback: function(field) {
+                field.css('border', '1px solid green');
+            }
+        });
+    }
+);
+</script>
+{% endblock %}

@@ -1,0 +1,611 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-01-12 20:27+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#: cerci/dashboard.py:15
+msgid "All Recent Actions"
+msgstr "Tüm İşlemler"
+
+#: cerci_admin/views.py:21
+msgid "This issue is now published and visible for visitors."
+msgstr "Bu sayı artık yayında ve ziyaretçiler tarafından görüntülenebilecek."
+
+#: cerci_admin/views.py:36
+msgid "Notice: You have just unpublished an issue!"
+msgstr "Dikkat: Bir sayıyı yayından kaldırdınız."
+
+#: cerci_content/admin.py:17 cerci_content/admin.py:66
+#: cerci_issue/models.py:45 cerci_issue/models.py:75 cerci_issue/models.py:101
+msgid "Issue"
+msgstr "Dergi"
+
+#: cerci_content/admin.py:18 cerci_issue/models.py:46
+msgid "Issues"
+msgstr "Dergiler"
+
+#: cerci_content/admin.py:55 cerci_content/models.py:46
+#: cerci_content/models.py:74
+msgid "Author"
+msgstr "Yazar"
+
+#: cerci_content/models.py:14
+msgid "Description"
+msgstr "Açıklama"
+
+#: cerci_content/models.py:15 cerci_issue/models.py:79
+msgid "Order"
+msgstr "Sıra"
+
+#: cerci_content/models.py:18 cerci_content/models.py:68
+msgid "Genre"
+msgstr "Tür"
+
+#: cerci_content/models.py:19
+msgid "Genres"
+msgstr "Türler"
+
+#: cerci_content/models.py:22
+msgid "Parent"
+msgstr "Kök"
+
+#: cerci_content/models.py:23 cerci_content/models.py:32
+msgid "Name"
+msgstr "İsim"
+
+#: cerci_content/models.py:24 cerci_content/models.py:34
+#: cerci_content/models.py:73 cerci_issue/models.py:19
+msgid "Slug"
+msgstr "URL Uyumlu"
+
+#: cerci_content/models.py:25
+msgid "Active"
+msgstr "Etkin"
+
+#: cerci_content/models.py:31 templates/admin/object_history.html:26
+msgid "User"
+msgstr "Kullanıcı"
+
+#: cerci_content/models.py:35
+msgid "Biography"
+msgstr "Özgeçmiş"
+
+#: cerci_content/models.py:37 cerci_content/models.py:77 pagedown/models.py:12
+msgid "Image"
+msgstr "Görsel"
+
+#: cerci_content/models.py:39 cerci_content/models.py:87
+#: cerci_issue/models.py:37
+msgid "Is Published"
+msgstr "Yayında mı"
+
+#: cerci_content/models.py:42 cerci_content/models.py:90
+#: cerci_issue/models.py:41 pagedown/models.py:13
+msgid "Created At"
+msgstr "Oluşturulma Tarihi"
+
+#: cerci_content/models.py:43 cerci_content/models.py:91
+#: cerci_issue/models.py:42 pagedown/models.py:14
+msgid "Updated At"
+msgstr "Güncelleme Tarihi"
+
+#: cerci_content/models.py:47
+msgid "Authors"
+msgstr "Yazarlar"
+
+#: cerci_content/models.py:70
+msgid "Title"
+msgstr "Başlık"
+
+#: cerci_content/models.py:78
+msgid "This image will be used for social sharing sites."
+msgstr ""
+
+#: cerci_content/models.py:80
+msgid "Is this content a figure?"
+msgstr "Bu içerik bir figür mü?"
+
+#: cerci_content/models.py:82
+msgid "Figures"
+msgstr "Figürler"
+
+#: cerci_content/models.py:85
+msgid "Spot"
+msgstr ""
+
+#: cerci_content/models.py:86
+msgid "Body"
+msgstr "Metin"
+
+#: cerci_content/models.py:94
+msgid "Issue Content"
+msgstr "Dergi İçeriği"
+
+#: cerci_content/models.py:95
+msgid "Issue Contents"
+msgstr "Dergi İçerikleri"
+
+#: cerci_issue/admin.py:49 cerci_issue/models.py:39
+msgid "Published At"
+msgstr "Yayın Tarihi"
+
+#: cerci_issue/models.py:14 cerci_issue/models.py:84
+msgid "Number"
+msgstr "Sayı"
+
+#: cerci_issue/models.py:15
+msgid "Issue Subject"
+msgstr "Dosya Konusu"
+
+#: cerci_issue/models.py:23
+msgid "Editorial Title"
+msgstr "Editörden Başlığı"
+
+#: cerci_issue/models.py:24
+msgid "Editorial"
+msgstr "Editörden"
+
+#: cerci_issue/models.py:25
+msgid "Copyright Page"
+msgstr "Künye"
+
+#: cerci_issue/models.py:28
+msgid "Cover"
+msgstr "Kapak"
+
+#: cerci_issue/models.py:30
+msgid "Cover Design"
+msgstr "Kapak Tasarımı"
+
+#: cerci_issue/models.py:34 cerci_issue/models.py:89
+msgid "Contents"
+msgstr "İçerikler"
+
+#: cerci_issue/models.py:78 cerci_issue/models.py:88
+msgid "Content"
+msgstr "İçerik"
+
+#: cerci_issue/models.py:80
+msgid "Is Subject"
+msgstr "Dosya Konusu mu"
+
+#: cerci_issue/models.py:103 cerci_issue/models.py:118
+msgid "File"
+msgstr "Dosya"
+
+#: cerci_issue/models.py:105
+msgid "Format"
+msgstr "Biçim"
+
+#: cerci_issue/models.py:119
+msgid "Files"
+msgstr "Dosyalar"
+
+#: pagedown/views.py:30
+msgid "New inline image"
+msgstr ""
+
+#: pagedown/widgets.py:115
+msgid "Insert Image"
+msgstr "Görsel Ekle"
+
+#: pagedown/widgets.py:117 templates/admin/delete_confirmation.html:52
+#: templates/admin/delete_selected_confirmation.html:58
+msgid "Cancel"
+msgstr "İptal"
+
+#: templates/admin/404.html:7 templates/admin/404.html.py:11
+msgid "Page not found"
+msgstr "Sayfa bulunamadı"
+
+#: templates/admin/404.html:12
+msgid "We're sorry, but the requested page could not be found."
+msgstr "Özür dileriz, istenen sayfa bulunamadı."
+
+#: templates/admin/500.html:9 templates/admin/app_index.html:12
+#: templates/admin/base.html:74 templates/admin/change_form.html:108
+#: templates/admin/change_list.html:130
+#: templates/admin/change_list_filter_sidebar.html:126
+#: templates/admin/csv_export_selected_confirmation.html:9
+#: templates/admin/delete_confirmation.html:14
+#: templates/admin/delete_selected_confirmation.html:14
+#: templates/admin/index.html:25 templates/admin/invalid_setup.html:10
+#: templates/admin/object_history.html:10
+#: templates/admin/auth/user/change_password.html:21
+#: templates/admin/cerci_content/issuecontent/change_form.html:126
+#: templates/admin/cerci_issue/issue/change_form.html:108
+msgid "Home"
+msgstr "Ev"
+
+#: templates/admin/500.html:10
+msgid "Server error"
+msgstr "Sunucu hatası"
+
+#: templates/admin/500.html:15
+msgid "Server error (500)"
+msgstr "Sunucu hatası (500)"
+
+#: templates/admin/500.html:19
+msgid "Server Error <em>(500)</em>"
+msgstr "Sunucu hatası <em>(500)</em>"
+
+#: templates/admin/500.html:20
+msgid ""
+"There's been an error. It's been reported to the site administrators via e-"
+"mail and should be fixed shortly. Thanks for your patience."
+msgstr ""
+
+#: templates/admin/actions.html:10
+msgid "Click here to select the objects across all pages"
+msgstr ""
+
+#: templates/admin/actions.html:10
+#, python-format
+msgid "Select all %(total_count)s %(module_name)s"
+msgstr ""
+
+#: templates/admin/actions.html:11
+msgid "Clear selection"
+msgstr ""
+
+#: templates/admin/app_index.html:14
+#, python-format
+msgid "<li>%(name)s</li>"
+msgstr ""
+
+#: templates/admin/app_index.html:31 templates/admin/change_form.html:111
+#: templates/admin/cerci_content/issuecontent/change_form.html:129
+#: templates/admin/cerci_issue/issue/change_form.html:111
+#: templates/grappelli/dashboard/modules/app_list.html:19
+#: templates/grappelli/dashboard/modules/model_list.html:9
+msgid "Add"
+msgstr ""
+
+#: templates/admin/app_index.html:32
+#: templates/grappelli/dashboard/modules/app_list.html:24
+#: templates/grappelli/dashboard/modules/model_list.html:10
+msgid "Change"
+msgstr ""
+
+#: templates/admin/app_index.html:39
+msgid "You don´t have permission to edit anything."
+msgstr ""
+
+#: templates/admin/base_site.html:4
+msgid "Django site admin"
+msgstr ""
+
+#: templates/admin/base_site.html:7
+msgid "Django administration"
+msgstr ""
+
+#: templates/admin/change_form.html:98
+#: templates/admin/cerci_content/issuecontent/change_form.html:116
+#: templates/admin/cerci_issue/issue/change_form.html:98
+#: templates/admin/edit_inline/stacked.html:9
+msgid "Open All Items"
+msgstr ""
+
+#: templates/admin/change_form.html:99
+#: templates/admin/cerci_content/issuecontent/change_form.html:117
+#: templates/admin/cerci_issue/issue/change_form.html:99
+#: templates/admin/edit_inline/stacked.html:10
+msgid "Close All Items"
+msgstr ""
+
+#: templates/admin/change_form.html:122 templates/admin/object_history.html:14
+#: templates/admin/cerci_content/issuecontent/change_form.html:140
+#: templates/admin/cerci_issue/issue/change_form.html:122
+msgid "History"
+msgstr ""
+
+#: templates/admin/change_form.html:123
+#: templates/admin/cerci_content/issuecontent/change_form.html:141
+#: templates/admin/cerci_issue/issue/change_form.html:123
+msgid "View on site"
+msgstr ""
+
+#: templates/admin/change_form.html:141 templates/admin/change_list.html:212
+#: templates/admin/change_list_filter_sidebar.html:207
+#: templates/admin/login.html:60
+#: templates/admin/auth/user/change_password.html:40
+#: templates/admin/cerci_content/issuecontent/change_form.html:159
+#: templates/admin/cerci_issue/issue/change_form.html:141
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] ""
+
+#: templates/admin/change_list.html:147
+#: templates/admin/change_list_filter_sidebar.html:143
+#, python-format
+msgid "Add %(name)s"
+msgstr ""
+
+#: templates/admin/change_list.html:177
+#: templates/admin/change_list_filter_sidebar.html:158
+msgid "Filter"
+msgstr ""
+
+#: templates/admin/change_list.html:239 templates/admin/submit_line.html:9
+#: templates/admin/cerci_issue/issue/submit_line.html:29
+msgid "Save"
+msgstr ""
+
+#: templates/admin/change_list_results.html:18
+msgid "Remove from sorting"
+msgstr ""
+
+#: templates/admin/change_list_results.html:19
+#, python-format
+msgid "Sorting priority: %(priority_number)s"
+msgstr ""
+
+#: templates/admin/change_list_results.html:20
+msgid "Toggle sorting"
+msgstr ""
+
+#: templates/admin/csv_export_selected_confirmation.html:12
+msgid "Export selection as CSV"
+msgstr ""
+
+#: templates/admin/csv_export_selected_confirmation.html:31
+msgid "Export following fields:"
+msgstr ""
+
+#: templates/admin/csv_export_selected_confirmation.html:34
+msgid "Select all"
+msgstr ""
+
+#: templates/admin/csv_export_selected_confirmation.html:54
+msgid "Back"
+msgstr ""
+
+#: templates/admin/csv_export_selected_confirmation.html:55
+msgid "Export"
+msgstr ""
+
+#: templates/admin/delete_confirmation.html:18
+#: templates/admin/submit_line.html:6
+#: templates/admin/cerci_issue/issue/submit_line.html:21
+msgid "Delete"
+msgstr ""
+
+#: templates/admin/delete_confirmation.html:28
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would result in deleting "
+"related objects, but your account doesn't have permission to delete the "
+"following types of objects:"
+msgstr ""
+
+#: templates/admin/delete_confirmation.html:36
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would require deleting the "
+"following protected related objects:"
+msgstr ""
+
+#: templates/admin/delete_confirmation.html:46
+#, python-format
+msgid ""
+"Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
+"All of the following related items will be deleted:"
+msgstr ""
+
+#: templates/admin/delete_confirmation.html:53
+#: templates/admin/delete_selected_confirmation.html:59
+msgid "Yes, I'm sure"
+msgstr ""
+
+#: templates/admin/delete_selected_confirmation.html:17
+msgid "Delete multiple objects"
+msgstr ""
+
+#: templates/admin/delete_selected_confirmation.html:27
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would result in deleting related "
+"objects, but your account doesn't have permission to delete the following "
+"types of objects:"
+msgstr ""
+
+#: templates/admin/delete_selected_confirmation.html:35
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would require deleting the following "
+"protected related objects:"
+msgstr ""
+
+#: templates/admin/delete_selected_confirmation.html:45
+#, python-format
+msgid ""
+"Are you sure you want to delete the selected %(objects_name)s? All of the "
+"following objects and their related items will be deleted:"
+msgstr ""
+
+#: templates/admin/filter.html:4 templates/admin/filter_listing.html:3
+#, python-format
+msgid "%(filter_title)s"
+msgstr ""
+
+#: templates/admin/invalid_setup.html:17
+msgid ""
+"Something's wrong with your database installation. Make sure the appropriate "
+"database tables have been created, and make sure the database is readable by "
+"the appropriate user."
+msgstr ""
+
+#: templates/admin/login.html:77
+msgid "Username:"
+msgstr "Kullanıcı:"
+
+#: templates/admin/login.html:96
+msgid "Forgotten your password or username?"
+msgstr ""
+
+#: templates/admin/login.html:103
+msgid "Log in"
+msgstr ""
+
+#: templates/admin/object_history.html:25
+msgid "Date/time"
+msgstr ""
+
+#: templates/admin/object_history.html:27
+#, fuzzy
+msgid "Action"
+msgstr "Etkin"
+
+#: templates/admin/object_history.html:33
+msgid "DATETIME_FORMAT"
+msgstr ""
+
+#: templates/admin/object_history.html:37
+#, fuzzy
+msgid "Created object"
+msgstr "Oluşturulma Tarihi"
+
+#: templates/admin/object_history.html:47
+msgid ""
+"This object doesn't have a change history. It probably wasn't added via this "
+"admin site."
+msgstr ""
+
+#: templates/admin/pagination.html:8
+#, python-format
+msgid "%(counter)s result"
+msgid_plural "%(counter)s results"
+msgstr[0] ""
+
+#: templates/admin/pagination.html:13 templates/admin/pagination.html.py:15
+#, python-format
+msgid "%(full_result_count)s total"
+msgstr ""
+
+#: templates/admin/pagination.html:27
+msgid "Show all"
+msgstr ""
+
+#: templates/admin/submit_line.html:12
+#: templates/admin/cerci_issue/issue/submit_line.html:32
+msgid "Save as new"
+msgstr ""
+
+#: templates/admin/submit_line.html:15
+#: templates/admin/cerci_issue/issue/submit_line.html:35
+msgid "Save and add another"
+msgstr ""
+
+#: templates/admin/submit_line.html:18
+#: templates/admin/cerci_issue/issue/submit_line.html:38
+msgid "Save and continue editing"
+msgstr ""
+
+#: templates/admin/auth/user/change_password.html:8
+#: templates/admin/includes_grappelli/header.html:39
+msgid "Documentation"
+msgstr ""
+
+#: templates/admin/auth/user/change_password.html:12
+#: templates/admin/auth/user/change_password.html:24
+#: templates/admin/auth/user/change_password.html:67
+#: templates/admin/includes_grappelli/header.html:18
+msgid "Change password"
+msgstr ""
+
+#: templates/admin/auth/user/change_password.html:15
+#: templates/admin/includes_grappelli/header.html:26
+msgid "Log out"
+msgstr ""
+
+#: templates/admin/auth/user/change_password.html:28
+msgid "Password change"
+msgstr ""
+
+#: templates/admin/auth/user/change_password.html:37
+#, python-format
+msgid "Enter a new password for the user <strong>%(username)s</strong>."
+msgstr ""
+
+#: templates/admin/auth/user/change_password.html:47
+msgid "New password"
+msgstr ""
+
+#: templates/admin/auth/user/change_password.html:56
+msgid "Password (again)"
+msgstr ""
+
+#: templates/admin/auth/user/change_password.html:60
+msgid "Enter the same password as above, for verification."
+msgstr ""
+
+#: templates/admin/cerci_issue/issue/submit_line.html:24
+msgid "Unpublish"
+msgstr "Yayından Kaldır"
+
+#: templates/admin/cerci_issue/issue/submit_line.html:26
+msgid "Publish"
+msgstr "Yayınla"
+
+#: templates/admin/edit_inline/stacked.html:11
+#: templates/admin/edit_inline/stacked.html:55
+#: templates/admin/edit_inline/tabular.html:91
+msgid "Add Item"
+msgstr "Öğe Ekle"
+
+#: templates/admin/edit_inline/stacked.html:24
+#: templates/admin/edit_inline/tabular.html:64
+msgid "View on Site"
+msgstr "Sitede Görüntüle"
+
+#: templates/admin/edit_inline/stacked.html:26
+#: templates/admin/edit_inline/tabular.html:66
+msgid "Move Item"
+msgstr "Öğe Taşı"
+
+#: templates/admin/edit_inline/stacked.html:30
+#: templates/admin/edit_inline/stacked.html:35
+#: templates/admin/edit_inline/tabular.html:70
+#: templates/admin/edit_inline/tabular.html:75
+msgid "Delete Item"
+msgstr "Öğe Sil"
+
+#: templates/admin/edit_inline/stacked.html:53
+#: templates/admin/edit_inline/tabular.html:89
+#, python-format
+msgid "Add another %(verbose_name)s"
+msgstr ""
+
+#: templates/admin/edit_inline/tabular.html:9
+msgid "Add Another"
+msgstr ""
+
+#: templates/admin/includes_grappelli/header.html:34
+msgid "Tests"
+msgstr ""
+
+#: templates/grappelli/dashboard/modules/recent_actions.html:18
+#: templates/grappelli/dashboard/modules/recent_actions_all.html:22
+msgid "None Available"
+msgstr ""
+
+#~ msgid "Article"
+#~ msgstr "Makale"
+
+#~ msgid "Articles"
+#~ msgstr "Makaleler"

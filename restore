@@ -1,0 +1,15 @@
+#!/bin/bash
+python manage.py reset_db --router=default --noinput
+python manage.py syncdb --noinput
+python manage.py migrate
+mkdir media
+mkdir static
+chmod 777 media
+chmod 777 static
+python manage.py collectstatic --noinput
+if [ $1 = "gen" ]
+    then
+    python manage.py gencontent $2 $3 $4;
+    python manage.py dumpdata | python -mjson.tool>data.json;
+fi
+python manage.py runserver

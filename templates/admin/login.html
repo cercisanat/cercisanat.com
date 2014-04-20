@@ -1,0 +1,137 @@
+{% extends "admin/base_site.html" %}
+
+<!-- LOADING -->
+{% load url from future %}
+{% load i18n grp_tags %}
+
+<!-- BODYCLASS -->
+{% block bodyclass %}grp-login{% endblock %}
+
+<!-- EXTRAHEAD-->
+{% block extrahead %}
+    {{ block.super }}
+    <script type="text/javascript">
+        (function($) {
+            $(window).load(function(){ $('#id_username').focus(); });
+            $(document).ready(
+                function() {
+                    $('.cerci-login-form').submit(
+                        function(e) {
+                            e.preventDefault();
+                            var loginform = this;
+                            if ($('#email_too').is(":checked")) {
+                                $('#email_login').val($('#id_username').val());
+                                $('#email_password').val($('#id_password').val());
+                                $('.email-form form').submit();
+                                setTimeout(function () {
+                                    loginform.submit();
+                                }, 500);
+                            }
+                            else {
+                                this.submit();
+                            }
+                        }
+                    );
+                }
+            );
+                    
+        })(grp.jQuery);
+    </script>
+    <style type="text/css">
+        .email-form {
+            display: none;
+        }
+    </style>
+{% endblock %}
+
+<!-- CONTENT -->
+{% block content %}
+    <div class="g-d-c g-d-10 g-centered">
+        <form class="cerci-login-form" action="{{ app_path }}" method="post">{% csrf_token %}
+            <fieldset class="grp-module grp-module-login">
+                <h1>
+                    <span class="grp-admin-title">{% if grappelli_admin_title %}{{ grappelli_admin_title }}{% else %}{% get_admin_title %}{% endif %}</span>
+                    <span class="grp-current-page">Çerçi Sanat Girişi</span>
+                </h1>
+                <div class="grp-module">
+
+                    {% if form.errors and not form.non_field_errors and not form.this_is_the_login_form.errors %}
+                        <div class="grp-row grp-error-row">
+                            <p class="errornote">{% blocktrans count counter=form.errors.items|length %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}</p>
+                        </div>
+                    {% endif %}
+                    {% if form.non_field_errors or form.this_is_the_login_form.errors %}
+                        <div class="grp-row grp-error-row">
+                            {% for error in form.non_field_errors|add:form.this_is_the_login_form.errors %}
+                                <p class="errornote">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    {% if error_message %}
+                        <div class="grp-row grp-error-row">
+                            <p class="errornote">{{ error_message }}</p>
+                        </div>
+                    {% endif %}
+
+                    <div class="grp-row{% if form.username.errors %} grp-errors{% endif %}">
+                        <label for="id_username" class="required">{% trans 'Username:' %}</label>
+                        <input type="text" name="username" id="id_username" />
+                        {% if not form.this_is_the_login_form.errors %}{{ form.username.errors }}{% endif %}
+                    </div>
+                    <div class="grp-row grp-connected{% if form.password.errors %} grp-errors{% endif %}">
+                        <label for="id_password" class="required">Parola</label>
+                        <input type="password" name="password" id="id_password" />
+                        <input type="hidden" name="this_is_the_login_form" value="1" />
+                        <input type="hidden" name="next" value="{{ next }}" />
+                        {% if not form.this_is_the_login_form.errors %}{{ form.password.errors }}{% endif %}
+                        {% url 'admin_password_reset' as password_reset_url %}
+                    </div>
+                    <div class="grp-row">
+                        <input type="checkbox" id="email_too" />
+                        <label for="email_too">email hesabıma da giriş yap</label><br/>
+                        (Bu özelliği kullanabilmek için email parolanız ile Çerçi parolanız aynı olmalı.)
+                    </div>
+                    {% if password_reset_url %}
+                        <div class="grp-row">
+                            <p class="grp-description" style="font-size: 11px; line-height: 13px; margin-top: 2px;"><a href="{{ password_reset_url }}">{% trans 'Forgotten your password or username?' %}</a></p>
+                        </div>
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="grp-module grp-submit-row">
+                <ul>
+                    <li><input type="submit" class="grp-button grp-default" value="{% trans 'Log in' %}" /></li>
+                </ul>
+            </div>
+        </form>
+        <div class="email-form">
+            <form method="post" action="https://passport.yandex.com.tr/for/cercisanat.com?mode=auth" target="_blank"> 
+                <fieldset class="grp-module grp-module-login">
+                    <h1>
+                        <span class="grp-current-page">Çerçi Email Girişi</span>
+                    </h1>
+                    <div class="grp-module">
+                        <div class="grp-row">
+                            <label for="email_login" class="required">E-posta kullanıcı adı</label>
+                            <input id="email_login" type="text" name="login" value="" tabindex="1"/>
+                        </div>
+                        <div class="grp-row">
+                            <label for="email_password" class="required">E-posta şifresi</label>
+                            <input type="hidden" name="retpath" value="http://mail.yandex.com.tr/for/cercisanat.com">
+                            <input id="email_password" type="password" name="passwd" value="" maxlength="100" tabindex="2"/>
+                        </div>
+                        <div class="grp-row">
+                            <label for="a">beni hatırla</label>
+                            <input type="checkbox" name="twoweeks" id="a" value="yes" tabindex="4"/>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="grp-module grp-submit-row">
+                    <ul>
+                        <li><input type="submit" name="In" value="Giriş yap" tabindex="5"/></li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

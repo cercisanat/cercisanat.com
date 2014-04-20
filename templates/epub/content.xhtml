@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+{% load author %}
+{% load markdown %}
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+    <head>
+        <title>Çerçi Sayı {{ issue.number }} | {{ issuecontent.title }}</title>
+        <link href="css/template.css" rel="stylesheet" type="text/css"/>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+        <h1 class="title" id="content-{{issuecontent.id }}">{{ issuecontent.title }}</h1>
+        <cite class="authors">{{ issuecontent.authors.all|author_list|safe }}</cite>
+        {% with issuecontent.figures.all as image %}
+        {% if image.count %}
+        <figure>
+          <img src="{{ image.0.image.url|remove_media }}" alt="{{ image.0.title }}" />
+          <figcaption>
+          {% if image.0.title %}<h1>{{ image.0.title }}</h1>{% endif %}
+          {% if image.0.authors %}<cite class="image-authors">{{ image.0.authors.all|author_list|safe }}</cite>{% endif %}
+          {% if image.0.body %}<span class="description">{{ image.0.body|md_convert|safe|removetags:"script style" }}</span>{% endif %}
+          </figcaption>
+        </figure>
+        {% endif %}
+        <div class="content">
+            {% if issuecontent.spot %}
+              <blockquote class="spot">{{ issuecontent.spot|safe|removetags:"script style" }}</blockquote>
+            {% endif %}
+            {{ issuecontent.body|md_convert|safe|removetags:"script style" }}
+        </div>
+        {% endwith %}
+    </body>
+</html>

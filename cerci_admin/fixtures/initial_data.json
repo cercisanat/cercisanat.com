@@ -1,0 +1,252 @@
+[
+    {
+        "fields": {
+            "name": "Edit\u00f6r", 
+            "permissions": [
+                [
+                    "add_author", 
+                    "cerci_content", 
+                    "author"
+                ], 
+                [
+                    "change_author", 
+                    "cerci_content", 
+                    "author"
+                ], 
+                [
+                    "delete_author", 
+                    "cerci_content", 
+                    "author"
+                ], 
+                [
+                    "add_genre", 
+                    "cerci_content", 
+                    "genre"
+                ], 
+                [
+                    "change_genre", 
+                    "cerci_content", 
+                    "genre"
+                ], 
+                [
+                    "delete_genre", 
+                    "cerci_content", 
+                    "genre"
+                ], 
+                [
+                    "add_issuecontent", 
+                    "cerci_content", 
+                    "issuecontent"
+                ], 
+                [
+                    "change_issuecontent", 
+                    "cerci_content", 
+                    "issuecontent"
+                ], 
+                [
+                    "delete_issuecontent", 
+                    "cerci_content", 
+                    "issuecontent"
+                ], 
+                [
+                    "add_issue", 
+                    "cerci_issue", 
+                    "issue"
+                ], 
+                [
+                    "change_issue", 
+                    "cerci_issue", 
+                    "issue"
+                ], 
+                [
+                    "delete_issue", 
+                    "cerci_issue", 
+                    "issue"
+                ], 
+                [
+                    "add_issue2content", 
+                    "cerci_issue", 
+                    "issue2content"
+                ], 
+                [
+                    "change_issue2content", 
+                    "cerci_issue", 
+                    "issue2content"
+                ], 
+                [
+                    "delete_issue2content", 
+                    "cerci_issue", 
+                    "issue2content"
+                ], 
+                [
+                    "add_source", 
+                    "easy_thumbnails", 
+                    "source"
+                ], 
+                [
+                    "change_source", 
+                    "easy_thumbnails", 
+                    "source"
+                ], 
+                [
+                    "delete_source", 
+                    "easy_thumbnails", 
+                    "source"
+                ], 
+                [
+                    "add_thumbnail", 
+                    "easy_thumbnails", 
+                    "thumbnail"
+                ], 
+                [
+                    "change_thumbnail", 
+                    "easy_thumbnails", 
+                    "thumbnail"
+                ], 
+                [
+                    "delete_thumbnail", 
+                    "easy_thumbnails", 
+                    "thumbnail"
+                ], 
+                [
+                    "add_revision", 
+                    "reversion", 
+                    "revision"
+                ], 
+                [
+                    "change_revision", 
+                    "reversion", 
+                    "revision"
+                ], 
+                [
+                    "delete_revision", 
+                    "reversion", 
+                    "revision"
+                ], 
+                [
+                    "add_version", 
+                    "reversion", 
+                    "version"
+                ], 
+                [
+                    "change_version", 
+                    "reversion", 
+                    "version"
+                ], 
+                [
+                    "delete_version", 
+                    "reversion", 
+                    "version"
+                ]
+            ]
+        }, 
+        "model": "auth.group", 
+        "pk": 1
+    }, 
+    {
+        "fields": {
+            "date_joined": "2013-02-05T23:26:16Z", 
+            "email": "canmustafaozdemir@cercisanat.com", 
+            "first_name": "Can Mustafa", 
+            "groups": [], 
+            "is_active": true, 
+            "is_staff": true, 
+            "is_superuser": true, 
+            "last_login": "2013-05-19T00:26:08Z", 
+            "last_name": "\u00d6zdemir", 
+            "password": "pbkdf2_sha256$10000$WJJvCtMFJlzH$3v4r4Yrq1KpuhtbCPPGAe3IDuSrGlTmGBblPXo+2SxM=", 
+            "user_permissions": [], 
+            "username": "canmustafaozdemir"
+        }, 
+        "model": "auth.user", 
+        "pk": 1
+    }, 
+    {
+        "fields": {
+            "date_joined": "2013-04-14T20:23:14Z", 
+            "email": "oozlemsan@cercisanat.com", 
+            "first_name": "\u00d6zlem", 
+            "groups": [
+                [
+                    "Edit\u00f6r"
+                ]
+            ], 
+            "is_active": true, 
+            "is_staff": true, 
+            "is_superuser": false, 
+            "last_login": "2013-05-18T23:18:33Z", 
+            "last_name": "\u015ean", 
+            "password": "pbkdf2_sha256$10000$iuFhzr6r60Y7$naxLqeXEmFRqKLwiuijEKD9DkFX6o2tC1QFfRdsRpsk=", 
+            "user_permissions": [], 
+            "username": "ozlemsan"
+        }, 
+        "model": "auth.user", 
+        "pk": 2
+    }, 
+    {
+        "fields": {
+            "date_joined": "2013-04-14T20:25:54Z", 
+            "email": "yusufturhalli@cercisanat.com", 
+            "first_name": "Yusuf", 
+            "groups": [
+                [
+                    "Edit\u00f6r"
+                ]
+            ], 
+            "is_active": true, 
+            "is_staff": true, 
+            "is_superuser": false, 
+            "last_login": "2013-04-15T12:20:34Z", 
+            "last_name": "Turhall\u0131", 
+            "password": "pbkdf2_sha256$10000$SjyVm0DydPXN$y7hy1hkZUQNohuqMdmVziFsBenX6Ly/3Fs/70MPTzQU=", 
+            "user_permissions": [], 
+            "username": "yusufturhalli"
+        }, 
+        "model": "auth.user", 
+        "pk": 3
+    }, 
+    {
+        "fields": {
+            "date_joined": "2013-04-14T20:26:13Z", 
+            "email": "tugceaytes@cercisanat.com", 
+            "first_name": "Tu\u011f\u00e7e", 
+            "groups": [
+                [
+                    "Edit\u00f6r"
+                ]
+            ], 
+            "is_active": true, 
+            "is_staff": true, 
+            "is_superuser": false, 
+            "last_login": "2013-05-09T20:44:46Z", 
+            "last_name": "Ayte\u015f", 
+            "password": "pbkdf2_sha256$10000$qY39PfJTQB36$/Ng8SZakL+c7dOSKW3JPbBVom3qvJle64/jyqa/1qDE=", 
+            "user_permissions": [], 
+            "username": "tugceaytes"
+        }, 
+        "model": "auth.user", 
+        "pk": 4
+    }, 
+    {
+        "fields": {
+            "date_joined": "2013-04-14T20:26:33Z", 
+            "email": "sengulcan@cercisanat.com", 
+            "first_name": "\u015eeng\u00fcl", 
+            "groups": [
+                [
+                    "Edit\u00f6r"
+                ]
+            ], 
+            "is_active": true, 
+            "is_staff": true, 
+            "is_superuser": false, 
+            "last_login": "2013-04-14T20:26:33Z", 
+            "last_name": "Can", 
+            "password": "pbkdf2_sha256$10000$jt3uVNknQTAu$GjVRSQFgG2Y5EeCTiUig45RQQ4ZbG6og2blcsanuKko=", 
+            "user_permissions": [], 
+            "username": "sengulcan"
+        }, 
+        "model": "auth.user", 
+        "pk": 5
+    }
+]

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+
+{% block content %}
+<section class="sendus content">
+    <h1>Yazı Gönderin</h1>
+
+    <p>Çerçi Sanat sizin harflerinizle, sözcüklerinizle var oldu ve var olacak. O yüzden yazılarınız Çerçi Sanat için hayati önem taşıyor.</p>
+
+    <p>Çerçi Sanat imla kurallarına, anlatıma dikkat eder ve yayımlarken görselleriyle birlikte nitelikli olmasını gözetir. Dolayısıyla, gönderdiğiniz yazılar, öncelikle yazı ekibimiz tarafından değerlendirilecektir.</p>
+
+    <p>Yazı göndermeden önce lütfen <a href="{% url 'rules' %}">Site Kuralları</a>nı okuyun.</p>
+
+    <p>Metinlerinizi <a href="mailto:iletisim@cercisanat.com">iletisim@cercisanat.com</a> adresine gönderebilirsiniz.</p>
+
+    <p>Not: Çerçi Sanat’ta yayımlanan bütün yazılar Ömer Asım Aksoy'un "Ana Yazım Kılavuzu" (Epsilon yay.), Nihat Özen'in "Büyük Yazım Kılavuzu" ve Necmiye Alpay'ın "Dil Sorunları" esas alınarak tashih edilir.</p>
+
+
+    
+</section>
+{% endblock %}

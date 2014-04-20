@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="pub-id" version="3.0">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <dc:title id="title">Çerçi Sanat Sayı {{ issue.number }}</dc:title>
+        <meta property="title-type" refines="#title">main</meta>
+        <dc:date>{{ issue.published_at|date:'Y-m-d' }}</dc:date>
+        <dc:language>tr-TR</dc:language>
+        <meta property="dcterms:modified">2013-02-01T12:00:00Z</meta>
+        <dc:identifier id="pub-id">urn:isbn:978-975-xxx-xxx-x</dc:identifier>
+        <meta property="identifier-type" refines="#pub-id" scheme="onix:codelist5">15</meta>
+        <dc:publisher>Çerçi Sanat</dc:publisher>
+    <dc:creator id="author">Çerçi Sanat Ekibi</dc:creator>
+    <meta refines="#author" property="file-as">ÇERÇİ SANAT</meta>
+    <meta refines="#author" property="role" scheme="marc:relators">aut</meta>
+    </metadata>
+    <manifest>
+        {{ generated_manifest|safe }}
+    </manifest>
+    <spine>
+        {{ generated_spine|safe }}
+    </spine>
+</package>

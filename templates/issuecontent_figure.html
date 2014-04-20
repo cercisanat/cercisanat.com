@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load author %}
+{% load markdown %}
+{% load static from staticfiles %}
+{% block head %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static "css/issue.css" %}" type="text/css"/>
+  <script type="text/javascript" src="{% static "js/responsive/issuecontent.js" %}"></script>
+  <script type="text/javascript">
+  var addthis_config = {
+        ui_language: "tr"
+        //"data_track_addressbar":true 
+  } 
+  </script>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5197ecf45f1cbd3d"></script>
+{% endblock %}
+
+{% block head_title %}
+{{ block.super }}
+-Sayı {{ issue.number }}
+{% endblock %}
+
+{% block genres %}
+{% endblock %}
+
+{% block content %}
+<section class="issue clearfix">
+    <hgroup class="page-header">
+        <h1>Sayı {{ issue.number }}, {{ issue.published_at|date:"F Y" }}</h1>
+    </hgroup>
+    {% if issuecontent %}
+    {% if preview %}
+    <div class="preview-alert">
+      Dikkat! Bu yalnızca bir önizlemedir. İçerik henüz yayında değildir.
+    </div>
+    {% else %}
+    <div class="toc-container clearfix">
+        <a href="#" class="toc-starter">İçindekiler &#9662;</a>
+        <nav class="toc">
+            <a href="{% url 'current_issue' issue_number=issue.number %}">
+                <img class="cover pull-left" src="{{ issue.cover|thumbnail_url:'cover_toc' }}" alt="Kapak Resmi" title="Kapak Resmi" />
+            </a>
+            <ol>
+            {% for issue2content in issue.get_contents %}
+            {% with issue2content.content as content %}
+              {% if content == issuecontent %}
+              <li class="active">
+                <strong>{{ content.title }}</strong><br/>
+                <em>{{ content.authors.all|author_list|safe }}</em>
+              </li>
+              {% else %}
+              <li>
+                <strong><a href="{% url 'current_issuecontent' issue_number=issue.number contentslug=content.slug %}">{{ content.title }}</a></strong><br/>
+                <em>{{ content.authors.all|author_list|safe }}</em>
+              </li>
+              {% endif %}
+            {% endwith %}
+            {% endfor %}
+            </ol>
+        </nav>
+    </div>
+    {% endif %}
+    
+        <h1 id="content-{{issuecontent.id }}" class="page-header">{{ issuecontent.title }}</h1>
+        <cite class="authors">{{ issuecontent.authors.all|author_list|safe }}</cite>
+        <div class="body content">
+        <figure>
+          <img src="{{ issuecontent.image|thumbnail_url:'issuecontent_figure_image' }}" alt="İçerik görseli" />
+          <figcaption>
+            {% if issuecontent.body %}<span class="description">{{ issuecontent.body|md_convert|safe|removetags:"script style" }}</span>{% endif %}
+          </figcaption>
+        </figure>
+
+        {% if not preview %}
+        <!-- AddThis Button BEGIN -->
+        <div class="addthis_toolbox addthis_default_style ">
+        <a class="addthis_button_preferred_1"></a>
+        <a class="addthis_button_preferred_2"></a>
+        <a class="addthis_button_preferred_3"></a>
+        <a class="addthis_button_preferred_4"></a>
+        <a class="addthis_button_compact"></a>
+        <a class="addthis_counter addthis_bubble_style"></a>
+        </div>
+        <!-- AddThis Button END -->
+        {% endif %}
+
+        </div>
+    {% endif %}
+</section>
+{% endblock %}

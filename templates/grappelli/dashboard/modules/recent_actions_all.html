@@ -1,0 +1,26 @@
+{% extends "grappelli/dashboard/module.html" %}
+{% load i18n %}
+{% block module_content %}
+    <div class="grp-module">
+        {% if module.children %}
+            <ul>
+                {% for entry in module.children %}
+                    <li class="grp-row {% if entry.is_addition %}grp-add-link{% endif %}{% if entry.is_change %}grp-change-link{% endif %}{% if entry.is_deletion %}grp-delete-link{% endif %}">
+                        <strong>{{ entry.user.first_name }} {{ entry.user.last_name }}</strong>,
+                        bir <em>{% filter capfirst %}{% trans entry.content_type.name %}{% endfilter %}</em>
+                        {% if entry.is_addition %}ekledi{% endif %}{% if entry.is_change %}değiştirdi{% endif %}{% if entry.is_deletion %}sildi{% endif %}:
+                        {% if entry.is_deletion %}
+                            <span>"{{ entry.object_repr }}"</span>
+                        {% else %}
+                            "<a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>"
+                        {% endif %}
+                        
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <div class="grp-row"><p>{% trans 'None Available' %}</p></div>
+        {% endif %}
+        <a href="/admin/admin/logentry/">devamı</a>
+    </div>
+{% endblock %}

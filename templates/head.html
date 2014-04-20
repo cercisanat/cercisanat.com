@@ -1,0 +1,92 @@
+{% load static from staticfiles %}
+<meta charset="utf8" />
+<meta http-equiv="Content-Language" content="tr" />
+<link rel="shortcut icon" href="{% static "favicon.ico" %}" />
+<link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin,cyrillic-ext,greek-ext,greek,latin-ext,cyrillic' rel='stylesheet' type='text/css' />
+<link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic&subset=latin,latin-ext,cyrillic-ext,greek-ext,greek,cyrillic" rel="stylesheet" type='text/css' />
+<link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.css" %}" type="text/css" media="screen" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{% static "Font-Awesome/css/font-awesome.min.css" %}">
+<link rel="stylesheet" href="{% static "css/template.css" %}" type="text/css"/>
+<link rel="stylesheet" href="{% static "photobox/photobox.css" %}" type="text/css"/>
+<link rel="stylesheet" href="{% static "photobox/photobox.ie.css" %}" type="text/css"/>
+<!--[if lt IE 9]>
+<link rel="stylesheet" href="{% static "css/ie8.css" %}" type="text/css"/>
+<![endif]-->
+<script type="text/javascript" src="{% static "js/respond.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/jquery-1.9.1.js" %}"></script>
+<script type="text/javascript" src="{% static "bootstrap/js/bootstrap.js" %}"></script>
+<script type="text/javascript" src="{% static "photobox/photobox.js" %}"></script>
+<script type="text/javascript" src="{% static "ajax_forms/js/jquery-ajax-validation.js" %}"></script>
+<script type="text/javascript" src="{% static "js/responsive/main.js" %}"></script>
+<script type="text/javascript" src="{% static "js/main.js" %}"></script>
+<script type="text/javascript">
+$(document).ready(
+    function() {
+        var notifications_trigger = $('.notifications-trigger');
+        var notifications = $('.notifications');
+        $('.more').tooltip();
+        $('.less').tooltip();
+        $('.social-accounts a').tooltip();
+
+        notifications_trigger.on('click', function(){
+            if (notifications.is(":visible")) {
+                notifications.hide('slow');
+                $('.icon-arrow-left', this).show();
+                $('.icon-arrow-right', this).hide();
+                $('.notifications-open', this).show();
+                $('.notifications-close', this).hide();
+            }
+            else {
+                notifications.show('slow');
+                $('.icon-arrow-left', this).hide();
+                $('.icon-arrow-right', this).show();
+                $('.notifications-open', this).hide();
+                $('.notifications-close', this).show();
+            }
+        });
+
+        $('.ajax-form').validate({
+            type: 'p',
+            fields: ['id_email', 'id_name'],
+            event: 'focusout',
+            fieldSuccessCallback: function(field) {
+                field.css('border', '1px solid green');
+            },
+            formSuccessCallback: function(form) {
+                form.append('E-posta bildirimlerine üyeliğiniz başarıyla gerçekleşti.');
+            }
+        });
+    }
+);
+</script>
+
+{% if YANDEX_METRICA_ID %}
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter{{ YANDEX_METRICA_ID }} = new Ya.Metrika({id:{{ YANDEX_METRICA_ID }},
+                    webvisor:true,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true});
+        } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/{{ YANDEX_METRICA_ID }}" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+{% endif %}

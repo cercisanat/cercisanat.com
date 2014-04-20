@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load author %}
+{% load static from staticfiles %}
+{% block head %}
+  {{ block.super }}
+  <script type="text/javascript" src="{% static "js/cerci_slider.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/responsive/home.js" %}"></script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+    //Slider is buggy
+    /*$('.journal').cerciSlider({first_issue: {{ first.number }},
+                               last_issue: {{ last.number }},
+                               prev: "{% url 'home_year' year=year|add:'-1' %}", 
+                               next: "{% url 'home_year' year=year|add:'1' %}"});*/
+  });
+  </script>
+  <link rel="stylesheet" href="{% static "css/home.css" %}" type="text/css"/>
+  <link rel="stylesheet" href="{% static "css/cerciSlider.css" %}" type="text/css"/>
+{% endblock %}
+
+{% block content %}
+<div class="years clearfix">
+  {% if first_year != year %} 
+    <a class="prev" href="{% url 'home_year' year=year|add:'-1' %}">{{ year|add:"-1" }}</a>
+  {% endif %}
+  <span class="now">{{ year }}</span>
+  {% if last_year != year %} 
+    <a class="next" href="{% url 'home_year' year=year|add:'1' %}">{{ year|add:"1" }}</a>
+  {% endif %}
+</div>
+<div class="journal clearfix">
+  <section class="issues_wrapper">
+  {% for issue in issues %}
+  <section class="issue clearfix">
+    <h1 id="issue-{{ issue.number }}" class="number">
+      <a href="{% url 'current_issue' issue_number=issue.number %}">Sayı {{ issue.number }}, {{ issue.published_at|date:"F" }}</a></h1>
+    <a href="{% url 'current_issue' issue_number=issue.number %}">
+      <img class="cover" src="{{ issue.cover|thumbnail_url:'cover' }}" alt="Kapak Resmi" title="Kapak Resmi" />
+    </a>
+    <section class="contents">
+      <ul class="unstyled">
+      {% for issue2content in issue.issue2content_set.all %}
+        {% with issue2content.content as content %}
+          {% if content.is_published %}
+          <li>
+            <strong><a href="{% url 'current_issuecontent' issue_number=issue.number contentslug=content.slug %}">{{ content.title }}</a></strong><br/>
+            <em>{{ content.authors.all|author_list|safe }}</em>
+          </li>
+          {% endif %}
+        {% endwith %}
+      {% endfor %}
+      </ul>
+    </section>
+  </section>
+  {% endfor %}
+  </section>
+  <div class="cerciSlider clearfix">
+    <div class="inner"></div>
+    <a class="prev" href="#prev">Önceki Sayı</a>
+    <a class="next" href="#next">Sonraki Sayı</a>
+  </div>
+</div>
+{% endblock %}

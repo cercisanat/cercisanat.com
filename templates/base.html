@@ -1,0 +1,104 @@
+{% load static from staticfiles %}<!DOCTYPE html>
+<html lang="tr-TR" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
+  <head>
+    <title>{% block head_title %}Çerçi{% endblock %}</title>
+    {% block head %}
+    {% include "head.html" %}
+    {% endblock %}
+  </head>
+  <body>
+    {% block body %}
+    <div class="container">
+      <header class="clearfix">
+        <div class="texture"></div>
+        {% block logo %}
+        <a class="logo" href="/"></a>
+        {% endblock %}
+        <div class="primary-container pull-right">
+          {% block navigation %}
+          <ul class="primary-menu starter-target">
+            {% include 'navigation.html' %}
+          </ul>
+          {% endblock %}
+          <form class="form-search starter-target pull-right" action="/arama">
+            <div class="input-append">
+              <input type="text" class="span2 search-query" name="q" />
+              <button type="submit" class="add-on"><i class="icon-search icon-white"></i></button>
+            </div>
+          </form>
+          <div class="social-accounts starter-target pull-right">
+            <a href="https://www.facebook.com/CerciSanat" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Facebook'ta Çerçi Sanat"><i class="icon-facebook-sign icon-white"></i></a>
+            <a href="https://twitter.com/cercisanat" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Twitter'da Çerçi Sanat"><i class="icon-twitter-sign icon-white"></i></a>
+            <a href="https://plus.google.com/107839000424667573646/posts" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Google+'ta Çerçi Sanat"><i class="icon-google-plus-sign icon-white"></i></a>
+            <a href="http://pinterest.com/cercisanat/" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Pinterest'te Çerçi Sanat"><i class="icon-pinterest-sign icon-white"></i></a>
+          </div>
+        </div>
+        {% block header %}
+        <div class="starters">
+          <div class="genre-starter genres-starter pull-right"><i class="icon-tags icon-white"></i></div>
+          <div class="search-starter"><i class="icon-search icon-white"></i></div>
+          <div class="menu-starter"><i class="icon-reorder icon-white"></i></div>
+        </div>
+        {% endblock %}
+        <div class="clearfix"></div>
+      </header>
+      {% block genres %}
+        <nav class="genres starter-target">
+          <ul class="row categories clearfix">
+            {% for genre in genres %}
+            <li><a class="span2 genre" data-toggle="tooltip" data-placement="bottom" title="{{ genre.description|safe }}" data-html="true" href="{% url 'genre' genreslug=genre.slug %}">{{ genre }}</a></li>
+            {% endfor %}
+          </ul>
+        </nav>
+      {% endblock %}
+      {% for message in messages %}
+        <div class="alert alert-{% if message.tags %} {{ message.tags }}{% endif %}">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ message|safe }}
+        </div>
+      {% endfor %}
+      {% block content %}
+      {% endblock %}
+
+      <div class="notifications-trigger">
+        <i class="icon-arrow-left icon-6"></i>
+        <i class="icon-arrow-right icon-6"></i>
+        <div class="desc">
+          <span class="notifications-open">bildirimleri aç</span>
+          <span class="notifications-close">bildirimleri kapat</span>
+        </div>
+      </div>
+      {% block notifications %}
+      <div class="notifications">
+        <h2>Bildirimler</h2>
+        <h3>E-posta bildirimleri</h3>
+        <form action="{% url 'subscribe_form' %}" method="post" class="ajax-form">
+        {% csrf_token %}
+        {{ subscribe_form.as_p }}
+        <button type="submit" class="btn">Katıl</button>
+        </form>
+        <h3>İmece</h3>
+        <p>
+          Çerçi Sanat tamamen gönüllülerden oluşan bir ekiptir.
+          Çerçi Sanat'ın özgür bir yazılım olduğunu biliyor muydunuz?<br/>
+          Tüm kodlarımıza aşağıdaki linkten ulaşabilirsiniz.<br/>
+          <a href="https://github.com/cercisanat">Github</a>
+        </p>
+      </div>
+      {% endblock %}
+
+      <div class="clearfix"></div>
+      <footer class="clearfix">
+        {% block footer_navigation %}
+        <ul class="primary-menu pull-left">
+          {% include 'navigation.html' %}
+        </ul>
+        {% endblock %}
+        <div class="copyright pull-right">
+          <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png" /></a>
+        </div>
+      </footer>
+    </div>
+    {% endblock %}
+  </body>
+</html>

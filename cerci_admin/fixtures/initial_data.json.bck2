@@ -1,0 +1,901 @@
+[
+  {
+    "pk": 10,
+    "model": "contenttypes.contenttype",
+    "fields": {
+      "model": "author",
+      "name": "Author",
+      "app_label": "cerci_content"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "contenttypes.contenttype",
+    "fields": {
+      "model": "contenttype",
+      "name": "content type",
+      "app_label": "contenttypes"
+    }
+  },
+  {
+    "pk": 12,
+    "model": "contenttypes.contenttype",
+    "fields": {
+      "model": "editoruploadimage",
+      "name": "editor upload image",
+      "app_label": "pagedown"
+    }
+  },
+  {
+    "pk": 9,
+    "model": "contenttypes.contenttype",
+    "fields": {
+      "model": "genre",
+      "name": "Genre",
+      "app_label": "cerci_content"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "contenttypes.contenttype",
+    "fields": {
+      "model": "group",
+      "name": "group",
+      "app_label": "auth"
+    }
+  },
+  {
+    "pk": 8,
+    "model": "contenttypes.contenttype",
+    "fields": {
+      "model": "issue",
+      "name": "Issue",
+      "app_label": "cerci_issue"
+    }
+  },
+  {
+    "pk": 11,
+    "model": "contenttypes.contenttype",
+    "fields": {
+      "model": "issuecontent",
+      "name": "Issue Content",
+      "app_label": "cerci_content"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "contenttypes.contenttype",
+    "fields": {
+      "model": "logentry",
+      "name": "log entry",
+      "app_label": "admin"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "contenttypes.contenttype",
+    "fields": {
+      "model": "permission",
+      "name": "permission",
+      "app_label": "auth"
+    }
+  },
+  {
+    "pk": 13,
+    "model": "contenttypes.contenttype",
+    "fields": {
+      "model": "revision",
+      "name": "revision",
+      "app_label": "reversion"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "contenttypes.contenttype",
+    "fields": {
+      "model": "session",
+      "name": "session",
+      "app_label": "sessions"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "contenttypes.contenttype",
+    "fields": {
+      "model": "site",
+      "name": "site",
+      "app_label": "sites"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "contenttypes.contenttype",
+    "fields": {
+      "model": "user",
+      "name": "user",
+      "app_label": "auth"
+    }
+  },
+  {
+    "pk": 14,
+    "model": "contenttypes.contenttype",
+    "fields": {
+      "model": "version",
+      "name": "version",
+      "app_label": "reversion"
+    }
+  },
+  {
+    "pk": "32bdd9a7d3811b03275a5abd9f627d61",
+    "model": "sessions.session",
+    "fields": {
+      "expire_date": "2013-02-25T22:22:40Z",
+      "session_data": "NmExYmQ1ZTQ4ZGZhMjc1NmI1NTk1YTIzZjZkYjZkYTk4NmQ3YTJkMzqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQSKAQF1Lg==\n"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "sites.site",
+    "fields": {
+      "domain": "example.com",
+      "name": "example.com"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "cerci_content.genre",
+    "fields": {
+      "rght": 2,
+      "name": "Öykü",
+      "parent": null,
+      "level": 0,
+      "lft": 1,
+      "tree_id": 3,
+      "active": true,
+      "slug": "oyku"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "cerci_content.genre",
+    "fields": {
+      "rght": 2,
+      "name": "Şiir",
+      "parent": null,
+      "level": 0,
+      "lft": 1,
+      "tree_id": 4,
+      "active": true,
+      "slug": "siir"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "cerci_content.genre",
+    "fields": {
+      "rght": 2,
+      "name": "Deneme",
+      "parent": null,
+      "level": 0,
+      "lft": 1,
+      "tree_id": 1,
+      "active": true,
+      "slug": "deneme"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "cerci_content.genre",
+    "fields": {
+      "rght": 2,
+      "name": "İnceleme",
+      "parent": null,
+      "level": 0,
+      "lft": 1,
+      "tree_id": 2,
+      "active": true,
+      "slug": "inceleme"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "cerci_content.issuecontent",
+    "fields": {
+      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac augue nec mi adipiscing porttitor eu eget nunc. Sed euismod felis sit amet arcu condimentum tincidunt porta est venenatis. Integer faucibus turpis eu mauris blandit vel placerat velit lobortis. Phasellus est eros, eleifend vel interdum et, auctor non diam. Quisque tempus neque euismod erat placerat molestie. In hac habitasse platea dictumst. Nam a porta velit. Donec cursus aliquam luctus. Aliquam ut nulla metus. Nulla posuere fermentum quam, nec consectetur purus mollis eu. Aenean in sapien neque, sit amet scelerisque lorem. Pellentesque dolor leo, vehicula porta dapibus et, suscipit pretium odio.\r\n\r\nAliquam erat volutpat. Praesent ornare convallis felis, at aliquet mauris lacinia eu. Vivamus elementum varius hendrerit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam sodales rutrum est in ultricies. Maecenas dapibus lacinia metus eleifend rutrum. Aliquam commodo rutrum sem, vitae tempor lectus varius quis. Vestibulum consequat neque sit amet orci dapibus egestas. Vivamus consectetur lectus eget tellus posuere commodo.\r\n\r\nIn hac habitasse platea dictumst. Nam condimentum fermentum ipsum sit amet sodales. Sed ut justo vel est adipiscing varius. Maecenas dui arcu, aliquet vel blandit in, venenatis ut mi. Donec vulputate rutrum aliquet. Ut posuere interdum augue, vitae lacinia sapien fringilla vitae. Mauris sagittis, ipsum iaculis facilisis accumsan, dui nisi dictum lectus, in commodo sapien turpis ac diam. Nulla pharetra, erat in posuere interdum, elit dolor tincidunt lectus, sit amet tristique tellus velit id odio. Vestibulum sollicitudin euismod nisi, ac tristique eros imperdiet non. Aenean in nunc nisl.\r\n\r\nQuisque fermentum, augue ac ornare dignissim, elit sapien varius velit, non placerat erat magna eget ipsum. Integer justo sem, sollicitudin vitae posuere sit amet, malesuada porttitor augue. Pellentesque suscipit sapien sit amet erat scelerisque id congue sem porta. Maecenas eu tellus nisi. Integer quis mollis magna. In quis mi eget sem ullamcorper pellentesque. In varius fringilla tincidunt. Mauris interdum lectus id diam sagittis id convallis nisl egestas. Ut interdum rutrum ipsum. Cras venenatis aliquam urna, et pretium diam sodales quis.\r\n\r\nUt congue odio vel dolor condimentum posuere. Proin tempor vulputate lectus, at mollis diam facilisis sit amet. Aliquam pretium quam id urna malesuada accumsan. Duis volutpat leo sed ante cursus eget interdum tellus scelerisque. Aliquam porta tempus rutrum. Proin dapibus venenatis erat eget convallis. Suspendisse vel enim vel massa vestibulum accumsan ac quis risus. Vivamus ultricies metus at libero tristique eu interdum massa dictum. Nullam risus mauris, cursus eu consequat semper, egestas vel sem. Morbi suscipit vestibulum leo ut convallis. Etiam accumsan dolor nec sem molestie id semper metus fermentum. Fusce ac sem in lorem adipiscing dictum. Curabitur aliquet, nisl eu viverra molestie, est ligula feugiat neque, a aliquet felis sapien vel elit. Phasellus quam turpis, tincidunt non faucibus a, condimentum non nulla. Sed erat orci, consequat sed convallis ut, mattis eu risus.\r\n",
+      "title": "Bir Öykü",
+      "image": "",
+      "author": [
+        3
+      ],
+      "updated_at": "2013-02-11T22:24:22Z",
+      "is_subject": false,
+      "genre": [
+        1
+      ],
+      "created_at": "2013-02-11T22:24:22Z"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "cerci_content.issuecontent",
+    "fields": {
+      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\r\n\r\n Mauris ac augue nec mi adipiscing porttitor eu eget nunc. \r\n\r\nSed euismod felis sit amet arcu condimentum tincidunt porta est venenatis.\r\n\r\n Integer faucibus turpis eu mauris blandit vel placerat velit lobortis.\r\n\r\n Phasellus est eros, eleifend vel interdum et, auctor non diam. \r\n\r\nQuisque tempus neque euismod erat placerat molestie. In hac habitasse platea dictumst. \r\n\r\nNam a porta velit. Donec cursus aliquam luctus. Aliquam ut nulla metus. \r\n\r\nNulla posuere fermentum quam, nec consectetur purus mollis eu. \r\n\r\nAenean in sapien neque, sit amet scelerisque lorem. \r\n\r\nPellentesque dolor leo, vehicula porta dapibus et, suscipit pretium odio.\r\n\r\n",
+      "title": "Bir Şiir",
+      "image": "",
+      "author": [
+        2
+      ],
+      "updated_at": "2013-02-11T22:24:57Z",
+      "is_subject": false,
+      "genre": [
+        2
+      ],
+      "created_at": "2013-02-11T22:24:57Z"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "cerci_content.issuecontent",
+    "fields": {
+      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac augue nec mi adipiscing porttitor eu eget nunc. Sed euismod felis sit amet arcu condimentum tincidunt porta est venenatis. Integer faucibus turpis eu mauris blandit vel placerat velit lobortis. Phasellus est eros, eleifend vel interdum et, auctor non diam. Quisque tempus neque euismod erat placerat molestie. In hac habitasse platea dictumst. Nam a porta velit. Donec cursus aliquam luctus. Aliquam ut nulla metus. Nulla posuere fermentum quam, nec consectetur purus mollis eu. Aenean in sapien neque, sit amet scelerisque lorem. Pellentesque dolor leo, vehicula porta dapibus et, suscipit pretium odio.\r\n\r\nAliquam erat volutpat. Praesent ornare convallis felis, at aliquet mauris lacinia eu. Vivamus elementum varius hendrerit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam sodales rutrum est in ultricies. Maecenas dapibus lacinia metus eleifend rutrum. Aliquam commodo rutrum sem, vitae tempor lectus varius quis. Vestibulum consequat neque sit amet orci dapibus egestas. Vivamus consectetur lectus eget tellus posuere commodo.\r\n\r\nIn hac habitasse platea dictumst. Nam condimentum fermentum ipsum sit amet sodales. Sed ut justo vel est adipiscing varius. Maecenas dui arcu, aliquet vel blandit in, venenatis ut mi. Donec vulputate rutrum aliquet. Ut posuere interdum augue, vitae lacinia sapien fringilla vitae. Mauris sagittis, ipsum iaculis facilisis accumsan, dui nisi dictum lectus, in commodo sapien turpis ac diam. Nulla pharetra, erat in posuere interdum, elit dolor tincidunt lectus, sit amet tristique tellus velit id odio. Vestibulum sollicitudin euismod nisi, ac tristique eros imperdiet non. Aenean in nunc nisl.\r\n\r\nQuisque fermentum, augue ac ornare dignissim, elit sapien varius velit, non placerat erat magna eget ipsum. Integer justo sem, sollicitudin vitae posuere sit amet, malesuada porttitor augue. Pellentesque suscipit sapien sit amet erat scelerisque id congue sem porta. Maecenas eu tellus nisi. Integer quis mollis magna. In quis mi eget sem ullamcorper pellentesque. In varius fringilla tincidunt. Mauris interdum lectus id diam sagittis id convallis nisl egestas. Ut interdum rutrum ipsum. Cras venenatis aliquam urna, et pretium diam sodales quis.\r\n\r\nUt congue odio vel dolor condimentum posuere. Proin tempor vulputate lectus, at mollis diam facilisis sit amet. Aliquam pretium quam id urna malesuada accumsan. Duis volutpat leo sed ante cursus eget interdum tellus scelerisque. Aliquam porta tempus rutrum. Proin dapibus venenatis erat eget convallis. Suspendisse vel enim vel massa vestibulum accumsan ac quis risus. Vivamus ultricies metus at libero tristique eu interdum massa dictum. Nullam risus mauris, cursus eu consequat semper, egestas vel sem. Morbi suscipit vestibulum leo ut convallis. Etiam accumsan dolor nec sem molestie id semper metus fermentum. Fusce ac sem in lorem adipiscing dictum. Curabitur aliquet, nisl eu viverra molestie, est ligula feugiat neque, a aliquet felis sapien vel elit. Phasellus quam turpis, tincidunt non faucibus a, condimentum non nulla. Sed erat orci, consequat sed convallis ut, mattis eu risus.\r\n",
+      "title": "Bir İnceleme",
+      "image": "",
+      "author": [
+        1
+      ],
+      "updated_at": "2013-02-11T22:25:24Z",
+      "is_subject": false,
+      "genre": [
+        4
+      ],
+      "created_at": "2013-02-11T22:25:24Z"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "reversion.version",
+    "fields": {
+      "format": "json",
+      "object_repr": "Bir Öykü",
+      "object_id": "1",
+      "content_type": 11,
+      "object_id_int": 1,
+      "type": 0,
+      "serialized_data": "[{\"pk\": 1, \"model\": \"cerci_content.issuecontent\", \"fields\": {\"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac augue nec mi adipiscing porttitor eu eget nunc. Sed euismod felis sit amet arcu condimentum tincidunt porta est venenatis. Integer faucibus turpis eu mauris blandit vel placerat velit lobortis. Phasellus est eros, eleifend vel interdum et, auctor non diam. Quisque tempus neque euismod erat placerat molestie. In hac habitasse platea dictumst. Nam a porta velit. Donec cursus aliquam luctus. Aliquam ut nulla metus. Nulla posuere fermentum quam, nec consectetur purus mollis eu. Aenean in sapien neque, sit amet scelerisque lorem. Pellentesque dolor leo, vehicula porta dapibus et, suscipit pretium odio.\\r\\n\\r\\nAliquam erat volutpat. Praesent ornare convallis felis, at aliquet mauris lacinia eu. Vivamus elementum varius hendrerit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam sodales rutrum est in ultricies. Maecenas dapibus lacinia metus eleifend rutrum. Aliquam commodo rutrum sem, vitae tempor lectus varius quis. Vestibulum consequat neque sit amet orci dapibus egestas. Vivamus consectetur lectus eget tellus posuere commodo.\\r\\n\\r\\nIn hac habitasse platea dictumst. Nam condimentum fermentum ipsum sit amet sodales. Sed ut justo vel est adipiscing varius. Maecenas dui arcu, aliquet vel blandit in, venenatis ut mi. Donec vulputate rutrum aliquet. Ut posuere interdum augue, vitae lacinia sapien fringilla vitae. Mauris sagittis, ipsum iaculis facilisis accumsan, dui nisi dictum lectus, in commodo sapien turpis ac diam. Nulla pharetra, erat in posuere interdum, elit dolor tincidunt lectus, sit amet tristique tellus velit id odio. Vestibulum sollicitudin euismod nisi, ac tristique eros imperdiet non. Aenean in nunc nisl.\\r\\n\\r\\nQuisque fermentum, augue ac ornare dignissim, elit sapien varius velit, non placerat erat magna eget ipsum. Integer justo sem, sollicitudin vitae posuere sit amet, malesuada porttitor augue. Pellentesque suscipit sapien sit amet erat scelerisque id congue sem porta. Maecenas eu tellus nisi. Integer quis mollis magna. In quis mi eget sem ullamcorper pellentesque. In varius fringilla tincidunt. Mauris interdum lectus id diam sagittis id convallis nisl egestas. Ut interdum rutrum ipsum. Cras venenatis aliquam urna, et pretium diam sodales quis.\\r\\n\\r\\nUt congue odio vel dolor condimentum posuere. Proin tempor vulputate lectus, at mollis diam facilisis sit amet. Aliquam pretium quam id urna malesuada accumsan. Duis volutpat leo sed ante cursus eget interdum tellus scelerisque. Aliquam porta tempus rutrum. Proin dapibus venenatis erat eget convallis. Suspendisse vel enim vel massa vestibulum accumsan ac quis risus. Vivamus ultricies metus at libero tristique eu interdum massa dictum. Nullam risus mauris, cursus eu consequat semper, egestas vel sem. Morbi suscipit vestibulum leo ut convallis. Etiam accumsan dolor nec sem molestie id semper metus fermentum. Fusce ac sem in lorem adipiscing dictum. Curabitur aliquet, nisl eu viverra molestie, est ligula feugiat neque, a aliquet felis sapien vel elit. Phasellus quam turpis, tincidunt non faucibus a, condimentum non nulla. Sed erat orci, consequat sed convallis ut, mattis eu risus.\\r\\n\", \"title\": \"Bir \\u00d6yk\\u00fc\", \"image\": \"\", \"author\": [3], \"updated_at\": \"2013-02-11T22:24:22.374Z\", \"is_subject\": false, \"genre\": [1], \"created_at\": \"2013-02-11T22:24:22.374Z\"}}]",
+      "revision": 1
+    }
+  },
+  {
+    "pk": 2,
+    "model": "reversion.version",
+    "fields": {
+      "format": "json",
+      "object_repr": "Bir Şiir",
+      "object_id": "2",
+      "content_type": 11,
+      "object_id_int": 2,
+      "type": 0,
+      "serialized_data": "[{\"pk\": 2, \"model\": \"cerci_content.issuecontent\", \"fields\": {\"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit.\\r\\n\\r\\n Mauris ac augue nec mi adipiscing porttitor eu eget nunc. \\r\\n\\r\\nSed euismod felis sit amet arcu condimentum tincidunt porta est venenatis.\\r\\n\\r\\n Integer faucibus turpis eu mauris blandit vel placerat velit lobortis.\\r\\n\\r\\n Phasellus est eros, eleifend vel interdum et, auctor non diam. \\r\\n\\r\\nQuisque tempus neque euismod erat placerat molestie. In hac habitasse platea dictumst. \\r\\n\\r\\nNam a porta velit. Donec cursus aliquam luctus. Aliquam ut nulla metus. \\r\\n\\r\\nNulla posuere fermentum quam, nec consectetur purus mollis eu. \\r\\n\\r\\nAenean in sapien neque, sit amet scelerisque lorem. \\r\\n\\r\\nPellentesque dolor leo, vehicula porta dapibus et, suscipit pretium odio.\\r\\n\\r\\n\", \"title\": \"Bir \\u015eiir\", \"image\": \"\", \"author\": [2], \"updated_at\": \"2013-02-11T22:24:57.261Z\", \"is_subject\": false, \"genre\": [2], \"created_at\": \"2013-02-11T22:24:57.261Z\"}}]",
+      "revision": 2
+    }
+  },
+  {
+    "pk": 3,
+    "model": "reversion.version",
+    "fields": {
+      "format": "json",
+      "object_repr": "Bir İnceleme",
+      "object_id": "3",
+      "content_type": 11,
+      "object_id_int": 3,
+      "type": 0,
+      "serialized_data": "[{\"pk\": 3, \"model\": \"cerci_content.issuecontent\", \"fields\": {\"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac augue nec mi adipiscing porttitor eu eget nunc. Sed euismod felis sit amet arcu condimentum tincidunt porta est venenatis. Integer faucibus turpis eu mauris blandit vel placerat velit lobortis. Phasellus est eros, eleifend vel interdum et, auctor non diam. Quisque tempus neque euismod erat placerat molestie. In hac habitasse platea dictumst. Nam a porta velit. Donec cursus aliquam luctus. Aliquam ut nulla metus. Nulla posuere fermentum quam, nec consectetur purus mollis eu. Aenean in sapien neque, sit amet scelerisque lorem. Pellentesque dolor leo, vehicula porta dapibus et, suscipit pretium odio.\\r\\n\\r\\nAliquam erat volutpat. Praesent ornare convallis felis, at aliquet mauris lacinia eu. Vivamus elementum varius hendrerit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam sodales rutrum est in ultricies. Maecenas dapibus lacinia metus eleifend rutrum. Aliquam commodo rutrum sem, vitae tempor lectus varius quis. Vestibulum consequat neque sit amet orci dapibus egestas. Vivamus consectetur lectus eget tellus posuere commodo.\\r\\n\\r\\nIn hac habitasse platea dictumst. Nam condimentum fermentum ipsum sit amet sodales. Sed ut justo vel est adipiscing varius. Maecenas dui arcu, aliquet vel blandit in, venenatis ut mi. Donec vulputate rutrum aliquet. Ut posuere interdum augue, vitae lacinia sapien fringilla vitae. Mauris sagittis, ipsum iaculis facilisis accumsan, dui nisi dictum lectus, in commodo sapien turpis ac diam. Nulla pharetra, erat in posuere interdum, elit dolor tincidunt lectus, sit amet tristique tellus velit id odio. Vestibulum sollicitudin euismod nisi, ac tristique eros imperdiet non. Aenean in nunc nisl.\\r\\n\\r\\nQuisque fermentum, augue ac ornare dignissim, elit sapien varius velit, non placerat erat magna eget ipsum. Integer justo sem, sollicitudin vitae posuere sit amet, malesuada porttitor augue. Pellentesque suscipit sapien sit amet erat scelerisque id congue sem porta. Maecenas eu tellus nisi. Integer quis mollis magna. In quis mi eget sem ullamcorper pellentesque. In varius fringilla tincidunt. Mauris interdum lectus id diam sagittis id convallis nisl egestas. Ut interdum rutrum ipsum. Cras venenatis aliquam urna, et pretium diam sodales quis.\\r\\n\\r\\nUt congue odio vel dolor condimentum posuere. Proin tempor vulputate lectus, at mollis diam facilisis sit amet. Aliquam pretium quam id urna malesuada accumsan. Duis volutpat leo sed ante cursus eget interdum tellus scelerisque. Aliquam porta tempus rutrum. Proin dapibus venenatis erat eget convallis. Suspendisse vel enim vel massa vestibulum accumsan ac quis risus. Vivamus ultricies metus at libero tristique eu interdum massa dictum. Nullam risus mauris, cursus eu consequat semper, egestas vel sem. Morbi suscipit vestibulum leo ut convallis. Etiam accumsan dolor nec sem molestie id semper metus fermentum. Fusce ac sem in lorem adipiscing dictum. Curabitur aliquet, nisl eu viverra molestie, est ligula feugiat neque, a aliquet felis sapien vel elit. Phasellus quam turpis, tincidunt non faucibus a, condimentum non nulla. Sed erat orci, consequat sed convallis ut, mattis eu risus.\\r\\n\", \"title\": \"Bir \\u0130nceleme\", \"image\": \"\", \"author\": [1], \"updated_at\": \"2013-02-11T22:25:24.973Z\", \"is_subject\": false, \"genre\": [4], \"created_at\": \"2013-02-11T22:25:24.973Z\"}}]",
+      "revision": 3
+    }
+  },
+  {
+    "pk": 19,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_logentry",
+      "name": "Can add log entry",
+      "content_type": 7
+    }
+  },
+  {
+    "pk": 20,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_logentry",
+      "name": "Can change log entry",
+      "content_type": 7
+    }
+  },
+  {
+    "pk": 21,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_logentry",
+      "name": "Can delete log entry",
+      "content_type": 7
+    }
+  },
+  {
+    "pk": 4,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_group",
+      "name": "Can add group",
+      "content_type": 2
+    }
+  },
+  {
+    "pk": 5,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_group",
+      "name": "Can change group",
+      "content_type": 2
+    }
+  },
+  {
+    "pk": 6,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_group",
+      "name": "Can delete group",
+      "content_type": 2
+    }
+  },
+  {
+    "pk": 1,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_permission",
+      "name": "Can add permission",
+      "content_type": 1
+    }
+  },
+  {
+    "pk": 2,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_permission",
+      "name": "Can change permission",
+      "content_type": 1
+    }
+  },
+  {
+    "pk": 3,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_permission",
+      "name": "Can delete permission",
+      "content_type": 1
+    }
+  },
+  {
+    "pk": 7,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_user",
+      "name": "Can add user",
+      "content_type": 3
+    }
+  },
+  {
+    "pk": 8,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_user",
+      "name": "Can change user",
+      "content_type": 3
+    }
+  },
+  {
+    "pk": 9,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_user",
+      "name": "Can delete user",
+      "content_type": 3
+    }
+  },
+  {
+    "pk": 28,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_author",
+      "name": "Can add Author",
+      "content_type": 10
+    }
+  },
+  {
+    "pk": 29,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_author",
+      "name": "Can change Author",
+      "content_type": 10
+    }
+  },
+  {
+    "pk": 30,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_author",
+      "name": "Can delete Author",
+      "content_type": 10
+    }
+  },
+  {
+    "pk": 25,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_genre",
+      "name": "Can add Genre",
+      "content_type": 9
+    }
+  },
+  {
+    "pk": 26,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_genre",
+      "name": "Can change Genre",
+      "content_type": 9
+    }
+  },
+  {
+    "pk": 27,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_genre",
+      "name": "Can delete Genre",
+      "content_type": 9
+    }
+  },
+  {
+    "pk": 31,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_issuecontent",
+      "name": "Can add Issue Content",
+      "content_type": 11
+    }
+  },
+  {
+    "pk": 32,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_issuecontent",
+      "name": "Can change Issue Content",
+      "content_type": 11
+    }
+  },
+  {
+    "pk": 33,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_issuecontent",
+      "name": "Can delete Issue Content",
+      "content_type": 11
+    }
+  },
+  {
+    "pk": 22,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_issue",
+      "name": "Can add Issue",
+      "content_type": 8
+    }
+  },
+  {
+    "pk": 23,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_issue",
+      "name": "Can change Issue",
+      "content_type": 8
+    }
+  },
+  {
+    "pk": 24,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_issue",
+      "name": "Can delete Issue",
+      "content_type": 8
+    }
+  },
+  {
+    "pk": 10,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_contenttype",
+      "name": "Can add content type",
+      "content_type": 4
+    }
+  },
+  {
+    "pk": 11,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_contenttype",
+      "name": "Can change content type",
+      "content_type": 4
+    }
+  },
+  {
+    "pk": 12,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_contenttype",
+      "name": "Can delete content type",
+      "content_type": 4
+    }
+  },
+  {
+    "pk": 34,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_editoruploadimage",
+      "name": "Can add editor upload image",
+      "content_type": 12
+    }
+  },
+  {
+    "pk": 35,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_editoruploadimage",
+      "name": "Can change editor upload image",
+      "content_type": 12
+    }
+  },
+  {
+    "pk": 36,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_editoruploadimage",
+      "name": "Can delete editor upload image",
+      "content_type": 12
+    }
+  },
+  {
+    "pk": 37,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_revision",
+      "name": "Can add revision",
+      "content_type": 13
+    }
+  },
+  {
+    "pk": 38,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_revision",
+      "name": "Can change revision",
+      "content_type": 13
+    }
+  },
+  {
+    "pk": 39,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_revision",
+      "name": "Can delete revision",
+      "content_type": 13
+    }
+  },
+  {
+    "pk": 40,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_version",
+      "name": "Can add version",
+      "content_type": 14
+    }
+  },
+  {
+    "pk": 41,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_version",
+      "name": "Can change version",
+      "content_type": 14
+    }
+  },
+  {
+    "pk": 42,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_version",
+      "name": "Can delete version",
+      "content_type": 14
+    }
+  },
+  {
+    "pk": 13,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_session",
+      "name": "Can add session",
+      "content_type": 5
+    }
+  },
+  {
+    "pk": 14,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_session",
+      "name": "Can change session",
+      "content_type": 5
+    }
+  },
+  {
+    "pk": 15,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_session",
+      "name": "Can delete session",
+      "content_type": 5
+    }
+  },
+  {
+    "pk": 16,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_site",
+      "name": "Can add site",
+      "content_type": 6
+    }
+  },
+  {
+    "pk": 17,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_site",
+      "name": "Can change site",
+      "content_type": 6
+    }
+  },
+  {
+    "pk": 18,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_site",
+      "name": "Can delete site",
+      "content_type": 6
+    }
+  },
+  {
+    "pk": 1,
+    "model": "auth.user",
+    "fields": {
+      "username": "admin",
+      "first_name": "",
+      "last_name": "",
+      "is_active": true,
+      "is_superuser": true,
+      "is_staff": true,
+      "last_login": "2013-02-11T22:22:40Z",
+      "groups": [],
+      "user_permissions": [],
+      "password": "pbkdf2_sha256$10000$oasjNK8cjiS7$z2KG/dHgSfPA4fN12sSeYDxoeEoXHf5h8xJ1Ds0Ysbk=",
+      "email": "canmustafaozdemir@gmail.com",
+      "date_joined": "2013-02-05T23:26:16Z"
+    }
+  },
+  {
+    "pk": 11,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 1,
+      "action_time": "2013-02-11T22:25:25Z",
+      "object_repr": "Bir İnceleme",
+      "object_id": "3",
+      "change_message": "",
+      "user": 1,
+      "content_type": 11
+    }
+  },
+  {
+    "pk": 10,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 1,
+      "action_time": "2013-02-11T22:24:57Z",
+      "object_repr": "Bir Şiir",
+      "object_id": "2",
+      "change_message": "",
+      "user": 1,
+      "content_type": 11
+    }
+  },
+  {
+    "pk": 9,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 1,
+      "action_time": "2013-02-11T22:24:22Z",
+      "object_repr": "Bir Öykü",
+      "object_id": "1",
+      "change_message": "",
+      "user": 1,
+      "content_type": 11
+    }
+  },
+  {
+    "pk": 8,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 1,
+      "action_time": "2013-02-11T22:23:28Z",
+      "object_repr": "Özlem Şan",
+      "object_id": "3",
+      "change_message": "",
+      "user": 1,
+      "content_type": 10
+    }
+  },
+  {
+    "pk": 7,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 1,
+      "action_time": "2013-02-11T22:23:22Z",
+      "object_repr": "Eren Can Ayhan",
+      "object_id": "2",
+      "change_message": "",
+      "user": 1,
+      "content_type": 10
+    }
+  },
+  {
+    "pk": 6,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 1,
+      "action_time": "2013-02-11T22:23:19Z",
+      "object_repr": "Can Mustafa Özdemir",
+      "object_id": "1",
+      "change_message": "",
+      "user": 1,
+      "content_type": 10
+    }
+  },
+  {
+    "pk": 5,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 1,
+      "action_time": "2013-02-11T22:23:08Z",
+      "object_repr": "İnceleme",
+      "object_id": "4",
+      "change_message": "",
+      "user": 1,
+      "content_type": 9
+    }
+  },
+  {
+    "pk": 4,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 1,
+      "action_time": "2013-02-11T22:23:02Z",
+      "object_repr": "Deneme",
+      "object_id": "3",
+      "change_message": "",
+      "user": 1,
+      "content_type": 9
+    }
+  },
+  {
+    "pk": 3,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 2,
+      "action_time": "2013-02-11T22:22:58Z",
+      "object_repr": "Şiir",
+      "object_id": "2",
+      "change_message": "Hiçbir alan değiştirilmedi.",
+      "user": 1,
+      "content_type": 9
+    }
+  },
+  {
+    "pk": 2,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 1,
+      "action_time": "2013-02-11T22:22:55Z",
+      "object_repr": "Şiir",
+      "object_id": "2",
+      "change_message": "",
+      "user": 1,
+      "content_type": 9
+    }
+  },
+  {
+    "pk": 1,
+    "model": "admin.logentry",
+    "fields": {
+      "action_flag": 1,
+      "action_time": "2013-02-11T22:22:50Z",
+      "object_repr": "Öykü",
+      "object_id": "1",
+      "change_message": "",
+      "user": 1,
+      "content_type": 9
+    }
+  },
+  {
+    "pk": 1,
+    "model": "cerci_content.author",
+    "fields": {
+      "name": "Can Mustafa Özdemir",
+      "created_at": "2013-02-11T22:23:19Z",
+      "updated_at": "2013-02-11T22:23:19Z",
+      "user": null,
+      "image": "",
+      "biography": ""
+    }
+  },
+  {
+    "pk": 2,
+    "model": "cerci_content.author",
+    "fields": {
+      "name": "Eren Can Ayhan",
+      "created_at": "2013-02-11T22:23:22Z",
+      "updated_at": "2013-02-11T22:23:22Z",
+      "user": null,
+      "image": "",
+      "biography": ""
+    }
+  },
+  {
+    "pk": 3,
+    "model": "cerci_content.author",
+    "fields": {
+      "name": "Özlem Şan",
+      "created_at": "2013-02-11T22:23:28Z",
+      "updated_at": "2013-02-11T22:23:28Z",
+      "user": null,
+      "image": "",
+      "biography": ""
+    }
+  },
+  {
+    "pk": 1,
+    "model": "reversion.revision",
+    "fields": {
+      "comment": "Initial version.",
+      "date_created": "2013-02-11T22:24:22Z",
+      "manager_slug": "default",
+      "user": 1
+    }
+  },
+  {
+    "pk": 2,
+    "model": "reversion.revision",
+    "fields": {
+      "comment": "Initial version.",
+      "date_created": "2013-02-11T22:24:57Z",
+      "manager_slug": "default",
+      "user": 1
+    }
+  },
+  {
+    "pk": 3,
+    "model": "reversion.revision",
+    "fields": {
+      "comment": "Initial version.",
+      "date_created": "2013-02-11T22:25:25Z",
+      "manager_slug": "default",
+      "user": 1
+    }
+  }
+]

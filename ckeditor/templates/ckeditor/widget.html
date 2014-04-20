@@ -1,0 +1,12 @@
+<textarea{{ final_attrs|safe }}>{{ value }}</textarea>
+<script type="text/javascript">
+    var config = {{ config|safe }};
+    config.width = 1050;
+    config.toolbar = [
+        [ 'NumberedList','BulletedList', 'Image', 'Link', 'Unlink', 'Anchor', 'Table', '-', 'Outdent', 'Indent','-', 'Blockquote', 'HorizontalRule' ],
+        [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'Format', 'FontSize', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ],
+        [ 'Paste', 'PasteText', 'PasteFromWord', 'Find', '-', 'ShowBlocks', 'Source', 'Maximize' ]
+
+    ];
+    CKEDITOR.replace("{{ id }}", config);
+</script>
