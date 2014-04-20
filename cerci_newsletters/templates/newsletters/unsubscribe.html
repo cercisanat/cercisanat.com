@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Abonelikten ayrılış</h1>
+{% if unsubscribed %}
+<p>Abonelikten ayrıldınız.</p>
+{% else %}
+{% if email %}
+<p>E-posta aboneliğinden ayrılmak istediniz.</p>
+<p>{{ email }} adresine bir e-posta gönderdik.</p>
+<p>E-posta içeriğindeki bağlantıya tıkladığınızda abonelikten ayrılmış olacaksınız.</p>
+<p>İstediğiniz zaman tekrar abone olabilirsiniz.</p>
+{% else %}
+<form action="." method="GET" class="form-inline">
+    <input type="text" name="email" placeholder="E-posta adresiniz"/>
+    <button type="submit" class="btn">Gönder</button>
+</form>
+{% endif %}
+{% endif %}
+{% endblock %}

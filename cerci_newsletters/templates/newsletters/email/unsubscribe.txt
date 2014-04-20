@@ -1,0 +1,4 @@
+Abonelikten ayrılmak üzeresiniz
+
+Bunun için tek yapmanız gereken aşağıdaki linke gitmek:
+{{ unsubscribe_link }}

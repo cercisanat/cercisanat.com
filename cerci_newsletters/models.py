@@ -20,6 +20,23 @@ class Subscriber(models.Model):
         super(Subscriber, self).save(*args, **kwargs)
 
 
+class UnsubscribeToken(models.Model):
+    subscriber = models.ForeignKey(Subscriber, verbose_name=_('Subscriber'),
+                                   unique=True)
+    token = models.CharField(max_length=16, verbose_name=_('Token'))
+    created_at = models.DateTimeField(default=now(), editable=False,
+                                      verbose_name=_('Created At'))
+    updated_at = models.DateTimeField(editable=False,
+                                      verbose_name=_('Updated At'))
+
+    def __unicode__(self):
+        return self.token
+
+    def save(self, *args, **kwargs):
+        self.updated_at = now()
+        super(UnsubscribeToken, self).save(*args, **kwargs)
+
+
 class Newsletter(models.Model):
     title = models.CharField(max_length=255, verbose_name=_('Title'))
     body = models.TextField(verbose_name=_('Body'))
