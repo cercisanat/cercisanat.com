@@ -1,0 +1,49 @@
+{% load bootstrap %}
+<div class="control-group {{ field.auto_id }} {% if field.errors %} error-container{% endif %}{% if field.field.required %} required{% endif %}">
+    {% if field|is_checkbox %}
+                <div class="controls">
+                    <label class="checkbox">
+                        {{ field }} <span>{{ field.label }}</span>
+                    </label>
+
+                    {% if field.errors %}
+                        <ul class="error">
+                        {% for error in field.errors %}
+                            <li><span class="alert alert-error field-error form-invalid">{{ error }}</span></li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                    {% if field.help_text %}
+                    <p class="help-block">
+                        {{ field.help_text|safe }}
+                    </p>
+                    {% endif %}
+                </div>
+    {% else %}
+        {% if field_options == 'label' or field_options == 'pass' %}
+        <label class="control-label" for="{{ field.auto_id }}">{{ field.label }}</label>
+        {% endif %}
+        {% if label %}
+        <label class="control-label" for="{{ field.auto_id }}">{{ label }}</label>
+        {% endif %}
+        <div class="controls">
+            {{ field }}
+
+            {% if field.errors %}
+                <ul class="error">
+                {% for error in field.errors %}
+                    <li><span class="alert alert-error field-error form-invalid">{{ error }}</span></li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+
+            {% if field.help_text %}
+            <p class="help-block">
+                {{ field.help_text|safe }}
+            </p>
+            {% endif %}
+
+        </div>
+    {% endif %}
+</div>

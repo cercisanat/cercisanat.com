@@ -17,7 +17,7 @@
 <script type="text/javascript" src="{% static "js/jquery-1.9.1.js" %}"></script>
 <script type="text/javascript" src="{% static "js/jquery.cookie.js" %}"></script>
 <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.js" %}"></script>
-<script type="text/javascript" src="{% static "photobox/photobox.js" %}"></script>
+<!--<script type="text/javascript" src="{% static "photobox/photobox.js" %}"></script>-->
 <script type="text/javascript" src="{% static "ajax_forms/js/jquery-ajax-validation.js" %}"></script>
 <script type="text/javascript" src="{% static "js/responsive/main.js" %}"></script>
 <script type="text/javascript" src="{% static "js/main.js" %}"></script>
@@ -53,11 +53,11 @@ $(document).ready(
         });
 
         $('.subscribe-form').validate({
-            type: 'p',
+            type: 'bootstrap',
             fields: ['id_email', 'id_name'],
             event: 'focusout',
             fieldSuccessCallback: function(field) {
-                field.css('border', '1px solid green');
+                field.closest('.controls').addClass('ok');
             },
             formSuccessCallback: function(form) {
                 $.cookie("subscribed_to_newsletters", 1, { expires : 999999 });

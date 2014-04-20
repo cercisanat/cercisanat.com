@@ -1,4 +1,4 @@
-{% load static from staticfiles %}<!DOCTYPE html>
+{% load static from staticfiles %}{% load bootstrap %}<!DOCTYPE html>
 <html lang="tr-TR" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
   <head>
     <title>{% block head_title %}Çerçi{% endblock %}</title>
@@ -74,9 +74,10 @@
         <h3>E-posta bildirimleri</h3>
         <form action="{% url 'subscribe_form' %}" method="post" class="ajax-form subscribe-form">
         {% csrf_token %}
-        {{ subscribe_form.as_p }}
+        {{ subscribe_form|bootstrap:'forceplaceholder' }}
         <button type="submit" class="btn">Katıl</button>
         </form>
+        <div class="clearfix"></div>
         <div class="subscribe-success">
           E-posta bildirimlerine üyeliğiniz başarıyla gerçekleşti.<br/>
           Bir kayıt daha yapmak için <a href="{% url 'subscribe_form' %}" class="another-subscription">tıklayın</a>

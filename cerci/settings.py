@@ -126,6 +126,7 @@ INSTALLED_APPS = (
     'cerci_admin',
     'cerci_frontend',
     'cerci_newsletters',
+    'bootstrapform',
     'ajax_forms',
     'easy_thumbnails',
     'image_cropping',
