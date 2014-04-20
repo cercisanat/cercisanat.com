@@ -15,6 +15,7 @@
 <![endif]-->
 <script type="text/javascript" src="{% static "js/respond.min.js" %}"></script>
 <script type="text/javascript" src="{% static "js/jquery-1.9.1.js" %}"></script>
+<script type="text/javascript" src="{% static "js/jquery.cookie.js" %}"></script>
 <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.js" %}"></script>
 <script type="text/javascript" src="{% static "photobox/photobox.js" %}"></script>
 <script type="text/javascript" src="{% static "ajax_forms/js/jquery-ajax-validation.js" %}"></script>
@@ -28,6 +29,11 @@ $(document).ready(
         $('.more').tooltip();
         $('.less').tooltip();
         $('.social-accounts a').tooltip();
+
+        if ($.cookie('subscribed_to_newsletters')) {
+            $('.subscribe-form').hide();
+            $('.subscribe-success', notifications).show();
+        }
 
         notifications_trigger.on('click', function(){
             if (notifications.is(":visible")) {
@@ -46,7 +52,7 @@ $(document).ready(
             }
         });
 
-        $('.ajax-form').validate({
+        $('.subscribe-form').validate({
             type: 'p',
             fields: ['id_email', 'id_name'],
             event: 'focusout',
@@ -54,8 +60,16 @@ $(document).ready(
                 field.css('border', '1px solid green');
             },
             formSuccessCallback: function(form) {
-                form.append('E-posta bildirimlerine üyeliğiniz başarıyla gerçekleşti.');
+                $.cookie("subscribed_to_newsletters", 1, { expires : 999999 });
+                form.hide();
+                $('.subscribe-success', notifications).show();
             }
+        });
+
+        $('.another-subscription').on('click', function(e){
+            $('.subscribe-success', notifications).hide();
+            $('.subscribe-form').show();
+            e.preventDefault();
         });
     }
 );

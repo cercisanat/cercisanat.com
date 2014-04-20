@@ -72,11 +72,15 @@
       <div class="notifications">
         <h2>Bildirimler</h2>
         <h3>E-posta bildirimleri</h3>
-        <form action="{% url 'subscribe_form' %}" method="post" class="ajax-form">
+        <form action="{% url 'subscribe_form' %}" method="post" class="ajax-form subscribe-form">
         {% csrf_token %}
         {{ subscribe_form.as_p }}
         <button type="submit" class="btn">Katıl</button>
         </form>
+        <div class="subscribe-success">
+          E-posta bildirimlerine üyeliğiniz başarıyla gerçekleşti.<br/>
+          Bir kayıt daha yapmak için <a href="{% url 'subscribe_form' %}" class="another-subscription">tıklayın</a>
+        </div>
         <h3>İmece</h3>
         <p>
           Çerçi Sanat tamamen gönüllülerden oluşan bir ekiptir.
