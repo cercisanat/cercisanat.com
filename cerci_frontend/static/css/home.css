@@ -1,0 +1,115 @@
+div.years {
+  text-align: center;
+  width: 100%;
+  padding-top: 15px;
+  border-top: 4px solid #EEEBE2;
+  border-bottom: 4px solid #EEEBE2;
+  position: static;
+}
+
+div.years a {
+  display: block;
+  margin-bottom: 20px;
+}
+
+div.years a.prev {
+  float: left;
+  text-align: left;
+}
+
+div.years a.prev:before {
+  content: "←";
+}
+
+div.years span.now {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+div.years a.next {
+  float: right;
+  text-align: right;
+}
+
+div.years a.next:after {
+  content: "→";
+}
+
+div.journal{
+  width: 100%;
+  background-color: #fff;
+}
+
+.issues_wrapper {
+  /*display: none;*/
+}
+
+div.journal section.issue {
+  border-bottom: 1px solid #c9c9c9;
+  padding-bottom: 20px;
+}
+
+section.issue img.cover {
+  float: left;
+}
+
+section.issue section.contents {
+  margin-left: 20px;
+  float: left;
+  width: 50%;
+}
+
+section.issue section.contents ul li {
+  float: left;
+  width: 40%;
+  line-height: 1.1em;
+  margin-right: 10%;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 767px) {
+  div.years {
+    text-align: center;
+    width: 100%;
+    padding-top: 1px;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+  }
+
+  div.years span.now {
+    font-size: 1.4em;
+    font-weight: bold;
+  }
+
+  div.years a {
+    display: block;
+    margin-bottom: 0px;
+  }
+
+  div.years.fixed {
+    position: fixed;
+  }
+
+  .issues_wrapper {
+    display: block;
+  }
+}
+
+@media (max-width: 985px) {
+  section.issue section.contents {
+    margin-top: 20px;
+    margin-left: 0px;
+    float: left;
+    width: auto;
+  }
+  
+  section.issue section.contents ul li {
+    border-bottom: 1px solid #333;
+    margin-bottom: 10px;
+    width: auto;
+    float: none;
+    margin-right: 0;
+  }
+}
+

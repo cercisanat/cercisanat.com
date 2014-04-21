@@ -1,0 +1,15 @@
+.control-group.id_q {
+    display: inline-block;
+}
+
+.advanced-wrapper {
+
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}

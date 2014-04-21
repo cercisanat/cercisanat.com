@@ -1,0 +1,21 @@
+.issue {
+    overflow: hidden;
+}
+
+.container {
+    max-width: 900px;
+    border: none;
+}
+
+.issue hgroup.page-header,
+header {
+    display: none !important;
+}
+
+.preview-alert {
+    background-color: red;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    position: fixed;
+}

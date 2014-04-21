@@ -57,7 +57,7 @@ wiki
 cerci.db
 .DS_Store
 media
-static
+/static
 cerci/whoosh_index
 
 # seperate apps and libs

@@ -1,0 +1,321 @@
+footer {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+div.toc-container {
+    background-color: #4c3422;
+    color: white;
+    margin-bottom: 10px;
+    padding: 10px;
+    z-index: 1000;
+}
+
+div.toc-container.fixed {
+    position: fixed;
+    top: 0;
+    left: 15%;
+    right: 15%;
+    max-height: 200px;
+    overflow: auto;
+}
+
+div.toc-container a.home-link,
+div.toc-container a.toc-starter {
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+div.toc-container a.home-link {
+    background-image: url('../images/cerci_logo2_white.png');
+    width: 24px !important;
+    height: 24px;
+    display: inline-block;
+    background-size: 24px;
+    margin-left: 18px;
+}
+
+nav.toc {
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: white;
+}
+
+nav.toc ol {
+    margin: 0 50px 10px 215px;
+}
+
+nav.toc li {
+    display: inline-block;
+    background-color: #72533c;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 2px;
+}
+
+nav.toc li.active,
+nav.toc li.active a {
+    background-color: white;
+    color: #333;
+}
+
+ul.authors li {
+    border-left: 2px solid white; 
+    padding-left: 0.3em;
+}
+
+ul.authors li:first-child {
+    border-left: none;
+    padding-left: 0;
+}
+
+nav.toc a {
+    color: white;
+}
+
+section.frontmatter {
+    position: relative;
+}
+
+section.editorial h1 {
+    margin-top: -7px;
+}
+
+section.editorial p {
+    font-size: 1.2em;
+}
+
+section.contents .row section.content {
+    position: relative;
+}
+
+section.issue .body {
+    margin-left: 70px;
+    margin-right: 70px;
+}
+
+section.issue .body.poem {
+    margin: 0;
+}
+
+section.issue .body .content {
+    font-size: 1.2em;
+    line-height: 1.2em;
+}
+
+section.issue .body .image-container {
+    max-width: 400px;
+    margin: 0 20px 20px 0;
+    font-size: 10px;
+    font-weight: normal;
+    font-style: italic;
+}
+
+section.issue .image-container h1 {
+    font-size: 12px;
+}
+
+section.issue .image-container cite.image-authors {
+    font-size: 12px;
+    font-weight: normal;
+    font-style: italic;
+    display: block;
+}
+
+section.issue .body .image-container cite.image-authors a {
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+section.issue .body .image-container cite.image-authors a:after {
+    content: ',';
+}
+
+section.issue .body .image-container cite.image-authors a:last-of-type:after {
+    content: '';
+}
+
+section.issue cite.authors {
+    font-size: 1.2em;
+    font-style: italic;
+    margin-bottom: 40px;
+    margin-top: 5px;
+}
+
+.issue-subject {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.issue-subject h3 {
+    font-size: 17px;
+    line-height: 11px;
+}
+
+.issue-subject span {
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.issue-subject h3 img {
+    width: 18px;
+    vertical-align: bottom;
+}
+
+.issue-subject .onhover {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #221E1D;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 15px;
+    padding: 10px;
+    min-height: 100%;
+}
+
+.issue-subject:hover .onhover {
+    display: block;
+}
+
+.borderholder {
+    height: 200px;
+}
+
+.files {
+    margin: 20px 0;
+}
+
+.files .file {
+    background-color: #4c3422;
+    color: #EEEBE2;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.files .file:hover {
+    background-color: #63AA9C;
+}
+
+.toc-container .prev,
+.toc-container .next {
+    color: white;
+    margin-right: 10px;
+    margin-left: 10px;
+    font-size: 25px;
+}
+
+
+figure.span3 {
+  margin-left: 70px;
+  padding-left: 0;
+  margin-right: 10px;
+}
+
+figure.span3.poem {
+  margin-left: 20px;
+}
+
+
+.lt_767 {
+  display: none;
+}
+
+.gt_767 {
+  display: block;
+}
+
+h1.title {
+  font-size: 2em;
+}
+
+.body .content img {
+  margin: 15px;
+}
+
+.cover-design {
+  font-size: .7em;
+}
+
+@media (max-width: 1300px) {
+  div.toc-container.fixed {
+    left: 10%;
+    right: 10%;
+  }
+}
+@media (max-width: 1200px) {
+  section.issue .body {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  
+  figure.span3 {
+    margin-left: 5%;
+  }
+  div.toc-container.fixed {
+    left: 0;
+    right: 0;
+  }
+}
+
+@media (max-width: 980px) {
+  section.issue .body .content {
+    font-size: 1em;
+    line-height: 1em;
+  }
+
+}
+@media (max-width: 767px) {
+  nav.toc ol {
+    margin-left: 0;
+    text-align: left;
+    margin-right: 5px;
+  }
+
+  nav.toc li {
+    width: 100%;
+  }
+
+  header > .menu-starter {
+    display: none;
+  }
+  
+  figure.span3 {
+    text-align: center;
+    padding-top: 10px;
+    margin-left: 0;
+  }
+  
+  
+  
+  .lt_767 {
+    display: block;
+  }
+  
+  .gt_767 {
+    display: none;
+  }
+  
+  section.issue .body.poem {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
+  figure.span3.poem {
+    margin-left: 0;
+  }
+
+}

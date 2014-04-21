@@ -1,0 +1,10 @@
+.select2-container-multi .select2-choices .select2-search-field input {
+	min-width: 130px !important;
+}
+
+.figure_name {
+	text-align: center;
+	vertical-align: top;
+	width: 100px;
+	margin-left: 10px;
+}
