@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% load thumbnail %}
 {% load author %}
-{% load markdown %}
 {% load static from staticfiles %}
 {% load youtube %}
 {% block head %}
@@ -103,7 +102,7 @@
       <figcaption>
       {% if image.0.title %}<h1>{{ image.0.title }}</h1>{% endif %}
       {% if image.0.authors %}<cite class="image-authors">{{ image.0.authors.all|author_list|safe }}</cite>{% endif %}
-      {% if image.0.body %}<span class="description">{{ image.0.body|md_convert|safe|removetags:"script style" }}</span>{% endif %}
+      {% if image.0.body %}<span class="description">{{ image.0.body|safe|removetags:"script style" }}</span>{% endif %}
       </figcaption>
     </figure>
     {% endif %}
@@ -118,7 +117,7 @@
             {% if issuecontent.spot %}
               <blockquote class="spot">{{ issuecontent.spot|safe|removetags:"script style" }}</blockquote>
             {% endif %}
-            {{ issuecontent.body|md_convert|removetags:"script style"|youtube_embed_url|safe }}
+            {{ issuecontent.body|removetags:"script style"|youtube_embed_url|safe }}
 
 
             {% if not preview %}

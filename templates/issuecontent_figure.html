@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% load thumbnail %}
 {% load author %}
-{% load markdown %}
 {% load static from staticfiles %}
 {% block head %}
   {{ block.super }}
@@ -68,7 +67,7 @@
         <figure>
           <img src="{{ issuecontent.image|thumbnail_url:'issuecontent_figure_image' }}" alt="İçerik görseli" />
           <figcaption>
-            {% if issuecontent.body %}<span class="description">{{ issuecontent.body|md_convert|safe|removetags:"script style" }}</span>{% endif %}
+            {% if issuecontent.body %}<span class="description">{{ issuecontent.body|safe|removetags:"script style" }}</span>{% endif %}
           </figcaption>
         </figure>
 
