@@ -20,10 +20,12 @@
         {% if show_delete_link %}
             <li class="grp-float-left"><a href="delete/" class="grp-button grp-delete-link">{% trans "Delete" %}</a></li>
         {% endif %}
+        {% if original %}
         {% if original.is_published %}
         <li class="grp-float-left custom-unpublish"><a href="{% url 'unpublish_issue' issue_id=original.id %}" class="grp-unpublish grp-button">{% trans "Unpublish" %}</a></li>
         {% else %}
         <li class="grp-float-left custom-publish"><a href="{% url 'publish_issue' issue_id=original.id %}" class="grp-publish grp-button">{% trans "Publish" %}</a></li>
+        {% endif %}
         {% endif %}
         {% if show_save %}
         	<li><input type="submit" value="{% trans 'Save' %}" class="grp-button grp-default" name="_save" {{ onclick_attrib }}/></li>
