@@ -12,7 +12,7 @@ bpython==0.12
 distribute==0.6.35
 django-appconf==0.6
 django-bshell==1.0.3
-django-categories==1.1.4
+django-categories==1.2.2
 django-debug-toolbar==0.9.4
 django-extensions==1.0.3
 django-grappelli==2.4.3
@@ -22,10 +22,11 @@ django-medusa==0.2.0
 django-mptt==0.5.5
 django-reversion==1.7.1
 django-taggit==0.11.2
--e git+git@github.com:rasca/django-taggit-jquery-tag-it.git@4a45a7a6cc00aadddff7048e2e1412cc2154dcb1#egg=django_taggit_autocomplete-dev
+-e git+git@github.com:rasca/django-taggit-jquery-tag-it.git@4a45a7a6cc00aadddff7048e2e1412cc2154dcb1#egg=django_taggit_autocomplete-master
 easy-thumbnails==1.2
 markdown2==2.1.0
 newrelic==1.13.1.31
 pysolr==3.0.5
 requests==1.1.0
+six==1.6.1
 wsgiref==0.1.2
