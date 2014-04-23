@@ -21,21 +21,23 @@ def get_issues(year):
 
 def home(request, year=str(now().year)):
     year = int(year)
-    issues = get_issues(year)
-    while not issues.exists():
-        year = year - 1
+    if Issue.objects.all().exists():
         issues = get_issues(year)
+        while not issues.exists():
+            year = year - 1
+            issues = get_issues(year)
 
-    first = Issue.objects.order_by('published_at').filter(is_published=True)
-    if first.count():
-        first_year = first[0].published_at.year
-        last_year = Issue.objects.filter(
-            is_published=True).latest('published_at').published_at.year
-        return render_to_response(
-            'home.html',
-            {'issues': issues, 'year': year,
-             'first_year': first_year, 'last_year': last_year},
-            context_instance=RequestContext(request))
+        first = Issue.objects.order_by('published_at').filter(
+            is_published=True)
+        if first.exists():
+            first_year = first[0].published_at.year
+            last_year = Issue.objects.filter(
+                is_published=True).latest('published_at').published_at.year
+            return render_to_response(
+                'home.html',
+                {'issues': issues, 'year': year,
+                 'first_year': first_year, 'last_year': last_year},
+                context_instance=RequestContext(request))
     else:
         return render_to_response(
             'nocontent.html',
