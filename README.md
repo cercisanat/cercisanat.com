@@ -15,9 +15,6 @@ cd cercisanat.com
 
 # run the installation command:
 make install
-
-# run server
-python manage.py runserver
 ```
 
 if everything is fine Cerci Sanat website should be available on http://localhost:8000
