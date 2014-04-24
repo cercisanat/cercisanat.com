@@ -130,7 +130,7 @@ header > blockquote.headquote {
 }
 
 .primary-container {
-  margin-right: 50px;
+  margin-right: 60px;
 }
 
 .primary-menu li{
@@ -365,21 +365,23 @@ div.copyright{
     display: none;
 }
 
+.primary-container .notifications-trigger i {
+    bottom: 10px;
+    position: absolute;
+}
+
 .primary-container .notifications-trigger {
-    display: none;
     padding-left: 20px;
     border-radius: 0 0 15px 15px;
 }
 
 .notifications {
     display: none;
-    background-color: #221E1D;
-    border: 1px solid #221E1D;
+    background-color: #395030;
     color: white;
     position: absolute;
     top: 0;
     right: -15px;
-    height: 100%;
     width: 500px;
     z-index: 102;
     padding: 10px;
@@ -619,6 +621,10 @@ ul.errorlist {
   .notifications-trigger:hover {
     background-color: #4c3422;
     color: white;
+  }
+
+  .primary-container .notifications-trigger {
+    display: none;
   }
 
   .notifications {
