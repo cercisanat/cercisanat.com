@@ -15,6 +15,10 @@
         <a class="logo" href="/"></a>
         {% endblock %}
         <div class="primary-container pull-right">
+            <div class="notifications-trigger">
+                <i class="icon-bell"></i>
+                <i class="icon-remove"></i>
+            </div>
           {% block navigation %}
           <ul class="primary-menu starter-target">
             {% include 'navigation.html' %}
@@ -38,6 +42,10 @@
           <div class="genre-starter genres-starter pull-right"><i class="icon-tags icon-white"></i></div>
           <div class="search-starter"><i class="icon-search icon-white"></i></div>
           <div class="menu-starter"><i class="icon-reorder icon-white"></i></div>
+          <div class="notifications-trigger">
+            <i class="icon-bell"></i>
+            <i class="icon-remove"></i>
+          </div>
         </div>
         {% endblock %}
         <div class="clearfix"></div>
@@ -60,14 +68,6 @@
       {% block content %}
       {% endblock %}
 
-      <div class="notifications-trigger">
-        <i class="icon-arrow-left icon-6"></i>
-        <i class="icon-arrow-right icon-6"></i>
-        <div class="desc">
-          <span class="notifications-open">bildirimleri aç</span>
-          <span class="notifications-close">bildirimleri kapat</span>
-        </div>
-      </div>
       {% block notifications %}
       <div class="notifications">
         <h2>Bildirimler</h2>

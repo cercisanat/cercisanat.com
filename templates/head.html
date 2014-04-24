@@ -25,6 +25,9 @@
 $(document).ready(
     function() {
         var notifications_trigger = $('.notifications-trigger');
+        if (window.screen.width > 767) {
+            notifications_trigger.delay(1000).slideDown('slow');
+        }
         var notifications = $('.notifications');
         $('.more').tooltip();
         $('.less').tooltip();
@@ -37,18 +40,14 @@ $(document).ready(
 
         notifications_trigger.on('click', function(){
             if (notifications.is(":visible")) {
-                notifications.hide('slow');
-                $('.icon-arrow-left', this).show();
-                $('.icon-arrow-right', this).hide();
-                $('.notifications-open', this).show();
-                $('.notifications-close', this).hide();
+                notifications.slideUp('slow');
+                $('.icon-bell', this).show();
+                $('.icon-remove', this).hide();
             }
             else {
-                notifications.show('slow');
-                $('.icon-arrow-left', this).hide();
-                $('.icon-arrow-right', this).show();
-                $('.notifications-open', this).hide();
-                $('.notifications-close', this).show();
+                notifications.slideDown('slow');
+                $('.icon-bell', this).hide();
+                $('.icon-remove', this).show();
             }
         });
 
