@@ -9,6 +9,7 @@ body {
   color: #4c3422;
   border-left: 15px solid white;
   border-right: 15px solid white;
+  position: relative;
 }
 
 .content a {
@@ -126,6 +127,10 @@ header > blockquote.headquote {
   font-style: italic;
   position: relative;
   z-index: 100;
+}
+
+.primary-container {
+  margin-right: 50px;
 }
 
 .primary-menu li{
@@ -340,15 +345,14 @@ div.copyright{
 }
 
 .notifications-trigger {
-    position: fixed;
-    top: 50%;
+    position: absolute;
+    top: 0;
     right: 0;
-    height: 75px;
-    width: 65px;
+    height: 35px;
+    width: 35px;
     background-color: #4c3422;
     color: white;
     cursor: pointer;
-    font-size: 5em;
     z-index: 103;
 }
 
@@ -357,18 +361,14 @@ div.copyright{
     background-color: white;
 }
 
-.notifications-trigger .icon-arrow-right {
+.notifications-trigger .icon-remove {
     display: none;
 }
 
-.notifications-trigger .notifications-close {
+.primary-container .notifications-trigger {
     display: none;
-}
-
-.notifications-trigger .desc,
-.notifications-trigger .desc:hover {
-    font-size: 0.1em;
-    color: white;
+    padding-left: 20px;
+    border-radius: 0 0 15px 15px;
 }
 
 .notifications {
@@ -376,13 +376,14 @@ div.copyright{
     background-color: #221E1D;
     border: 1px solid #221E1D;
     color: white;
-    position: fixed;
+    position: absolute;
     top: 0;
-    right: 0;
+    right: -15px;
     height: 100%;
-    width: 400px;
+    width: 500px;
     z-index: 102;
     padding: 10px;
+    margin-left: -500px;
 }
 
 .notifications h1,
@@ -523,6 +524,10 @@ ul.errorlist {
     padding-left: 18%;
   }
 
+  .primary-container .notifications-trigger {
+    display: none;
+  }
+
   header .primary-menu,
   header .form-search,
   nav.genres {
@@ -604,6 +609,21 @@ ul.errorlist {
     background-color: #4c3422;
     color: #EEEBE2;
     text-decoration: none;
+  }
+
+  .notifications-trigger {
+    position: static;
+    font-size: inherit;
+  }
+
+  .notifications-trigger:hover {
+    background-color: #4c3422;
+    color: white;
+  }
+
+  .notifications {
+    width: 102%;
+    top: 0;
   }
 }
 
