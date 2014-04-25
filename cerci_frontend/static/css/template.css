@@ -375,6 +375,10 @@ div.copyright{
     border-radius: 0 0 15px 15px;
 }
 
+.notifications-trigger.mobile-notifications-trigger {
+    display: none;
+}
+
 .notifications {
     display: none;
     background-color: #395030;
@@ -626,6 +630,21 @@ ul.errorlist {
   .primary-container .notifications-trigger {
     display: none;
   }
+
+  .notifications-trigger.mobile-notifications-trigger {
+    display: block;
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    right: -5px;
+    font-size: 30px;
+    line-height: 40px;
+  }
+
+  .notifications-trigger.mobile-notifications-trigger i {
+    margin-left: 5px;
+  }
+
 
   .notifications {
     width: 102%;
