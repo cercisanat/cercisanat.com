@@ -30,7 +30,7 @@ $(document).ready(
         $('.less').tooltip();
         $('.social-accounts a').tooltip();
 
-        if (document.body.clientWidth > 767 ) {// (document.body.clientWidth > 767 && !$.cookie('animated')) {
+        if (document.body.clientWidth > 767 && !$.cookie('animated')) {
             notifications_trigger.animate({'height': '120px'}, 700)
                 .delay(1000)
                 .animate({'font-size': '2em'}, 200)
@@ -41,7 +41,7 @@ $(document).ready(
                 .animate({'height': '35px'}, 700);
                 
             setTimeout(function(){notifications_trigger.removeAttr("style")}, 4800);
-            // $.cookie('animated', true);
+            $.cookie('animated', true);
         }
 
         if ($.cookie('subscribed_to_newsletters')) {
@@ -79,6 +79,12 @@ $(document).ready(
         $('.another-subscription').on('click', function(e){
             $('.subscribe-success', notifications).hide();
             $('.subscribe-form').show();
+            $('#id_email').val('');
+            $('#id_email').closest('.controls').removeClass('ok');
+            $('#id_email').closest('.controls').removeClass('error');
+            $('#id_name').val('');
+            $('#id_name').closest('.controls').removeClass('ok');
+            $('#id_name').closest('.controls').removeClass('error');
             e.preventDefault();
         });
     }
