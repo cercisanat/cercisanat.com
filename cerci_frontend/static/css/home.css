@@ -15,6 +15,7 @@ div.years a {
 div.years a.prev {
   float: left;
   text-align: left;
+  font-size: 1.5em;
 }
 
 div.years a.prev:before {
