@@ -60,7 +60,7 @@ class Author(models.Model):
 
 
 def get_illustrations():
-    return IssueContent.objects.filter(is_figure=True, is_published=True)
+    return IssueContent.objects.filter(is_figure=True)
 
 
 class IssueContent(models.Model):
