@@ -30,6 +30,7 @@ div.years span.now {
 div.years a.next {
   float: right;
   text-align: right;
+  font-size: 1.5em;
 }
 
 div.years a.next:after {
