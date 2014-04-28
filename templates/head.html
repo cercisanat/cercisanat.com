@@ -44,6 +44,17 @@ $(document).ready(
             $.cookie('animated', true);
         }
 
+        if (document.body.clientWidth <= 767 && !$.cookie('animated')) {
+            notifications_trigger
+                .animate({'font-size': '2em'}, 200)
+                .animate({'font-size': '1em'}, 200)
+                .animate({'font-size': '2em'}, 200)
+                .animate({'font-size': '1em'}, 200);
+                
+            setTimeout(function(){notifications_trigger.removeAttr("style")}, 1000);
+            $.cookie('animated', true);
+        }
+
         if ($.cookie('subscribed_to_newsletters')) {
             $('.subscribe-form').hide();
             $('.subscribe-success', notifications).show();
