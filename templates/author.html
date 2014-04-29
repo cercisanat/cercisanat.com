@@ -10,7 +10,7 @@
 <section class="author">
     <h1>{{ author.name }}
     {% if user.is_staff %}
-        <a href="{% url admin:cerci_content_author_change author.id %}"><i class="icon-edit"></i></a>
+        <a href="{% url 'admin:cerci_content_author_change' author.id %}"><i class="icon-edit"></i></a>
     {% endif %}
     </h1>
     <section class="description">
