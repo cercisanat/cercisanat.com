@@ -15,6 +15,7 @@ div.years a {
 div.years a.prev {
   float: left;
   text-align: left;
+  font-size: 1.5em;
 }
 
 div.years a.prev:before {
@@ -29,6 +30,7 @@ div.years span.now {
 div.years a.next {
   float: right;
   text-align: right;
+  font-size: 1.5em;
 }
 
 div.years a.next:after {

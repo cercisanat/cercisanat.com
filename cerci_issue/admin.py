@@ -10,13 +10,18 @@ from cerci_issue.models import Issue, Issue2Content, IssueFile
 class Issue2ContentInline(admin.TabularInline):
     model = Issue2Content
     extra = 1
-    fields = ('content', 'order', 'is_subject')
+    fields = ('content', 'order', 'is_subject', 'get_genres',)
+    readonly_fields = ('get_genres',)
     sortable_field_name = "order"
     raw_id_fields = ('content',)
     # define the autocomplete_lookup_fields
     autocomplete_lookup_fields = {
         'fk': ['content'],
     }
+
+    def get_genres(self, obj):
+        return ','.join([d['name'] for d in obj.content.genres.values('name')])
+    get_genres.short_description = _('Genres')
 
 
 class IssueFileInline(admin.TabularInline):
