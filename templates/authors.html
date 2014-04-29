@@ -16,13 +16,13 @@
         <li>
             <div class="borderholder">
                 <div class="author image-wrapper pull-left">
-                    <a href="{% url author author_slug=author.slug %}">
+                    <a href="{% url 'author' author_slug=author.slug %}">
                         <img class="cover pull-left" src="{{ author.image|thumbnail_url:'cover_list' }}" alt="Yazar" />
                     </a>
                 </div>
-                <h1><a href="{% url author author_slug=author.slug %}">{{ author.name }}</a></h1>
+                <h1><a href="{% url 'author' author_slug=author.slug %}">{{ author.name }}</a></h1>
                 <p class="author-biography">{{ author.biography|truncatewords_html:50|striptags|safe }}</p>
-                <a class="more" href="{% url author author_slug=author.slug %}" data-toggle="tooltip" data-placement="top" title="Devamını oku" data-container="body" ><img src="{% static "images/more.png" %}" /></a>
+                <a class="more" href="{% url 'author' author_slug=author.slug %}" data-toggle="tooltip" data-placement="top" title="Devamını oku" data-container="body" ><img src="{% static "images/more.png" %}" /></a>
             </div>
             <div class="clearfix"></div>
         </li>
