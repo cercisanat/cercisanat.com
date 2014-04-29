@@ -69,10 +69,10 @@ def current_issuecontent(request, issue_number, contentslug):
         'figures', 'genres', 'authors'
     ), slug=contentslug)
     issue = get_object_or_404(Issue, number=issue_number)
-    if not request.user.has_perm('add_issuecontent') and \
+    if not request.user.has_perm('cerci_content.add_issuecontent') and \
        (not issue.is_published or not issuecontent.is_published):
         raise Http404
-    if request.user.has_perm('add_issuecontent') and \
+    if request.user.has_perm('cerci_content.add_issuecontent') and \
        (not issue.is_published or not issuecontent.is_published):
         preview = True
     prev = issuecontent.prev(issue)
