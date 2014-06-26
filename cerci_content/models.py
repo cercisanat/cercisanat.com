@@ -130,3 +130,50 @@ class IssueContent(models.Model):
     @staticmethod
     def autocomplete_search_fields():
         return ("id__iexact", "title__icontains",)
+
+
+class GalleryImage(models.Model):
+    title = models.CharField(max_length=255, null=True, blank=True,
+                             verbose_name=_('Title'))
+    description = models.TextField(null=True, blank=True,
+                                   verbose_name=_('Description'))
+    image = models.ImageField(upload_to="images/gallery/", blank=True,
+                              verbose_name=_('Image'),
+                              help_text=_('Gallery Image'))
+
+    class Meta:
+        verbose_name = _('Gallery Image')
+        verbose_name_plural = _('Gallery Images')
+
+
+class Gallery(models.Model):
+    title = models.CharField(max_length=255, null=True, blank=True,
+                             verbose_name=_('Title'))
+    description = models.TextField(null=True, blank=True,
+                                   verbose_name=_('Description'))
+    images = models.ManyToManyField(GalleryImage, through=('Gallery2Image'),
+                                    verbose_name=_('Images'))
+
+    class Meta:
+        verbose_name = _('Gallery')
+        verbose_name_plural = _('Galleries')
+
+    def __unicode__(self):
+        return 'Gallery (id=%s)' % self.id
+
+
+class Gallery2Image(models.Model):
+    gallery = models.ForeignKey(Gallery, verbose_name=_('Gallery'))
+    image = models.ForeignKey(GalleryImage, verbose_name=_('GalleryImage'))
+    order = models.IntegerField(verbose_name=_('Order'), null=True, default=0)
+
+    def __unicode__(self):
+        return '%s (%s) -> %s, order: %s' % (
+            self.gallery.title, self.gallery.pk,
+            self.image.image.url, self.order)
+
+    class Meta:
+        verbose_name = _('Image')
+        verbose_name_plural = _('Images')
+        ordering = ['order']
+        unique_together = ('gallery', 'image',)

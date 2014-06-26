@@ -1,4 +1,5 @@
-from cerci_content.models import Author, IssueContent, Genre
+from cerci_content.models import (Author, IssueContent, Genre, Gallery,
+                                  GalleryImage, Gallery2Image)
 from cerci_issue.models import Issue2Content
 from django.contrib import admin
 import reversion
@@ -84,3 +85,22 @@ class GenreAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',), }
 
 admin.site.register(Genre, GenreAdmin)
+
+
+class Gallery2ImageInline(admin.TabularInline):
+    model = Gallery2Image
+    extra = 1
+    fields = ('image', 'order')
+    sortable_field_name = 'order'
+
+
+class GalleryAdmin(admin.ModelAdmin):
+    inlines = (Gallery2ImageInline,)
+
+admin.site.register(Gallery, GalleryAdmin)
+
+
+class GalleryImageAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(GalleryImage, GalleryImageAdmin)
