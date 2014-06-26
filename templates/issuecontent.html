@@ -3,6 +3,7 @@
 {% load author %}
 {% load static from staticfiles %}
 {% load youtube %}
+{% load audio %}
 {% block head %}
   {{ block.super }}
   <link rel="stylesheet" href="{% static "css/issue.css" %}" type="text/css"/>
@@ -117,7 +118,7 @@
             {% if issuecontent.spot %}
               <blockquote class="spot">{{ issuecontent.spot|safe|removetags:"script style" }}</blockquote>
             {% endif %}
-            {{ issuecontent.body|removetags:"script style"|youtube_embed_url|safe }}
+            {{ issuecontent.body|removetags:"script style"|youtube_embed_url|audio_embed|safe }}
 
 
             {% if not preview %}
