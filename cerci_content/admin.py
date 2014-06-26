@@ -1,5 +1,5 @@
 from cerci_content.models import (Author, IssueContent, Genre, Gallery,
-                                  GalleryImage, Gallery2Image)
+                                  GalleryImage, Gallery2Image, Audio)
 from cerci_issue.models import Issue2Content
 from django.contrib import admin
 import reversion
@@ -20,6 +20,16 @@ class Issue2ContentInline(admin.StackedInline):
     autocomplete_lookup_fields = {
         'fk': ['issue'],
     }
+
+
+class AudioInline(admin.TabularInline):
+    model = IssueContent.audios.through
+    extra = 0
+    readonly_fields = ['slug']
+
+    def slug(self, instance):
+        return instance.audio.slug
+    slug.short_description = 'slug'
 
 
 class IssueContentAdmin(reversion.VersionAdmin):
@@ -43,7 +53,9 @@ class IssueContentAdmin(reversion.VersionAdmin):
                    'authors', 'is_figure', 'genres')
     prepopulated_fields = {'slug': ('title',), }
     readonly_fields = ("created_at", "updated_at", "is_published")
-    inlines = (Issue2ContentInline,)
+    inlines = (Issue2ContentInline, AudioInline)
+
+    exclude = ('audios',)
 
     def get_authors_list(self, obj):
         authors = '<ul>'
@@ -104,3 +116,9 @@ class GalleryImageAdmin(admin.ModelAdmin):
     pass
 
 admin.site.register(GalleryImage, GalleryImageAdmin)
+
+
+class AudioAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('title',), }
+
+admin.site.register(Audio, AudioAdmin)

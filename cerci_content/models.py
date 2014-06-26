@@ -82,6 +82,8 @@ class IssueContent(models.Model):
         'IssueContent', verbose_name=_('Figures'),
         limit_choices_to={'id__in': get_illustrations},
         null=True, blank=True)
+    audios = models.ManyToManyField('Audio', verbose_name=_('Audio'),
+                                    null=True, blank=True)
     spot = models.TextField(verbose_name=_('Spot'), blank=True, null=True)
     body = models.TextField(verbose_name=_('Body'), blank=True, null=True)
     is_published = models.BooleanField(verbose_name=_('Is Published'),
@@ -177,3 +179,24 @@ class Gallery2Image(models.Model):
         verbose_name_plural = _('Images')
         ordering = ['order']
         unique_together = ('gallery', 'image',)
+
+
+class Audio(models.Model):
+    title = models.CharField(max_length=255, verbose_name=_('Title'))
+    slug = models.SlugField(max_length=100, unique=True,
+                            verbose_name=_('Slug'))
+    description = models.TextField(null=True, blank=True,
+                                   verbose_name=_('Description'))
+    audio = models.FileField(upload_to="audio/", verbose_name=_('Audio'))
+
+    def __unicode__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)[:99]
+        super(Audio, self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = _('Audio')
+        verbose_name_plural = _('Audios')
