@@ -101,13 +101,14 @@ admin.site.register(Genre, GenreAdmin)
 
 class Gallery2ImageInline(admin.TabularInline):
     model = Gallery2Image
-    extra = 1
+    extra = 0
     fields = ('image', 'order')
     sortable_field_name = 'order'
 
 
 class GalleryAdmin(admin.ModelAdmin):
     inlines = (Gallery2ImageInline,)
+    prepopulated_fields = {'slug': ('title',), }
 
 admin.site.register(Gallery, GalleryAdmin)
 

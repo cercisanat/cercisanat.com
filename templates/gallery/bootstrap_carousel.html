@@ -1,3 +1,4 @@
+{% load thumbnail %}
 <div id="gallery-{{ gallery.pk }}" class="carousel slide">
     <div class="gallery-definition">
         <strong>{{ gallery.title }}</strong><br/>
@@ -12,7 +13,7 @@
     <div class="carousel-inner">
         {% for image in gallery.images.all %}
         <div class="{% if forloop.first %}active {% endif %}item">
-            <img src="{{ image.image.url }}" alt="{{ image.title }}"/>
+            <img src="{{ image.image|thumbnail_url:'gallery_image' }}" alt="{{ image.title }}"/>
             <div class="carousel-caption">
                 <h4>{{ image.title }}</h4>
                 <p>{{ image.description }}</p>
