@@ -1,0 +1,84 @@
+[
+    {
+        "fields": {
+            "description": "Boyle doga manzaralari falan olan bir galeri",
+            "display_with": "photobox_gallery",
+            "slug": "deneme",
+            "title": "Agaclar kuslar falan"
+        },
+        "model": "cerci_content.gallery",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "description": "Kuslar birbirine lorem ipsum.",
+            "image": "images/gallery/wallpaper-1027.jpg",
+            "title": "iki tane kus"
+        },
+        "model": "cerci_content.galleryimage",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "description": "Lynx olmak vardi arkadas.",
+            "image": "images/gallery/wallpaper-3717.jpg",
+            "title": "Gerilen kedi"
+        },
+        "model": "cerci_content.galleryimage",
+        "pk": 2
+    },
+    {
+        "fields": {
+            "description": "Cok guzel bir manzara, pek guzel bir manzara",
+            "image": "images/gallery/wallpaper-83397.jpg",
+            "title": "Manzara"
+        },
+        "model": "cerci_content.galleryimage",
+        "pk": 3
+    },
+    {
+        "fields": {
+            "description": "Eski tosbagalardan kim kaldi?",
+            "image": "images/gallery/wallpaper-124729.jpg",
+            "title": "Kaplumbaga"
+        },
+        "model": "cerci_content.galleryimage",
+        "pk": 4
+    },
+    {
+        "fields": {
+            "description": "Kaplanlik baska bir sey",
+            "image": "images/gallery/wallpaper-206066.jpg",
+            "title": "Kaplan"
+        },
+        "model": "cerci_content.galleryimage",
+        "pk": 5
+    },
+    {
+        "fields": {
+            "description": "Okuz gelip okuz gitmek",
+            "image": "images/gallery/wallpaper-268818.jpg",
+            "title": "Buffalo"
+        },
+        "model": "cerci_content.galleryimage",
+        "pk": 6
+    },
+    {
+        "fields": {
+            "description": "Ben saksi degilim",
+            "image": "images/gallery/wallpaper-315093.jpg",
+            "title": "Saksi"
+        },
+        "model": "cerci_content.galleryimage",
+        "pk": 7
+    },
+    {
+        "fields": {
+            "description": "Serce diye araba vardi ya la..",
+            "image": "images/gallery/wallpaper-324440.jpg",
+            "title": "Serce"
+        },
+        "model": "cerci_content.galleryimage",
+        "pk": 8
+    }
+]
