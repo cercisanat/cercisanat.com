@@ -28,8 +28,8 @@ class AudioInline(admin.TabularInline):
     readonly_fields = ['slug']
 
     def slug(self, instance):
-        return instance.audio.slug
-    slug.short_description = 'slug'
+        return '[audio:%s]' % instance.audio.slug
+    slug.short_description = 'Copy this'
 
 
 class IssueContentAdmin(reversion.VersionAdmin):
