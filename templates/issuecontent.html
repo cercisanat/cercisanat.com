@@ -4,6 +4,7 @@
 {% load static from staticfiles %}
 {% load youtube %}
 {% load audio %}
+{% load gallery %}
 {% block head %}
   {{ block.super }}
   <link rel="stylesheet" href="{% static "css/issue.css" %}" type="text/css"/>
@@ -118,7 +119,7 @@
             {% if issuecontent.spot %}
               <blockquote class="spot">{{ issuecontent.spot|safe|removetags:"script style" }}</blockquote>
             {% endif %}
-            {{ issuecontent.body|removetags:"script style"|youtube_embed_url|audio_embed|safe }}
+            {{ issuecontent.body|removetags:"script style"|youtube_embed_url|audio_embed|gallery_embed|safe }}
 
 
             {% if not preview %}
