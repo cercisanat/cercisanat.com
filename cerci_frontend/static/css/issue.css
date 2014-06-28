@@ -242,12 +242,26 @@ h1.title {
   font-size: 2em;
 }
 
-.body .content img {
+.content img {
   margin: 15px;
 }
 
 .cover-design {
   font-size: .7em;
+}
+
+/*
+ * Gallery
+ */
+
+.carousel img {
+    margin: 0;
+}
+
+.gallery-definition {
+    background-color: #221e1d;
+    color: white;
+    padding: 10px;
 }
 
 @media (max-width: 1300px) {

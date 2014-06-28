@@ -1,0 +1,26 @@
+<div id="gallery-{{ gallery.pk }}" class="carousel slide">
+    <div class="gallery-definition">
+        <strong>{{ gallery.title }}</strong><br/>
+        <p>{{ gallery.description }}</p>
+    </div>
+    <ol class="carousel-indicators">
+        {% for image in gallery.images.all %}
+        <li data-target="#gallery-{{ gallery.pk }}" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></li>
+        {% endfor %}
+    </ol>
+    <!-- Carousel items -->
+    <div class="carousel-inner">
+        {% for image in gallery.images.all %}
+        <div class="{% if forloop.first %}active {% endif %}item">
+            <img src="{{ image.image.url }}" alt="{{ image.title }}"/>
+            <div class="carousel-caption">
+                <h4>{{ image.title }}</h4>
+                <p>{{ image.description }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- Carousel nav -->
+    <a class="carousel-control left" href="#gallery-{{ gallery.pk }}" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#gallery-{{ gallery.pk }}" data-slide="next">&rsaquo;</a>
+</div>
