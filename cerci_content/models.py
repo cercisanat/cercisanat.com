@@ -149,10 +149,23 @@ class GalleryImage(models.Model):
 
 
 class Gallery(models.Model):
+    BOOTSTRAP = 'bootstrap_carousel'
+    PHOTOBOX = 'photobox_gallery'
+
+    DISPLAY_WITH = (
+        (BOOTSTRAP, _('Inline Gallery')),
+        (PHOTOBOX, _('Overlay')),
+    )
+
     title = models.CharField(max_length=255, null=True, blank=True,
                              verbose_name=_('Title'))
+    slug = models.SlugField(max_length=100, unique=True,
+                            verbose_name=_('Slug'))
     description = models.TextField(null=True, blank=True,
                                    verbose_name=_('Description'))
+    display_with = models.CharField(max_length=20,
+                                    default=BOOTSTRAP, choices=DISPLAY_WITH,
+                                    verbose_name=_('Display With'))
     images = models.ManyToManyField(GalleryImage, through=('Gallery2Image'),
                                     verbose_name=_('Images'))
 
@@ -161,7 +174,7 @@ class Gallery(models.Model):
         verbose_name_plural = _('Galleries')
 
     def __unicode__(self):
-        return 'Gallery (id=%s)' % self.id
+        return '[gallery:%s]' % self.slug
 
 
 class Gallery2Image(models.Model):

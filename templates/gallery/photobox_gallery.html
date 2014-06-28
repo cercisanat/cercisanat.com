@@ -1,0 +1,13 @@
+{% load thumbnail %}
+<div id="gallery-{{ gallery.pk }}" class="photobox-gallery">
+    <div class="gallery-definition">
+        <strong>{{ gallery.title }}</strong><br/>
+        <p>{{ gallery.description }}</p>
+    </div>
+
+{% for image in gallery.images.all %}
+    <a class="galleryitem" href="{{ image.image|thumbnail_url:'gallery_image' }}">
+        <img src="{{ image.image|thumbnail_url:'gallery_thumbnail' }}" alt="{{ image.title }}" width="100" />
+    </a>
+{% endfor %}
+</div>

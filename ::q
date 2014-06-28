@@ -1,13 +1,9 @@
 $(document).ready(
 function(){
-    $('a.tooltipped', tocContainer).tooltip();
-    
-    $('figure').photobox('a.galleryitem', {counter: false});
-    $('.photobox-gallery').photobox('a.galleryitem', {counter: false});
-
     var tocStarter = $('div.toc-container a.toc-starter');
     var tocContainer = $('div.toc-container');
-    if (! tocContainer.get(0) === undefined) {
+    if (!tocContainer.get(0) === undefined) {
+      console.log('wtf');
       tocContainer.css('max-height', ($(window).height() -10 )+'px');
       $(window).resize(function() {
           tocContainer.css('max-height', ($(window).height() -10 )+'px');
@@ -30,4 +26,8 @@ function(){
       });
     }
     
+    $('a.tooltipped', tocContainer).tooltip();
+    
+    $('figure').photobox('a.galleryitem', {counter: false});
+    $('.photobox-gallery').photobox('a.galleryitem', {counter: false});
 });

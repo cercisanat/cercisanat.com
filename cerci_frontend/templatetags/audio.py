@@ -16,12 +16,18 @@ def audio_embed(value):
             """
             <div class="audio">
             <strong>%s</strong><br/>
-            <audio controls="controls">
+            <div class="pull-left">
+            <audio controls="controls" preload="none">
                 <source src="%s" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
             </div>
-            """ % (audio.title, audio.audio.url))
+            <div class="pull-left audio-description">
+            %s
+            </div>
+            <div class="clearfix"></div>
+            </div>
+            """ % (audio.title, audio.audio.url, audio.description))
     return value
 
 audio_embed.is_safe = True

@@ -264,6 +264,26 @@ h1.title {
     padding: 10px;
 }
 
+.photobox-gallery {
+    background-color: #221e1d;
+    color: white;
+}
+
+/*
+ * Audio
+ */
+
+.audio {
+    background-color: #221e1d;
+    color: white;
+    padding: 5px;
+}
+
+.audio-description {
+    font-size: .7em;
+    font-style: italic;
+}
+
 @media (max-width: 1300px) {
   div.toc-container.fixed {
     left: 10%;
