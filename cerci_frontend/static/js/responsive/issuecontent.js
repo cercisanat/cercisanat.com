@@ -7,7 +7,7 @@ function(){
 
     var tocStarter = $('div.toc-container a.toc-starter');
     var tocContainer = $('div.toc-container');
-    if (! tocContainer.get(0) === undefined) {
+    if (tocContainer.get(0) !== undefined) {
       tocContainer.css('max-height', ($(window).height() -10 )+'px');
       $(window).resize(function() {
           tocContainer.css('max-height', ($(window).height() -10 )+'px');
