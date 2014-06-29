@@ -1,13 +1,19 @@
 {% load thumbnail %}
-<div id="gallery-{{ gallery.pk }}" class="photobox-gallery">
-    <div class="gallery-definition">
+<div id="gallery-{{ gallery.pk }}" class="gallery photobox-gallery">
+    {% if gallery.title or gallery.description %}
+    <div class="gallery-definition pull-left span2">
         <strong>{{ gallery.title }}</strong><br/>
-        <p>{{ gallery.description }}</p>
+        <div>{{ gallery.description }}</div>
     </div>
-
+    <div class="pull-left span5">
+    {% else %}
+    <div>
+    {% endif %}
 {% for image in gallery.images.all %}
     <a class="galleryitem" href="{{ image.image|thumbnail_url:'gallery_image' }}">
-        <img src="{{ image.image|thumbnail_url:'gallery_thumbnail' }}" alt="{{ image.title }}" width="100" />
+        <img src="{{ image.image|thumbnail_url:'gallery_thumbnail' }}" alt="{{ image.title }}" />
     </a>
 {% endfor %}
+    </div>
+    <div class="clearfix"></div>
 </div>
