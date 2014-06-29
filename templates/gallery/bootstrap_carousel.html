@@ -1,8 +1,8 @@
 {% load thumbnail %}
-<div id="gallery-{{ gallery.pk }}" class="carousel slide">
+<div id="gallery-{{ gallery.pk }}" class="gallery carousel slide">
     <div class="gallery-definition">
         <strong>{{ gallery.title }}</strong><br/>
-        <p>{{ gallery.description }}</p>
+        <div>{{ gallery.description }}</div>
     </div>
     <ol class="carousel-indicators">
         {% for image in gallery.images.all %}
