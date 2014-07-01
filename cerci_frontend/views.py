@@ -21,7 +21,7 @@ def get_issues(year):
 
 def home(request, year=str(now().year)):
     year = int(year)
-    if Issue.objects.all().exists():
+    if Issue.objects.filter(is_published=True).exists():
         issues = get_issues(year)
         while not issues.exists():
             year = year - 1
