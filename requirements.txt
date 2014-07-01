@@ -16,7 +16,7 @@ django-categories==1.2.2
 django-debug-toolbar==0.9.4
 django-extensions==1.0.3
 django-grappelli==2.4.3
--e git+https://github.com/toastdriven/django-haystack.git@1274a8d1bc5b34348a6dd9405284b91b1e246747#egg=django_haystack-dev
+django-haystack==2.1.0
 django-image-cropping==0.6.3
 django-medusa==0.2.0
 django-mptt==0.5.5
