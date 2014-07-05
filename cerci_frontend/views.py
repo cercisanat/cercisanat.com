@@ -1,3 +1,4 @@
+from random import randint
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponse, Http404
@@ -33,9 +34,13 @@ def home(request, year=str(now().year)):
             first_year = first[0].published_at.year
             last_year = Issue.objects.filter(
                 is_published=True).latest('published_at').published_at.year
+
+            c = IssueContent.objects.filter(
+                is_published=True, genres__slug__in=['oyku', 'siir'])
+            rand = [c[randint(0, c.count() - 1)] for i in range(0, 5)]
             return render_to_response(
                 'home.html',
-                {'issues': issues, 'year': year,
+                {'issues': issues, 'year': year, 'rand': rand,
                  'first_year': first_year, 'last_year': last_year},
                 context_instance=RequestContext(request))
     else:

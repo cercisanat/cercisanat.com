@@ -20,6 +20,32 @@
 {% endblock %}
 
 {% block content %}
+    <div id="random-contents" class="carousel slide">
+        <ol class="carousel-indicators">
+            {% for i in rand %}
+            <li data-target="#random-contents" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></li>
+            {% endfor %}
+        </ol>
+        <!-- Carousel items -->
+        <div class="carousel-inner">
+            {% for i in rand %}
+            <div class="{% if forloop.first %}active {% endif %}item row">
+                <div class="pull-left span3">
+                <img src="{{ i.figures.get.image|thumbnail_url:'slider_image' }}" />
+                </div>
+                <div class="pull-left span3">
+                    <h1>{{ i.title }}</h1>
+                    <h1>{{ i.authors.all|author_list|safe }}</h1>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- Carousel nav -->
+        <a class="carousel-control left" href="#random-contents" data-slide="prev">&lsaquo;</a>
+        <a class="carousel-control right" href="#random-contents" data-slide="next">&rsaquo;</a>
+    </div>
+
 <div class="years clearfix">
   {% if first_year != year %} 
     <a class="prev" href="{% url 'home_year' year=year|add:'-1' %}">{{ year|add:"-1" }}</a>
@@ -29,8 +55,9 @@
     <a class="next" href="{% url 'home_year' year=year|add:'1' %}">{{ year|add:"1" }}</a>
   {% endif %}
 </div>
+
 <div class="journal clearfix">
-  <section class="issues_wrapper">
+<section class="issues_wrapper">
   {% for issue in issues %}
   <section class="issue clearfix">
     <h1 id="issue-{{ issue.number }}" class="number">

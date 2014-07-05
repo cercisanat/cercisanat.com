@@ -184,6 +184,7 @@ THUMBNAIL_ALIASES = {
         'cover_list': {'size': (100, 141)},
         'gallery_thumbnail': {'size': (100, 100), 'crop': 'smart'},
         'gallery_image': {'size': (800, 800)},
+        'slider_image': {'size': (100, 100), 'crop': 'smart'},
         'issuecontent_image': {'size': (400, 400)},
         'issuecontent_figure_image': {'size': (800, 800)},
     },

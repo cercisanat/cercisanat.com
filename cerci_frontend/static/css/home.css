@@ -69,6 +69,24 @@ section.issue section.contents ul li {
   margin-bottom: 20px;
 }
 
+/*
+ * Random slider
+ */
+
+#random-contents {
+    background-color: #221e1d;
+    color: white;
+    max-height: 100px; 
+    padding: 5px;
+    padding-left: 100px;
+}
+
+#random-contents h1 {
+    color: white;
+    font-size: 12px;
+}
+
+
 @media (max-width: 767px) {
   div.years {
     text-align: center;
