@@ -20,6 +20,7 @@ django-haystack==2.1.0
 django-image-cropping==0.6.3
 django-medusa==0.2.0
 django-mptt==0.5.5
+django-compressor==1.4
 django-reversion==1.7.1
 django-taggit==0.11.2
 -e git+git@github.com:rasca/django-taggit-jquery-tag-it.git@4a45a7a6cc00aadddff7048e2e1412cc2154dcb1#egg=django_taggit_autocomplete-master

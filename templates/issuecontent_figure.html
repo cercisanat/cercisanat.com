@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 {% load thumbnail %}
 {% load author %}
+{% load compress %}
 {% load static from staticfiles %}
 {% block head %}
   {{ block.super }}
+  {% compress css %}
   <link rel="stylesheet" href="{% static "css/issue.css" %}" type="text/css"/> 
   <link rel="stylesheet" href="{% static "css/issuecontent.css" %}" type="text/css"/>
+  {% endcompress %}
+  {% compress js %}
   <script type="text/javascript" src="{% static "js/responsive/issuecontent.js" %}"></script>
   <script type="text/javascript">
   var addthis_config = {
@@ -13,6 +17,8 @@
         //"data_track_addressbar":true 
   } 
   </script>
+  {% endcompress %}
+  
   <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5197ecf45f1cbd3d"></script>
   <meta property="og:url" content="{{ SITE_URL }}{{ request.path }}" />
   <meta property="og:title" content="'{{ issuecontent.title|escape }}' {{ issuecontent.authors.all|author_list|escape }} | Çerçi Sanat - Sayı {{ issue.number }}" />

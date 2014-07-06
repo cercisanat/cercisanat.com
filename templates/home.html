@@ -2,21 +2,17 @@
 {% load thumbnail %}
 {% load author %}
 {% load static from staticfiles %}
+{% load compress %}
 {% block head %}
   {{ block.super }}
+  {% compress js %}
   <script type="text/javascript" src="{% static "js/cerci_slider.js" %}"></script>
   <script type="text/javascript" src="{% static "js/responsive/home.js" %}"></script>
-  <script type="text/javascript">
-  $(document).ready(function() {
-    //Slider is buggy
-    /*$('.journal').cerciSlider({first_issue: {{ first.number }},
-                               last_issue: {{ last.number }},
-                               prev: "{% url 'home_year' year=year|add:'-1' %}", 
-                               next: "{% url 'home_year' year=year|add:'1' %}"});*/
-  });
-  </script>
+  {% endcompress %}
+  {% compress css %}
   <link rel="stylesheet" href="{% static "css/home.css" %}" type="text/css"/>
   <link rel="stylesheet" href="{% static "css/cerciSlider.css" %}" type="text/css"/>
+  {% endcompress %}
 {% endblock %}
 
 {% block content %}

@@ -1,11 +1,15 @@
 {% load static from staticfiles %}
+{% load compress %}
 <meta charset="utf8" />
 <meta http-equiv="Content-Language" content="tr" />
-<link rel="shortcut icon" href="{% static "favicon.ico" %}" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin,cyrillic-ext,greek-ext,greek,latin-ext,cyrillic' rel='stylesheet' type='text/css' />
 <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic&subset=latin,latin-ext,cyrillic-ext,greek-ext,greek,cyrillic" rel="stylesheet" type='text/css' />
+
+{% compress css %}
+<link rel="shortcut icon" href="{% static "favicon.ico" %}" />
 <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.css" %}" type="text/css" media="screen" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="{% static "Font-Awesome/css/font-awesome.min.css" %}">
 <link rel="stylesheet" href="{% static "css/template.css" %}" type="text/css"/>
 <link rel="stylesheet" href="{% static "photobox/photobox.css" %}" type="text/css"/>
@@ -13,6 +17,8 @@
 <!--[if lt IE 9]>
 <link rel="stylesheet" href="{% static "css/ie8.css" %}" type="text/css"/>
 <![endif]-->
+{% endcompress %}
+{% compress js %}
 <script type="text/javascript" src="{% static "js/respond.min.js" %}"></script>
 <script type="text/javascript" src="{% static "js/jquery-1.9.1.js" %}"></script>
 <script type="text/javascript" src="{% static "js/jquery.cookie.js" %}"></script>
@@ -101,7 +107,7 @@ $(document).ready(
     }
 );
 </script>
-
+{% endcompress %}
 {% if YANDEX_METRICA_ID %}
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
