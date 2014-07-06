@@ -58,4 +58,5 @@ def deploy(name='dev'):
                 '&& workon %s' % environments[name]['workon']):
         run('mkdir -p media/ckeditor')
         run('./manage.py collectstatic --noinput')
+        run('./manage.py compress')
     restart()
