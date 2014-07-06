@@ -17,6 +17,8 @@
                         <a href="{% url 'current_issuecontent' issue_number=issues.0.number contentslug=content.slug %}">
                             {% if content.figures.exists %}
                             <img class="cover pull-left" src="{{ content.figures.all.0.image|thumbnail_url:'cover_list' }}" alt="İçerik Resmi" title="İçerik Resmi" />
+                            {% elif content.is_figure %}
+                            <img class="cover pull-left" src="{{ content.image|thumbnail_url:'cover_list' }}" alt="İçerik Resmi" title="İçerik Resmi" />
                             {% else %}
                             <img class="cover pull-left" src="{{ issues.0.cover|thumbnail_url:'cover_list' }}" alt="Kapak Resmi" title="Kapak Resmi" />
                             {% endif %}
