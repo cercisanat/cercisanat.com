@@ -325,14 +325,14 @@ div.copyright{
 .borderholder a.more {
     position: absolute;
     bottom: 5px;
-    right: 5px;
+    right: -10px;
     z-index: 11;
 }
 
 .borderholder img.subject {
     position: absolute;
     top: 5px;
-    right: 5px;
+    right: -10px;
     z-index: 11;
 }
 
