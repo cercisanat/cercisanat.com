@@ -2,6 +2,7 @@
 {% load thumbnail %}
 {% load author %}
 {% load static from staticfiles %}
+{% load compress %}
 {% block head_title %}
 {{ block.super }}
 -Sayı {{ issue.number }}
@@ -9,13 +10,17 @@
 
 {% block head %}
   {{ block.super }}
+  {% compress css %}
   <link rel="stylesheet" href="{% static "css/issue.css" %}" type="text/css"/>
+  {% endcompress %}
+  {% compress js %}
   <script type="text/javascript" src="{% static "js/jquery.expander.min.js" %}"></script>
   <script type="text/javascript" src="{% static "js/jquery.ellipsis.min.js" %}"></script>
   <script type="text/javascript">
   var static_url = "{% static "" %}";
   </script>
   <script type="text/javascript" src="{% static "js/responsive/issue.js" %}"></script>
+  {% endcompress %}
 {% endblock %}
 
 

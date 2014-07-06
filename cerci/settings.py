@@ -72,6 +72,7 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     #'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'compressor.finders.CompressorFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -130,6 +131,7 @@ INSTALLED_APPS = (
     'ajax_forms',
     'easy_thumbnails',
     'image_cropping',
+    'compressor',
     # 'categories',
     'categories.editor',
     'taggit',
@@ -233,6 +235,8 @@ HAYSTACK_CONNECTIONS = {
 SERVER_EMAIL = 'noreply@cercisanat.com'
 EMAIL_SUBJECT_PREFIX = u'Çerçi Sanat | '
 
+COMPRESS_OFFLINE = True
+COMPRESS_ENABLED = True
 
 from settings_main import *
 if ENVIRONMENT == 'localhost':
