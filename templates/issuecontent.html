@@ -122,7 +122,7 @@
         <cite class="gt_767 authors">{{ issuecontent.authors.all|author_list|safe }}</cite>
         <div class="content">
             {% if issuecontent.spot %}
-              <blockquote class="spot">{{ issuecontent.spot|safe|removetags:"script style" }}</blockquote>
+              <div class="spot">{{ issuecontent.spot|safe|removetags:"script style" }}</div>
             {% endif %}
             {{ issuecontent.body|removetags:"script style"|youtube_embed_url|audio_embed|gallery_embed|safe }}
 
