@@ -6,6 +6,26 @@
     font-family: 'Libre Baskerville', 'Ubuntu', sans-serif;
 }
 
+section.issue .figure-body.body {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.figure-content figure {
+    margin-left: 0;
+    margin-right: 0;
+    background-color: transparent;
+}
+
+.figure-content figure img {
+    width: 96%;
+}
+
+.notifications-trigger,
+.mobile-notifications-trigger {
+    display: none !important;
+}
+
 .container {
     max-width: 900px;
     border: none;
