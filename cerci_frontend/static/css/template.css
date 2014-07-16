@@ -203,6 +203,7 @@ blockquote.spot {
 div.spot {
   font-weight: bold;
   font-style: italic;
+  margin-bottom: 10px;
 }
 
 .categories{
