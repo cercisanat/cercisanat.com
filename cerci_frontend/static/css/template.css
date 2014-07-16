@@ -200,6 +200,11 @@ blockquote.spot {
   /*font-family: 'Ubuntu Condensed', sans-serif;*/
 }
 
+div.spot {
+  font-weight: bold;
+  font-style: italic;
+}
+
 .categories{
   text-align: center;
   margin-bottom: 20px;
