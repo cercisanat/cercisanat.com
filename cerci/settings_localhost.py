@@ -30,5 +30,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = 'development/emails'
 
 
-#COMPRESS_OFFLINE = False
-#COMPRESS_ENABLED = False
+COMPRESS_OFFLINE = False
+COMPRESS_ENABLED = False
