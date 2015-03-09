@@ -1,6 +1,6 @@
 $(document).ready(
     function() {
-        $('nav .categories .genre').tooltip();
+        $('nav.genres-menu ul li a.genre').tooltip();
         $('.galleryitem').tooltip();
     }
 );

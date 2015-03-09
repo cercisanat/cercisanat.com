@@ -4,7 +4,7 @@ footer {
 }
 
 div.toc-container {
-    background-color: #4c3422;
+    background-color: #424242;
     color: white;
     margin-bottom: 10px;
     padding: 10px;
@@ -51,7 +51,7 @@ nav.toc ol {
 
 nav.toc li {
     display: inline-block;
-    background-color: #72533c;
+    background-color: #000;
     margin-top: 5px;
     margin-bottom: 5px;
     padding: 2px;
@@ -177,7 +177,7 @@ section.issue cite.authors {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #221E1D;
+    background-color: black;
     color: white;
     text-align: center;
     vertical-align: middle;
@@ -199,8 +199,8 @@ section.issue cite.authors {
 }
 
 .files .file {
-    background-color: #4c3422;
-    color: #EEEBE2;
+    background-color: #424242;
+    color: #B9B9B9;
     padding: 10px;
     font-weight: bold;
     border-radius: 5px;
@@ -272,12 +272,12 @@ h1.title {
 }
 
 .photobox-gallery {
-    color: #221e1d;
+    color: black;
     background-color: white;
 }
 
 .carousel {
-    background-color: #221e1d;
+    background-color: black;
     color: white;
 }
 
@@ -287,7 +287,7 @@ h1.title {
  */
 
 .audio {
-    background-color: #221e1d;
+    background-color: black;
     color: white;
     padding: 5px;
 }

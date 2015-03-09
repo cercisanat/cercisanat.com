@@ -6,55 +6,21 @@
 {% block head %}
   {{ block.super }}
   {% compress js %}
-  <script type="text/javascript" src="{% static "js/cerci_slider.js" %}"></script>
   <script type="text/javascript" src="{% static "js/responsive/home.js" %}"></script>
   {% endcompress %}
   {% compress css %}
   <link rel="stylesheet" href="{% static "css/home.css" %}" type="text/css"/>
-  <link rel="stylesheet" href="{% static "css/cerciSlider.css" %}" type="text/css"/>
   {% endcompress %}
 {% endblock %}
 
 {% block content %}
-<div class="years clearfix">
-  {% if first_year != year %} 
-    <a class="prev" href="{% url 'home_year' year=year|add:'-1' %}">{{ year|add:"-1" }}</a>
-  {% endif %}
-  <span class="now">{{ year }}</span>
-  {% if last_year != year %} 
-    <a class="next" href="{% url 'home_year' year=year|add:'1' %}">{{ year|add:"1" }}</a>
-  {% endif %}
-</div>
-<div class="journal clearfix">
-  <section class="issues_wrapper">
+<div class="row">
   {% for issue in issues %}
-  <section class="issue clearfix">
-    <h1 id="issue-{{ issue.number }}" class="number">
-      <a href="{% url 'current_issue' issue_number=issue.number %}">Sayı {{ issue.number }}, {{ issue.published_at|date:"F" }}</a></h1>
-    <a href="{% url 'current_issue' issue_number=issue.number %}">
-      <img class="cover" src="{{ issue.cover|thumbnail_url:'cover' }}" alt="Kapak Resmi" title="Kapak Resmi" />
-    </a>
-    <section class="contents">
-      <ul class="unstyled">
-      {% for issue2content in issue.issue2content_set.all %}
-        {% with issue2content.content as content %}
-          {% if content.is_published %}
-          <li>
-            <strong><a href="{% url 'current_issuecontent' issue_number=issue.number contentslug=content.slug %}">{{ content.title }}</a></strong><br/>
-            <em>{{ content.authors.all|author_list|safe }}</em>
-          </li>
-          {% endif %}
-        {% endwith %}
-      {% endfor %}
-      </ul>
+    <section class="issue col-md-4">
+      <a href="{% url 'current_issue' issue_number=issue.number %}">
+        <img class="cover" src="{{ issue.cover|thumbnail_url:'cover' }}" alt="{{ issue.subject }}" title="{{ issue.subject }}" />
+      </a>
     </section>
-  </section>
   {% endfor %}
-  </section>
-  <div class="cerciSlider clearfix">
-    <div class="inner"></div>
-    <a class="prev" href="#prev">Önceki Sayı</a>
-    <a class="next" href="#next">Sonraki Sayı</a>
-  </div>
 </div>
 {% endblock %}

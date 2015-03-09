@@ -1,0 +1,26 @@
+      {% block notifications %}
+      <div class="notifications">
+        <h2>Bildirimler</h2>
+        <h3>E-posta aboneliği</h3>
+        <form action="{% url 'subscribe_form' %}" method="post" class="ajax-form subscribe-form">
+        <p>
+          Abone olun ve yeni sayımız çıktığı anda haberiniz olsun.<br/>
+          (Abonelikten istediğiniz zaman ayrılabilirsiniz.)
+        </p>
+        {% csrf_token %}
+        {{ subscribe_form|bootstrap:'forceplaceholder' }}
+        <button type="submit" class="btn">Abone ol</button>
+        </form>
+        <div class="clearfix"></div>
+        <div class="subscribe-success">
+          E-posta aboneliğine üyeliğiniz başarıyla gerçekleşti.<br/>
+          Bir kayıt daha yapmak için <a href="{% url 'subscribe_form' %}" class="another-subscription">tıklayın</a>
+        </div>
+        <h3>İmece</h3>
+        <p>
+          Çerçi Sanat'ın özgür bir yazılım olduğunu biliyor muydunuz?<br/>
+          Tüm kodlarımıza aşağıdaki linkten ulaşabilirsiniz.<br/>
+          <a href="https://github.com/cercisanat">Github'da Çerçi Sanat</a><br/>
+        </p>
+      </div>
+      {% endblock %}

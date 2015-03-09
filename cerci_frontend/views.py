@@ -3,46 +3,26 @@ from django.template import RequestContext
 from django.http import HttpResponse, Http404
 from cerci_content.models import IssueContent, Author, Genre
 from cerci_issue.models import Issue
-from django.utils.timezone import now
 from django.shortcuts import get_object_or_404
 from taggit.models import Tag
 
 
-def get_issues(year):
+def get_issues():
     return Issue.objects.prefetch_related(
         'issue2content_set',
         'issue2content_set__content',
         'issue2content_set__content__genres',
         'issue2content_set__content__authors'
     ).filter(
-        is_published=True,
-        published_at__year=year).order_by('-published_at')
+        is_published=True).order_by('-published_at')
 
 
-def home(request, year=str(now().year)):
-    year = int(year)
-    if Issue.objects.filter(is_published=True).exists():
-        issues = get_issues(year)
-        while not issues.exists():
-            year = year - 1
-            issues = get_issues(year)
-
-        first = Issue.objects.order_by('published_at').filter(
-            is_published=True)
-        if first.exists():
-            first_year = first[0].published_at.year
-            last_year = Issue.objects.filter(
-                is_published=True).latest('published_at').published_at.year
-            return render_to_response(
-                'home.html',
-                {'issues': issues, 'year': year,
-                 'first_year': first_year, 'last_year': last_year},
-                context_instance=RequestContext(request))
-    else:
-        return render_to_response(
-            'nocontent.html',
-            {},
-            context_instance=RequestContext(request))
+def home(request):
+    issues = get_issues()
+    return render_to_response(
+        'home.html',
+        {'issues': issues},
+        context_instance=RequestContext(request))
 
 
 def current_issue(request, issue_number):
