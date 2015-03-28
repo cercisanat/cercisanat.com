@@ -1,14 +1,137 @@
-.issue {
+.issuecontent {
     overflow: hidden;
 }
 
-h1, h2, h3, h4, h5, h6, .content p {
+div.toc-container {
+    background-color: #424242;
+    color: white;
+    margin-bottom: 10px;
+    padding: 10px;
+    z-index: 1000;
+}
+
+div.toc-container.fixed {
+    position: fixed;
+    top: 0;
+    left: 15%;
+    right: 15%;
+    max-height: 200px;
+    overflow: auto;
+}
+
+div.toc-container a.home-link,
+div.toc-container a.toc-starter {
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+div.toc-container a.home-link {
+    background-image: url('../images/cerci_logo2_white.png');
+    width: 24px !important;
+    height: 24px;
+    display: inline-block;
+    background-size: 24px;
+    margin-left: 18px;
+}
+
+nav.toc {
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: white;
+}
+
+nav.toc ol {
+    margin: 0 50px 10px 215px;
+}
+
+nav.toc li {
+    display: inline-block;
+    background-color: #000;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 2px;
+}
+
+nav.toc li.active,
+nav.toc li.active a {
+    background-color: white;
+    color: #333;
+}
+
+ul.authors li {
+    border-left: 2px solid white; 
+    padding-left: 0.3em;
+}
+
+ul.authors li:first-child {
+    border-left: none;
+    padding-left: 0;
+}
+
+nav.toc a {
+    color: white;
+}
+
+.toc-container .prev,
+.toc-container .next {
+    color: white;
+    margin-right: 10px;
+    margin-left: 10px;
+    font-size: 25px;
+}
+
+h1, h2, h3, h4, h5, h6, .content p, .spot {
     font-family: 'Lora', sans-serif;
 }
 
-section.issue .figure-body.body {
+blockquote:before, .spot:before {
+  content: "\201C";
+}
+
+blockquote:after, .spot:after {
+  content: "\201D";
+}
+
+.spot {
+  font-weight: bold;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.content p, .spot { 
+    font-size: 1.2em;
+}
+
+figure {
+  background-color: black;
+  color: white;
+  margin: 15px;
+}
+
+figcaption {
+  color: white;
+  padding-left: 10px;
+  font-family: "Ubuntu",sans-serif;
+  font-size: .8em;
+}
+
+figcaption h1 {
+  color: white;
+  font-family: "Ubuntu",sans-serif;
+  font-size: 1.2em;
+}
+
+section.issuecontent .figure-body.body {
     margin-left: 0;
     margin-right: 0;
+}
+
+.content img {
+  margin: 15px;
 }
 
 .figure-content figure {
@@ -31,7 +154,7 @@ section.issue .figure-body.body {
     border: none;
 }
 
-.issue hgroup.page-header,
+.issuecontent hgroup.page-header,
 header {
     display: none !important;
 }

@@ -8,8 +8,8 @@
 
 {% compress css %}
 <link rel="shortcut icon" href="{% static "favicon.ico" %}" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="{% static "Font-Awesome/css/font-awesome.min.css" %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{% static "css/template.css" %}" type="text/css"/>
 <link rel="stylesheet" href="{% static "photobox/photobox.css" %}" type="text/css"/>
 <link rel="stylesheet" href="{% static "photobox/photobox.ie.css" %}" type="text/css"/>
@@ -18,93 +18,22 @@
 <![endif]-->
 {% endcompress %}
 {% compress js %}
-<script type="text/javascript" src="{% static "js/respond.min.js" %}"></script>
-<script type="text/javascript" src="{% static "js/jquery-1.9.1.js" %}"></script>
-<script type="text/javascript" src="{% static "js/jquery.cookie.js" %}"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="{% static "photobox/jquery.photobox.js" %}"></script>
-<script type="text/javascript" src="{% static "ajax_forms/js/jquery-ajax-validation.js" %}"></script>
-<script type="text/javascript" src="{% static "js/responsive/main.js" %}"></script>
-<script type="text/javascript" src="{% static "js/main.js" %}"></script>
 <script type="text/javascript">
-$(document).ready(
-    function() {
-        var notifications_trigger = $('.notifications-trigger');
-        var notifications = $('.notifications');
-        $('.more').tooltip();
-        $('.less').tooltip();
-        $('.social-accounts a').tooltip();
-        $('.carousel').carousel('pause');
-        if (document.body.clientWidth > 767 && !$.cookie('animated')) {
-            notifications_trigger.animate({'height': '120px'}, 700)
-                .delay(1000)
-                .animate({'font-size': '2em'}, 200)
-                .animate({'font-size': '1em'}, 200)
-                .animate({'font-size': '2em'}, 200)
-                .animate({'font-size': '1em'}, 200)
-                .delay(1000)
-                .animate({'height': '35px'}, 700);
-                
-            setTimeout(function(){notifications_trigger.removeAttr("style")}, 4800);
-            $.cookie('animated', true);
-        }
+$(document).ready(function(){
+var url = window.location.href.replace(window.location.hash, '');
+// Will only work if string in href matches with location
+$('ul.auto-active a[href="'+ url +'"]').parent().addClass('active');
 
-        if (document.body.clientWidth <= 767 && !$.cookie('animated')) {
-            notifications_trigger
-                .animate({'font-size': '2em'}, 200)
-                .animate({'font-size': '1em'}, 200)
-                .animate({'font-size': '2em'}, 200)
-                .animate({'font-size': '1em'}, 200);
-                
-            setTimeout(function(){notifications_trigger.removeAttr("style")}, 1000);
-            $.cookie('animated', true);
-        }
+// Will also work for relative and absolute hrefs
+$('ul.auto-active a').filter(function() {
+    return this.href == url;
+}).parent().addClass('active');
 
-        if ($.cookie('subscribed_to_newsletters')) {
-            $('.subscribe-form').hide();
-            $('.subscribe-success', notifications).show();
-        }
-
-        notifications_trigger.on('click', function(){
-            if (notifications.is(":visible")) {
-                notifications.slideUp('slow');
-                $('.notifications-trigger .icon-bell').show();
-                $('.notifications-trigger .icon-remove').hide();
-            }
-            else {
-                notifications.slideDown('slow');
-                $('.notifications-trigger .icon-bell').hide();
-                $('.notifications-trigger .icon-remove').show();
-            }
-        });
-
-        $('.subscribe-form').validate({
-            type: 'bootstrap',
-            fields: ['id_email', 'id_name'],
-            event: 'focusout',
-            fieldSuccessCallback: function(field) {
-                field.closest('.controls').addClass('ok');
-            },
-            formSuccessCallback: function(form) {
-                $.cookie("subscribed_to_newsletters", 1, { expires : 999999 });
-                form.hide();
-                $('.subscribe-success', notifications).show();
-            }
-        });
-
-        $('.another-subscription').on('click', function(e){
-            $('.subscribe-success', notifications).hide();
-            $('.subscribe-form').show();
-            $('#id_email').val('');
-            $('#id_email').closest('.controls').removeClass('ok');
-            $('#id_email').closest('.controls').removeClass('error');
-            $('#id_name').val('');
-            $('#id_name').closest('.controls').removeClass('ok');
-            $('#id_name').closest('.controls').removeClass('error');
-            e.preventDefault();
-        });
-    }
-);
+});
 </script>
 {% endcompress %}
 {% if YANDEX_METRICA_ID %}

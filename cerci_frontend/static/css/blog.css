@@ -1,0 +1,9 @@
+.blogpost {
+    padding-bottom: 200px;
+    border-bottom: 1px solid black;
+    margin-bottom: 200px;
+}
+
+.content {
+    font-family: 'Lora', sans-serif;
+}

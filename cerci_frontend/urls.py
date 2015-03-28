@@ -17,6 +17,8 @@ urlpatterns = patterns(
         'cerci_frontend.views.genre', name='genre'),
     url(r'^etiket/(?P<tagslug>[-\w]+)$',
         'cerci_frontend.views.tag', name='tag'),
+    url(r'^blog/$',
+        'cerci_frontend.views.blog', name='blog'),
     url(r'^ekip/$',
         TemplateView.as_view(template_name="crew.html"), name='crew'),
     url(r'^manifesto/$',

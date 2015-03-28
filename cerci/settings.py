@@ -238,6 +238,16 @@ EMAIL_SUBJECT_PREFIX = u'Çerçi Sanat | '
 COMPRESS_OFFLINE = True
 COMPRESS_ENABLED = True
 
+BLOG = 'http://cercisanat.blogspot.com'
+BLOG_FEED = BLOG + '/feeds/posts/default'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.join(PROJECT_ROOT, 'cache'),
+    }
+}
+
 from settings_main import *
 if ENVIRONMENT == 'localhost':
     from settings_localhost import *

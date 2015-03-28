@@ -59,6 +59,7 @@ cerci.db
 media
 /static
 cerci/whoosh_index
+cache
 
 # seperate apps and libs
 django-ajax-forms

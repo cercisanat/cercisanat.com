@@ -1,4 +1,4 @@
-{% load static from staticfiles %}{% load bootstrap %}<!DOCTYPE html>
+{% load static from staticfiles %}{% load bootstrap %}{% load turkish %}<!DOCTYPE html>
 <html lang="tr-TR" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
   <head>
     <title>{% block head_title %}Çerçi{% endblock %}</title>
@@ -7,49 +7,133 @@
     {% endblock %}
   </head>
   <body>
-    {% block figure %}
-    {% endblock %}
     {% block body %}
-    <div class="container">
       <header class="clearfix">
         {% block logo %}
-        <a class="logo" href="/"></a>
         {% endblock %}
         {% block navigation %}
-        <ul class="primary-menu pull-right">
-          {% include 'navigation.html' %}
-        </ul>
+        <nav role="navigation" class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" data-target="#navbarCollapse"
+                data-toggle="collapse" class="navbar-toggle">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a href="/" class="navbar-brand">
+              <img src="{% static 'images/donkey-white.png' %}" style="height:30px" />
+              </a>
+            </div>
+
+            <div id="navbarCollapse" class="collapse navbar-collapse">
+              <ul class="auto-active nav navbar-nav navbar-left">
+                <li><a href="/">ANASAYFA</a></li>
+                <li><a href="{% url 'manifest' %}">MANİFESTO</a></li>
+                <li><a href="{% url 'crew' %}">EKİP</a></li>
+                <li><a href="{% url 'rules' %}">SİTE KURALLARI</a></li>
+                <li><a href="{% url 'sendus' %}">YAZI GÖNDER</a></li>
+                <li><a href="{% url 'contact' %}">İLETİŞİM</a></li>
+                <li><a href="{% url 'blog' %}">BLOG</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle"
+                      data-toggle="dropdown" role="button"
+                      aria-expanded="false">KATEGORİLER<span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                  {% for genre in genres %}
+                  <li>
+                    <a data-toggle="tooltip" data-placement="bottom"
+                      title="{{ genre.description|safe }}" data-html="true"
+                      href="{% url 'genre' genreslug=genre.slug %}">
+                      {{ genre.name|turkish_upper }}
+                    </a>
+                  </li>
+                  {% endfor %}
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle"
+                      data-toggle="dropdown" role="button"
+                      aria-expanded="false">ARAMA
+                  </a>
+                  <div class="dropdown-menu" role="menu">
+                    hello
+                  </div>
+                </li>
+              </ul>
+              {% block social %}
+              <ul class="nav navbar-nav navbar-right social">
+                <li>
+                  <a href="https://www.facebook.com/CerciSanat" target="_blank"
+                    title="Facebook'ta Çerçi Sanat">
+                      <i class="fa fa-facebook"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://twitter.com/cercisanat" target="_blank"
+                    title="Twitter'da Çerçi Sanat">
+                    <i class="fa fa-twitter"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://plus.google.com/107839000424667573646/posts"
+                    target="_blank" title="Google+'ta Çerçi Sanat">
+                    <i class="fa fa-google-plus"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="http://pinterest.com/cercisanat/" target="_blank"
+                    title="Pinterest'te Çerçi Sanat">
+                    <i class="fa fa-pinterest-p"></i>
+                  </a>
+                </li>
+              </ul>
+              {% endblock %}
+            </div>
+          </div>
+        </nav> 
         {% endblock %}
-        {% block genres %}
-        <nav class="genres-menu pull-right" role="navigation">
-          <ul class="nav navbar-nav">
-            {% for genre in genres %}
-            <li><a class="genre" data-toggle="tooltip" data-placement="bottom" title="{{ genre.description|safe }}" data-html="true" href="{% url 'genre' genreslug=genre.slug %}">{{ genre }}</a></li>
-            {% endfor %}
-          </ul>
-        </nav>
-        {% endblock %}
-        {% block social %}
-        <div class="social-accounts pull-right">
-          <a href="https://www.facebook.com/CerciSanat" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Facebook'ta Çerçi Sanat"><i class="icon-facebook-sign icon-white"></i></a>
-          <a href="https://twitter.com/cercisanat" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Twitter'da Çerçi Sanat"><i class="icon-twitter-sign icon-white"></i></a>
-          <a href="https://plus.google.com/107839000424667573646/posts" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Google+'ta Çerçi Sanat"><i class="icon-google-plus-sign icon-white"></i></a>
-          <a href="http://pinterest.com/cercisanat/" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Pinterest'te Çerçi Sanat"><i class="icon-pinterest-sign icon-white"></i></a>
-        </div>
-        {% endblock %}
-        {% block search %}
-        <form class="search pull-right" action="/arama">
-            <input class="pull-right" type="text" name="q" placeholder="arama" />
-        </form>
-        {% endblock %}
-        <div class="menu-hr"></div>
+        <div class="clearfix"></div>
       </header>
+    <div class="container">
       {% for message in messages %}
         <div class="alert alert-{% if message.tags %} {{ message.tags }}{% endif %}">
           <button type="button" class="close" data-dismiss="alert">×</button>
           {{ message|safe }}
         </div>
       {% endfor %}
+      {% block genres %}
+      <div class="unnecessary-zone">
+        <div class="row row-centered">
+          <div class="col-centered">
+            <img src="{% static 'images/cerci_logo.png' %}" class="logo" />
+          </div>
+        </div>
+        <hr/>
+        <div class="row row-centered">
+          <div class="col-centered">
+            <ul class="auto-active list-inline genres">
+            {% for genre in genres %}
+            {% if forloop.counter0 %}
+            <li class="separator">/</li>
+            {% endif %}
+            <li>
+              <a data-toggle="tooltip" data-placement="bottom"
+                title="{{ genre.description|safe }}" data-html="true"
+                href="{% url 'genre' genreslug=genre.slug %}">
+                {{ genre.name|turkish_upper }}
+              </a>
+            </li> 
+            {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <hr/>
+      </div>
+      {% endblock %}
+
       {% block content %}
       {% endblock %}
       <div class="clearfix"></div>

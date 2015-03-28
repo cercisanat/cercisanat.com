@@ -1,10 +1,13 @@
+from django.conf import settings
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponse, Http404
+from django.core.cache import cache
 from cerci_content.models import IssueContent, Author, Genre
 from cerci_issue.models import Issue
 from django.shortcuts import get_object_or_404
 from taggit.models import Tag
+import feedparser
 
 
 def get_issues():
@@ -110,6 +113,16 @@ def tag(request, tagslug):
 def masterhead(request):
     return render_to_response('masterhead.html',
                               {},
+                              context_instance=RequestContext(request))
+
+
+def blog(request):
+    posts = cache.get('blog')
+    if not posts:
+        posts = feedparser.parse(settings.BLOG_FEED)
+        cache.set('blog', posts, timeout=21600)
+    return render_to_response('blog.html',
+                              {'posts': posts, 'blog_url': settings.BLOG},
                               context_instance=RequestContext(request))
 
 

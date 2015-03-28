@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+{% load compress %}
+{% block head %}
+{{ block.super }}
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/blog.css" %}">
+{% endcompress %}
+{% endblock %}
+
+{% block content %}
+<section class="content">
+  <div class="well well-lg">
+    Aşağıdaki içerikler Çerçi Sanat'ın resmi <a href="{{ blog_url }}">BLOG</a>
+    adresinden toplanmaktadır.</br>
+    Çerçi Sanat'ı <a href="{{ blog_url }}">BLOGGER</a>
+    üzerinde ziyaret etmek için <a href="{{ blog_url }}">TIKLAYIN</a>.
+  </div>
+  {% for entry in posts.entries %}
+  <div class="blogpost">
+    <h1>
+      <a href="{{ entry.link }}">
+      {{ entry.title }}
+      <i class="fa fa-external-link"></i></a></h1>
+    {{ entry.summary|safe }}
+  </div>
+  {% endfor %}
+</section>
+{% endblock %}

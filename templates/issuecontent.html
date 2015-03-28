@@ -58,10 +58,7 @@
 {% endblock %}
 
 {% block content %}
-<section class="issue clearfix">
-    <hgroup class="page-header">
-        <h1>Sayı {{ issue.number }}, {{ issue.published_at|date:"F Y" }}</h1>
-    </hgroup>
+<section class="issuecontent clearfix">
     {% if issuecontent %}
     {% if preview %}
     <div class="preview-alert">
@@ -69,10 +66,10 @@
     </div>
     {% else %}
     <div class="toc-container clearfix">
-        {% if prev.get_absolute_url %}<a href="{{ prev.get_absolute_url }}" class="prev pull-left tooltipped" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Önceki"><i class="icon-arrow-left"></i></a>{% endif %}
+        {% if prev.get_absolute_url %}<a href="{{ prev.get_absolute_url }}" class="prev pull-left tooltipped" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Önceki"><i class="fa fa-arrow-left"></i></a>{% endif %}
         <a href="/" class="home-link tooltipped" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Çerçi Sanat Anasayfa"></a>
-        <a href="#" class="toc-starter tooltipped" data-toggle="tooltip" data-placement="bottom" data-container="body" title="İçindekiler"><i class="icon-list-alt"></i></a>
-        {% if next.get_absolute_url %}<a href="{{ next.get_absolute_url }}" class="next pull-right tooltipped" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Sonraki"><i class="icon-arrow-right"></i></a>{% endif %}
+        <a href="#" class="toc-starter tooltipped" data-toggle="tooltip" data-placement="bottom" data-container="body" title="İçindekiler"><i class="fa fa-th-list"></i></a>
+        {% if next.get_absolute_url %}<a href="{{ next.get_absolute_url }}" class="next pull-right tooltipped" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Sonraki"><i class="fa fa-arrow-right"></i></a>{% endif %}
         <nav class="toc">
             <a class="issue_link" href="{% url 'current_issue' issue_number=issue.number %}" title="Dergi sayfasına geri dön">
                 <img class="cover pull-left" src="{{ issue.cover|thumbnail_url:'cover_toc' }}" alt="Çerçi Sayı {{ issue.number }}, {{ issue.published_at|date:"F Y" }}" />
@@ -98,8 +95,6 @@
     </div>
     {% endif %}
 
-    <h1 class="lt_767 title" id="content-{{issuecontent.id }}">{{ issuecontent.title }}</h1>
-    <cite class="lt_767 authors">{{ issuecontent.authors.all|author_list|safe }}</cite>
     {% with issuecontent.figures.all as image %}
     {% if image.count %}
     <figure class="image-container pull-left span3 {% if image.count and issuecontent.genres.all.0.slug == 'siir' %}poem{% endif %}">
@@ -114,12 +109,12 @@
     </figure>
     {% endif %}
     <div class="body {% if image.count and issuecontent.genres.all.0.slug == 'siir' %}span6 poem{% endif %}">
-        <h1 class="gt_767 title" id="content-{{issuecontent.id }}">{{ issuecontent.title }}
+        <h1 class="title" id="content-{{issuecontent.id }}">{{ issuecontent.title }}
         {% if user.is_staff %}
         <a href="{% url 'admin:cerci_content_issuecontent_change' issuecontent.id %}"><i class="icon-edit"></i></a>
         {% endif %}
         </h1>
-        <cite class="gt_767 authors">{{ issuecontent.authors.all|author_list|safe }}</cite>
+        <cite class="authors">{{ issuecontent.authors.all|author_list|safe }}</cite>
         <div class="content">
             {% if issuecontent.spot %}
               <div class="spot">{{ issuecontent.spot|safe|removetags:"script style" }}</div>
