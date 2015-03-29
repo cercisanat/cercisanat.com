@@ -60,18 +60,18 @@ class Author(models.Model):
     @property
     def contents(self):
         return self.published_issues.filter(
-            is_figure=False).distinct('pk')
+            is_figure=False).distinct()
 
     @property
     def figures(self):
         return self.published_issues.filter(
-            is_figure=True).distinct('pk')
+            is_figure=True).distinct()
 
     @property
     def figure_contents(self):
         return IssueContent.objects.prefetch_related(
             'issue_set').filter(
-            is_published=True, figures__in=self.figures).distinct('pk')
+            is_published=True, figures__in=self.figures).distinct()
 
     @property
     def all_contents(self):
