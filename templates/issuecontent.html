@@ -109,12 +109,14 @@
     </figure>
     {% endif %}
     <div class="body {% if image.count and issuecontent.genres.all.0.slug == 'siir' %}span6 poem{% endif %}">
+        <hgroup class="main-hgroup">
         <h1 class="title" id="content-{{issuecontent.id }}">{{ issuecontent.title }}
         {% if user.is_staff %}
         <a href="{% url 'admin:cerci_content_issuecontent_change' issuecontent.id %}"><i class="icon-edit"></i></a>
         {% endif %}
         </h1>
         <cite class="authors">{{ issuecontent.authors.all|author_list|safe }}</cite>
+        </hgroup>
         <div class="content">
             {% if issuecontent.spot %}
               <div class="spot">{{ issuecontent.spot|safe|removetags:"script style" }}</div>

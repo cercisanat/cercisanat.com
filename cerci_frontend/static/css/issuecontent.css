@@ -85,25 +85,40 @@ nav.toc a {
 }
 
 h1, h2, h3, h4, h5, h6, .content p, .spot {
-    font-family: 'Lora', sans-serif;
+    font-family: 'Roboto Slab', 'Lora', sans-serif;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+hgroup.main-hgroup {
+    margin-bottom: 40px;
 }
 
 blockquote:before, .spot:before {
-  content: "\201C";
+  content: "\201C\00a0 ";
 }
 
 blockquote:after, .spot:after {
-  content: "\201D";
+  content: "\00a0 \201D";
 }
 
-.spot {
-  font-weight: bold;
-  font-style: italic;
-  margin-bottom: 10px;
+cite {
+    font-size: 1.8em;
 }
 
 .content p, .spot { 
     font-size: 1.2em;
+    color: #333;
+    line-height: 1.8em;
+}
+
+.spot {
+  font-size: 1.6em;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #333;
+  margin-bottom: 40px;
 }
 
 figure {
@@ -150,7 +165,7 @@ section.issuecontent .figure-body.body {
 }
 
 .container {
-    max-width: 900px;
+    max-width: 968px;
     border: none;
 }
 

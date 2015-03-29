@@ -24,7 +24,8 @@ def home(request):
     issues = get_issues()
     return render_to_response(
         'home.html',
-        {'issues': issues},
+        {'issues': issues[1:],
+         'last_issue': issues[0]},
         context_instance=RequestContext(request))
 
 

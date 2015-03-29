@@ -14,6 +14,23 @@
 {% endblock %}
 
 {% block content %}
+<div class="outer-row" style="background-image: url('{{ last_issue.cover.url }}')">
+  <div class="outer-row-overlay"></div>
+  <div class="row">
+    <section class="issue">
+      <div class="col-md-4">
+      <a href="{% url 'current_issue' issue_number=last_issue.number %}">
+        <img class="cover last" src="{{ last_issue.cover|thumbnail_url:'cover' }}" alt="{{ last_issue.subject }}" title="{{ last_issue.subject }}" />
+      </a>
+      </div>
+      <div class="col-md-8 issuecontents-wrapper">
+        <div class="issuecontents">
+          {{ last_issue.editorial|safe }}
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
 <div class="row">
   {% for issue in issues %}
     <section class="issue col-md-4">

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href='http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic|Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic|Ubuntu+Condensed&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-
+<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 {% compress css %}
 <link rel="shortcut icon" href="{% static "favicon.ico" %}" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
@@ -24,16 +24,15 @@
 <script type="text/javascript" src="{% static "photobox/jquery.photobox.js" %}"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-var url = window.location.href.replace(window.location.hash, '');
-// Will only work if string in href matches with location
-$('ul.auto-active a[href="'+ url +'"]').parent().addClass('active');
-
-// Will also work for relative and absolute hrefs
-$('ul.auto-active a').filter(function() {
-    return this.href == url;
-}).parent().addClass('active');
+  var url = window.location.href.replace(window.location.hash, '');
+  $('ul.auto-active a[href="'+ url +'"]').parent().addClass('active');
+  $('ul.auto-active a').filter(function() {
+      return this.href == url;
+  }).parent().addClass('active');
 
 });
+
+
 </script>
 {% endcompress %}
 {% if YANDEX_METRICA_ID %}
