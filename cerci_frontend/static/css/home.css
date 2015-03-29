@@ -11,36 +11,6 @@ img.cover.last {
   margin-bottom: 0;
 }
 
-.outer-row {
-    position: relative;
-    margin-left: -150px;
-    padding-left: 150px;
-    overflow: hidden;
-    background-size: 100%;
-    background-position: 0 -600px;
-    background-repeat: no-repeat;
-    margin-bottom: 40px;
-    max-height: 555px;
-}
-
-.outer-row-overlay {
-    position: absolute;
-    width: 100%;
-    height: 1000px;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: white;
-    opacity: .8;
-}
-
-.issuecontents-wrapper {    
-    margin-top: 10px;
-    max-height: 540px;
-    overflow: auto;
-}
-
 .issuecontents {
     font-size: 1.4em;
     overflow-y: hidden;
