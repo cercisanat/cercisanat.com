@@ -3,10 +3,15 @@
 {% load author %}
 {% load static from staticfiles %}
 
+{% block head %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static "css/genre.css" %}" type="text/css"/>
+{% endblock %}
+
+
 {% block content %}
-<section class="category">
-    <h1>{{ title }}</h1>
-    <ul class="unstyled">
+<section class="category contents">
+    <ul class="list-unstyled">
         {% for content in contents %}
         {% with content.issue_set.all as issues %}
         <li>
@@ -27,7 +32,6 @@
                     <h1><a href="{% url 'current_issuecontent' issue_number=issues.0.number contentslug=content.slug %}">{{ content.title }}</a></h1>
                     <h2>{{ content.authors.all|author_list|safe }}</h2>
                     <p class="content-body">{{ content.body|truncatewords_html:50|striptags|safe }}</p>
-                    <a class="more" href="{% url 'current_issuecontent' issue_number=issues.0.number contentslug=content.slug %}" data-toggle="tooltip" data-placement="top" title="Devamını oku" data-container="body" ><img src="{% static "images/more.png" %}" /></a>
                     {% include "partials/tags.html" %}
                 </div>
 

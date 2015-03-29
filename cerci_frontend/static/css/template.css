@@ -42,7 +42,7 @@ h3 {
 }
 
 
-a, a:link, a:active {
+a, a:link, a:active, a:visited{
   color: black;
 }
 
@@ -133,3 +133,7 @@ ul.social > li > a {
     background-color: black;
     color: white;
 } 
+
+.subscription-form {
+    padding: 10px;
+}

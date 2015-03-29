@@ -21,6 +21,7 @@
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
 {% compress js %}
+<script type="text/javascript" src="{% static "ajax_forms/js/jquery-ajax-validation.js" %}"></script>
 <script type="text/javascript" src="{% static "photobox/jquery.photobox.js" %}"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -31,6 +32,50 @@ $(document).ready(function(){
   }).parent().addClass('active');
 
 });
+
+
+$(document).ready(
+    function() {
+        var subscription_form = $('.subscription-form');
+        $('.more').tooltip();
+        $('.less').tooltip();
+        $('.carousel').carousel('pause');
+        if ($.cookie('subscribed_to_newsletters')) {
+            $('.subscribe-form').hide();
+            $('.subscribe-success', subscription_form).show();
+        }
+        else {
+            $('.subscribe-form').show();
+            $('.subscribe-success', subscription_form).hide();
+        }
+
+        $('.subscribe-form').validate({
+            type: 'bootstrap',
+            fields: ['id_email', 'id_name'],
+            event: 'focusout',
+            fieldSuccessCallback: function(field) {
+                field.closest('.controls').addClass('ok');
+            },
+            formSuccessCallback: function(form) {
+                $.cookie("subscribed_to_newsletters", 1, { expires : 999999 });
+                form.hide();
+                $('.subscribe-success', subscription_form).show();
+            }
+        });
+
+        $('.another-subscription').on('click', function(e){
+            $('.subscribe-success', subscription_form).hide();
+            $('.subscribe-form').show();
+            $('#id_email').val('');
+            $('#id_email').closest('.controls').removeClass('ok');
+            $('#id_email').closest('.controls').removeClass('error');
+            $('#id_name').val('');
+            $('#id_name').closest('.controls').removeClass('ok');
+            $('#id_name').closest('.controls').removeClass('error');
+            e.preventDefault();
+        });
+    }
+);
 
 
 </script>

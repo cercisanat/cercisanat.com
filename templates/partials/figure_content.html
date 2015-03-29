@@ -1,0 +1,18 @@
+{% load thumbnail %}
+{% load author %}
+<div class="body figure-body">
+  <h1 class="gt_767 title" id="content-{{issuecontent.id }}">{{ issuecontent.title }}
+  {% if user.is_staff %}
+  <a href="{% url 'admin:cerci_content_issuecontent_change' issuecontent.id %}"><i class="icon-edit"></i></a>
+  {% endif %}
+  </h1>
+  <cite class="gt_767 authors">{{ issuecontent.authors.all|author_list|safe }}</cite>
+  <div class="content figure-content">
+    <figure>
+      <img src="{{ issuecontent.image.url }}" alt="İçerik görseli" />
+      <figcaption>
+        {% if issuecontent.body %}<span class="description">{{ issuecontent.body|safe|removetags:"script style" }}</span>{% endif %}
+      </figcaption>
+    </figure>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+{% load thumbnail %}
+{% load author %}
+{% load youtube %}
+{% load audio %}
+{% load gallery %}
+
+{% with issuecontent.figures.all as image %}
+{% if image.count %}
+<figure class="image-container pull-left span3 {% if image.count and issuecontent.genres.all.0.slug == 'siir' %}poem{% endif %}">
+  <a class="galleryitem" href="{{ image.0.image.url }}" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Daha büyük boyutlusunu görmek ve yakınlaştırabilmek için tıklayın.">
+  <img class="content-image" src="{{ image.0.image|thumbnail_url:'issuecontent_image' }}" alt="{{ image.0.title }}" />
+  </a>
+  <figcaption>
+  {% if image.0.title %}<h1>{{ image.0.title }}</h1>{% endif %}
+  {% if image.0.authors %}<cite class="image-authors">{{ image.0.authors.all|author_list|safe }}</cite>{% endif %}
+  {% if image.0.body %}<span class="description">{{ image.0.body|safe|removetags:"script style" }}</span>{% endif %}
+  </figcaption>
+</figure>
+{% endif %}
+<div class="body {% if image.count and issuecontent.genres.all.0.slug == 'siir' %}col-md-6 poem{% endif %}">
+    <hgroup class="main-hgroup">
+    <h1 class="title" id="content-{{issuecontent.id }}">{{ issuecontent.title }}
+    {% if user.is_staff %}
+    <a href="{% url 'admin:cerci_content_issuecontent_change' issuecontent.id %}"><i class="fa fa-edit"></i></a>
+    {% endif %}
+    </h1>
+    <cite class="authors">{{ issuecontent.authors.all|author_list|safe }}</cite>
+    </hgroup>
+    <div class="content">
+        {% if issuecontent.spot %}
+          <blockquote class="spot">{{ issuecontent.spot|safe|removetags:"script style" }}</blockquote>
+        {% endif %}
+        {{ issuecontent.body|removetags:"script style"|youtube_embed_url|audio_embed|gallery_embed|safe }}
+    </div>
+</div>
+{% endwith %}

@@ -61,10 +61,7 @@ def current_issuecontent(request, issue_number, contentslug):
         preview = True
     prev = issuecontent.prev(issue)
     next = issuecontent.next(issue)
-    if issuecontent.is_figure:
-        template = 'issuecontent_figure.html'
-    else:
-        template = 'issuecontent.html'
+    template = 'issuecontent.html'
     return render_to_response(template,
                               {'issue': issue,
                                'issuecontent': issuecontent,
