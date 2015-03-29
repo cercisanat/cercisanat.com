@@ -188,6 +188,7 @@ THUMBNAIL_ALIASES = {
         'gallery_image': {'size': (800, 800)},
         'issuecontent_image': {'size': (400, 400)},
         'issuecontent_figure_image': {'size': (1200, 1200)},
+        'issuecontent_bg_image': {'size': (968, 400), 'crop': 'smart', 'quality': 10},
     },
 }
 

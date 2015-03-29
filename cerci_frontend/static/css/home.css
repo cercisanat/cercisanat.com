@@ -12,11 +12,9 @@ img.cover.last {
 }
 
 .issuecontents {
-    font-size: 1.4em;
     overflow-y: hidden;
     padding-right: 40px;
     line-height: 2em;
-    font-family: 'Roboto Slab', 'Lora', sans-serif;
 }
 
 .issuecontents p {

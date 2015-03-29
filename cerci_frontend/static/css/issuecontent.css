@@ -16,7 +16,7 @@ div.toc-container.fixed {
     left: 15%;
     right: 15%;
     max-height: 200px;
-    overflow: auto;
+    overflow: hidden;
 }
 
 div.toc-container a.home-link,

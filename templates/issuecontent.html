@@ -9,7 +9,6 @@
 {% block head %}
   {{ block.super }}
   {% compress css %}
-  <link rel="stylesheet" href="{% static "css/issue.css" %}" type="text/css"/>
   <link rel="stylesheet" href="{% static "css/issuecontent.css" %}" type="text/css"/>
   {% endcompress %}
   {% compress js %}
@@ -48,10 +47,6 @@
 
 
 {% block header %}
-<div class="starters">
-  <div class="search-starter"><i class="icon-search icon-white"></i></div>
-  <div class="menu-starter"><i class="icon-reorder icon-white"></i></div>
-</div>
 {% endblock %}
 
 {% block genres %}
@@ -66,7 +61,11 @@
     </div>
     {% else %}
     <div class="toc-container clearfix">
-        {% if prev.get_absolute_url %}<a href="{{ prev.get_absolute_url }}" class="prev pull-left tooltipped" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Önceki"><i class="fa fa-arrow-left"></i></a>{% endif %}
+      <a href="{% if prev.get_absolute_url %}{{ prev.get_absolute_url }}{% else %}{% url 'current_issue' issue_number=issue.number %}{% endif %}"
+          class="prev pull-left tooltipped"
+          data-toggle="tooltip" data-placement="bottom" data-container="body"
+          title="Önceki"><i class="fa fa-arrow-left"></i>
+        </a>
         <a href="/" class="home-link tooltipped" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Çerçi Sanat Anasayfa"></a>
         <a href="#" class="toc-starter tooltipped" data-toggle="tooltip" data-placement="bottom" data-container="body" title="İçindekiler"><i class="fa fa-th-list"></i></a>
         {% if next.get_absolute_url %}<a href="{{ next.get_absolute_url }}" class="next pull-right tooltipped" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Sonraki"><i class="fa fa-arrow-right"></i></a>{% endif %}
@@ -75,6 +74,11 @@
                 <img class="cover pull-left" src="{{ issue.cover|thumbnail_url:'cover_toc' }}" alt="Çerçi Sayı {{ issue.number }}, {{ issue.published_at|date:"F Y" }}" />
             </a>
             <ol>
+              <li>
+              <strong><a href="{% url 'current_issue' issue_number=issue.number %}">İçindekiler</a></strong><br/>
+              <em>editörden</em>
+              </li>
+
             {% for issue2content in issue.get_contents %}
             {% with issue2content.content as content %}
               {% if content == issuecontent %}
@@ -112,7 +116,7 @@
         <hgroup class="main-hgroup">
         <h1 class="title" id="content-{{issuecontent.id }}">{{ issuecontent.title }}
         {% if user.is_staff %}
-        <a href="{% url 'admin:cerci_content_issuecontent_change' issuecontent.id %}"><i class="icon-edit"></i></a>
+        <a href="{% url 'admin:cerci_content_issuecontent_change' issuecontent.id %}"><i class="fa fa-edit"></i></a>
         {% endif %}
         </h1>
         <cite class="authors">{{ issuecontent.authors.all|author_list|safe }}</cite>

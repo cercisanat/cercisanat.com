@@ -12,6 +12,7 @@
   {{ block.super }}
   {% compress css %}
   <link rel="stylesheet" href="{% static "css/issue.css" %}" type="text/css"/>
+  <link rel="stylesheet" href="{% static "css/issuecontent.css" %}" type="text/css"/>
   {% endcompress %}
   {% compress js %}
   <script type="text/javascript" src="{% static "js/jquery.expander.min.js" %}"></script>
@@ -20,23 +21,54 @@
   var static_url = "{% static "" %}";
   </script>
   <script type="text/javascript" src="{% static "js/responsive/issue.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/responsive/issuecontent.js" %}"></script>
   {% endcompress %}
 {% endblock %}
 
 {% block genres %}
 {% endblock %}
 
-{% block content %}
-<section class="issue clearfix">
+{% block body %}
+<div class="container">
+<section class="issue contents clearfix">
+    <div class="toc-container clearfix">
+        <a href="/" class="home-link tooltipped" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Çerçi Sanat Anasayfa"></a>
+        <a href="#" class="toc-starter tooltipped" data-toggle="tooltip" data-placement="bottom" data-container="body" title="İçindekiler"><i class="fa fa-th-list"></i></a> 
+        <a href="{{ issue.get_contents.0.content.get_absolute_url }}" class="next pull-right tooltipped"
+          data-toggle="tooltip" data-placement="bottom" data-container="body"
+          title="Sonraki">
+          <i class="fa fa-arrow-right"></i>
+        </a>
+        <nav class="toc">
+            <a class="issue_link" href="{% url 'current_issue' issue_number=issue.number %}" title="Dergi sayfasına geri dön">
+                <img class="cover pull-left" src="{{ issue.cover|thumbnail_url:'cover_toc' }}" alt="Çerçi Sayı {{ issue.number }}, {{ issue.published_at|date:"F Y" }}" />
+            </a>
+            <ol>
+              <li class="active">
+              <strong>İçindekiler</strong><br/>
+              <em>editörden</em>
+              </li>
+            {% for issue2content in issue.get_contents %}
+            {% with issue2content.content as content %}
+              <li>
+                <strong><a href="{% url 'current_issuecontent' issue_number=issue.number contentslug=content.slug %}">{{ content.title }}</a></strong><br/>
+                <em>{{ content.authors.all|author_list_plain|safe }}</em>
+              </li>
+            {% endwith %}
+            {% endfor %}
+            </ol>
+        </nav>
+    </div>
+
     <hgroup class="page-header">
         <h1 class="number">Sayı {{ issue.number }}, {{ issue.published_at|date:"F Y" }}
         {% if user.is_staff %}
-        <a href="{% url 'admin:cerci_issue_issue_change' issue.id %}"><i class="icon-edit"></i></a>
+        <a href="{% url 'admin:cerci_issue_issue_change' issue.id %}"><i class="fa fa-edit"></i></a>
         {% endif %}
         </h1>
     </hgroup>
     <section class="frontmatter row">
-        <div class="image-files-wrapper pull-left span4">
+        <div class="image-files-wrapper pull-left col-md-5">
             <a class="galleryitem" href="{{ issue.cover.url }}" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Daha büyük boyutlusunu görmek ve yakınlaştırabilmek için tıklayın.">
             <img class="cover" src="{{ issue.cover|thumbnail_url:'cover' }}" alt="Çerçi Sayı {{ issue.number }}, {{ issue.published_at|date:"F Y" }}" />
             </a>
@@ -49,8 +81,7 @@
             </div>
             {% endif %}
         </div>
-        <section class="editorial pull-left span8 ellipsis">
-            <h1 class="page-header">Editörden</h1>
+        <section class="editorial pull-left col-md-7 ellipsis">
             <h2>{{ issue.editorial_title }}</h2>
             {{ issue.editorial|safe|removetags:"script style" }}
             <section class="copyright_page">
@@ -63,37 +94,40 @@
             <div class="onhover">Yalnızca Günebakan'ları göster</div>
         </div>
     </section>
-    <section class="contents">
+    <section class="table-of-contents">
         <h1 class="page-header">İçindekiler</h1>
-        <div class="row">
         {% for issue2content in issue.issue2content_set.all %}
             {% with issue2content.content as content %}
             {% if content.is_published %}
-              <section class="span3 content {% if issue2content.is_subject %}is-subject{% endif %}">
-                <div class="borderholder">
-                    <h1><a href="{% url 'current_issuecontent' issue_number=issue.number contentslug=content.slug %}">{{ content.title }}</a></h1>
+              <section class="issuecontent {% if issue2content.is_subject %}is-subject{% endif %}">
+                  {% if content.figures.exists %}
+                  <img class="issuecontent-bg" src="{{ content.figures.all.0.image|thumbnail_url:'issuecontent_bg_image' }}" alt="İçerik Resmi" title="İçerik Resmi" />
+                  {% elif content.is_figure %}
+                  <img class="issuecontent-bg" src="{{ content.image|thumbnail_url:'issuecontent_bg_image' }}" alt="İçerik Resmi" title="İçerik Resmi" />
+                  {% else %}
+                  <img class="issuecontent-bg" src="{{ issue.cover|thumbnail_url:'issuecontent_bg_image'}}" alt="Kapak Resmi" title="Kapak Resmi" />
+                  {% endif %}
+ 
+                  <div class="issuecontent-link">
+                    <h1>
+                      <a href="{% url 'current_issuecontent' issue_number=issue.number contentslug=content.slug %}">{{ content.title }}</a>
+                    </h1>
                     <h2>{{ content.authors.all|author_list|safe }}</h2>
-                    {% if content.is_figure %}
-                    <img src="{{ content.image|thumbnail_url:'cover_list' }}" alt="İçerik görseli" />
-                    {% else %}
-                    <p class="content-body">
                     {% if content.spot %}
-                    {{ content.spot|truncatewords_html:50|striptags|safe }}
+                    {{ content.spot|truncatewords_html:100|striptags|safe }}
                     {% else %}
-                    {{ content.body|truncatewords_html:50|striptags|safe }}
-                    {% endif %}
-                    </p>
+                    {{ content.body|truncatewords_html:100|striptags|safe }}
                     {% endif %}
                     <a class="more" href="{% url 'current_issuecontent' issue_number=issue.number contentslug=content.slug %}" data-toggle="tooltip" data-placement="top" title="Devamını oku" data-container="body" ><img src="{% static "images/more.png" %}" /></a>
                     {% if issue2content.is_subject %}
                     <img class="subject" src="{% static "images/subject.png" %}" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Günebakan" />
                     {% endif %}
-                </div>
+                  </div>
               </section>
             {% endif %}
             {% endwith %}
         {% endfor %}
-        </ul>
     </section>
 </section>
+</div>
 {% endblock %}
