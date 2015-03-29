@@ -119,7 +119,7 @@
         </hgroup>
         <div class="content">
             {% if issuecontent.spot %}
-              <div class="spot">{{ issuecontent.spot|safe|removetags:"script style" }}</div>
+              <blockquote class="spot">{{ issuecontent.spot|safe|removetags:"script style" }}</blockquote>
             {% endif %}
             {{ issuecontent.body|removetags:"script style"|youtube_embed_url|audio_embed|gallery_embed|safe }}
 
