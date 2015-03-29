@@ -23,38 +23,20 @@
                   <span class="icon-bar"></span>
               </button>
               <a href="/" class="navbar-brand">
-              <img src="{% static 'images/donkey-white.png' %}" style="height:30px" />
+              <img src="{% static 'images/cerci_logo2_white.png' %}" style="height:30px" />
               </a>
             </div>
 
             <div id="navbarCollapse" class="collapse navbar-collapse">
-              <ul class="auto-active nav navbar-nav navbar-left">
-                <li><a href="/">ANASAYFA</a></li>
+              <ul class="auto-active nav navbar-nav navbar-left"> 
                 <li><a href="{% url 'manifest' %}">MANİFESTO</a></li>
-                <li><a href="{% url 'crew' %}">EKİP</a></li>
-                <li><a href="{% url 'rules' %}">SİTE KURALLARI</a></li>
-                <li><a href="{% url 'sendus' %}">YAZI GÖNDER</a></li>
-                <li><a href="{% url 'contact' %}">İLETİŞİM</a></li>
+                <li><a href="{% url 'crew' %}">EKİP</a></li>  
+                <li><a href="{% url 'author_list' %}">ÇERÇİLER</a></li>
+                <li><a href="{% url 'sendus' %}">YAZI GÖNDER</a></li>  
                 <li><a href="{% url 'blog' %}">BLOG</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle"
-                      data-toggle="dropdown" role="button"
-                      aria-expanded="false">KATEGORİLER<span class="caret"></span>
-                  </a>
-                  <ul class="dropdown-menu" role="menu">
-                  {% for genre in genres %}
-                  <li>
-                    <a data-toggle="tooltip" data-placement="bottom"
-                      title="{{ genre.description|safe }}" data-html="true"
-                      href="{% url 'genre' genreslug=genre.slug %}">
-                      {{ genre.name|turkish_upper }}
-                    </a>
-                  </li>
-                  {% endfor %}
-                  </ul>
-                </li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle"
+                      title="Abone ol"
                       data-toggle="dropdown" role="button"
                       aria-expanded="false"><i class="fa fa-book"></i>
                   </a>
@@ -119,6 +101,12 @@
                   </a>
                 </li>
                 <li>
+                  <a href="https://instagram.com/cercisanat/" target="_blank"
+                    title="Instagram'da Çerçi Sanat">
+                    <i class="fa fa-instagram"></i>
+                  </a>
+                </li>
+                <li>
                   <a href="https://github.com/cercisanat" target="_blank"
                     title="Github'da Çerçi Sanat">
                     <i class="fa fa-github"></i>
@@ -144,7 +132,7 @@
       <div class="unnecessary-zone">
         <div class="row row-centered">
           <div class="col-centered">
-            <img src="{% static 'images/cerci_logo.png' %}" class="logo" />
+            <a href="/"><img src="{% static 'images/cerci_logo.png' %}" class="logo" /></a>
           </div>
         </div>
         <hr/>
@@ -180,7 +168,7 @@
         </ul>
         {% endblock %}
         <div class="copyright pull-right">
-          <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png" /></a>
+          <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="{% static "images/cc.png" %}" /></a>
         </div>
       </footer>
     </div>

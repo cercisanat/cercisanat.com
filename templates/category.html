@@ -6,41 +6,43 @@
 {% block head %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static "css/genre.css" %}" type="text/css"/>
+<link rel="stylesheet" href="{% static "css/toc.css" %}" type="text/css"/>
 {% endblock %}
 
 
 {% block content %}
-<section class="category contents">
-    <ul class="list-unstyled">
-        {% for content in contents %}
-        {% with content.issue_set.all as issues %}
-        <li>
-
-            {% if issues.exists and content.is_published %}
-                <div class="borderholder">
-                    <div class="issue image-wrapper pull-left">
-                        <a href="{% url 'current_issuecontent' issue_number=issues.0.number contentslug=content.slug %}">
-                            {% if content.figures.exists %}
-                            <img class="cover pull-left" src="{{ content.figures.all.0.image|thumbnail_url:'cover_list' }}" alt="İçerik Resmi" title="İçerik Resmi" />
-                            {% elif content.is_figure %}
-                            <img class="cover pull-left" src="{{ content.image|thumbnail_url:'cover_list' }}" alt="İçerik Resmi" title="İçerik Resmi" />
-                            {% else %}
-                            <img class="cover pull-left" src="{{ issues.0.cover|thumbnail_url:'cover_list' }}" alt="Kapak Resmi" title="Kapak Resmi" />
-                            {% endif %}
-                        </a>
-                    </div>
-                    <h1><a href="{% url 'current_issuecontent' issue_number=issues.0.number contentslug=content.slug %}">{{ content.title }}</a></h1>
-                    <h2>{{ content.authors.all|author_list|safe }}</h2>
-                    <p class="content-body">{{ content.body|truncatewords_html:50|striptags|safe }}</p>
-                    {% include "partials/tags.html" %}
-                </div>
-
-                <div class="clearfix"></div>
+<section class="table-of-contents">
+  {% for content in contents %}
+      {% with content.issue_set.all.0 as issue %}
+      {% if content.is_published %}
+        <section class="issuecontent {% if issue2content.is_subject %}is-subject{% endif %}">
+            {% if content.figures.exists %}
+            <img class="issuecontent-bg" src="{{ content.figures.all.0.image|thumbnail_url:'issuecontent_bg_image' }}" alt="İçerik Resmi" title="İçerik Resmi" />
+            {% elif content.is_figure %}
+            <img class="issuecontent-bg" src="{{ content.image|thumbnail_url:'issuecontent_bg_image' }}" alt="İçerik Resmi" title="İçerik Resmi" />
+            {% else %}
+            <img class="issuecontent-bg" src="{{ issue.cover|thumbnail_url:'issuecontent_bg_image'}}" alt="Kapak Resmi" title="Kapak Resmi" />
             {% endif %}
-        </li>
-        {% endwith %}
-        <hr/>
-        {% endfor %}
-    </ul>
+
+            <div class="issuecontent-link">
+              <h1>
+                <a href="{% url 'current_issuecontent' issue_number=issue.number contentslug=content.slug %}">{{ content.title }}</a>
+              </h1>
+              <h2>{{ content.authors.all|author_list|safe }}</h2>
+              {% if content.spot %}
+              {{ content.spot|truncatewords_html:100|striptags|safe }}
+              {% else %}
+              {{ content.body|truncatewords_html:100|striptags|safe }}
+              {% endif %}
+              {% include "partials/tags.html" %}
+              <a class="more" href="{% url 'current_issuecontent' issue_number=issue.number contentslug=content.slug %}" data-toggle="tooltip" data-placement="top" title="Devamını oku" data-container="body" ><img src="{% static "images/more.png" %}" /></a>
+              {% if issue2content.is_subject %}
+              <img class="subject" src="{% static "images/subject.png" %}" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Günebakan" />
+              {% endif %}
+            </div>
+        </section>
+      {% endif %}
+      {% endwith %}
+  {% endfor %}
 </section>
 {% endblock %}

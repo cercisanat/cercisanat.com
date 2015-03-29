@@ -180,15 +180,16 @@ THUMBNAIL_SUBDIR = "thumbnails"
 
 THUMBNAIL_ALIASES = {
     '': {
-        'author_avatar': {'size': (360, 430)},
+        'author_avatar_thumbnail': {'size': (100, 141), 'bw': True},
         'cover': {'size': (420, 594)},
         'cover_toc': {'size': (210, 297)},
         'cover_list': {'size': (100, 141)},
-        'gallery_thumbnail': {'size': (100, 100), 'crop': 'smart'},
+        'gallery_thumbnail': {'size': (250, 250), 'crop': 'smart'},
         'gallery_image': {'size': (800, 800)},
         'issuecontent_image': {'size': (400, 400)},
         'issuecontent_figure_image': {'size': (1200, 1200)},
-        'issuecontent_bg_image': {'size': (968, 400), 'crop': 'smart', 'quality': 10},
+        'issuecontent_bg_image': {'size': (968, 400), 'crop': 'smart',
+                                  'quality': 30},
     },
 }
 

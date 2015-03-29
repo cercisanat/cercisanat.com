@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+{% load thumbnail %}
+{% load author %}
+
+{% block head %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static "css/author.css" %}" type="text/css"/>
+  <link rel="stylesheet" href="{% static "css/toc.css" %}" type="text/css"/>
+{% endblock %}
+
+{% block content %}
+<section class="author">
+    <h1>{{ author.name }}
+    {% if user.is_staff %}
+        <a href="{% url 'admin:cerci_content_author_change' author.id %}"><i class="fa fa-edit"></i></a>
+    {% endif %}
+    </h1>
+    <section class="description">
+        {% if author.image %}
+          <img class="author-image pull-left col-md-4" src="{% thumbnail author.image 360x430 box=author.cropping crop detail bw %}" alt="{{ author.name }}" title="{{ author.name }}" />
+        {% endif %}
+        {% if author.biography %}
+            {{ author.biography }}
+        {% else %}
+            <div class="clearfix"></div>
+        {% endif %}
+    </section>
+</section>
+<div class="clearfix"></div>
+<ul class="nav nav-tabs">
+  {% if author.contents %}
+  <li role="presentation"><a href="{% url 'author' author_slug=author.slug %}">YAZILAR</a></li>
+  {% endif %}
+  {% if author.figure_contents %}
+  <li role="presentation"><a href="{% url 'author' author_slug=author.slug %}?illustrations=1">ÇİZİMLER</a></li>
+  {% endif %}
+  {% if author.covers %}
+  <li role="presentation" class="active"><a href="{% url 'author' author_slug=author.slug %}?covers=1">KAPAK TASARIMLARI</a></li>
+  {% endif %}
+
+</ul>
+
+<div class="clearfix"></div>
+
+<div class="row covers">
+  {% for issue in author.covers %}
+    <section class="issue col-md-4">
+      <a href="{% url 'current_issue' issue_number=issue.number %}">
+        <img class="cover" src="{{ issue.cover|thumbnail_url:'cover' }}" alt="{{ issue.subject }}" title="{{ issue.subject }}" />
+      </a>
+    </section>
+  {% endfor %}
+</div>
+
+
+{% endblock %}

@@ -12,7 +12,7 @@
   </a>
   <figcaption>
   {% if image.0.title %}<h1>{{ image.0.title }}</h1>{% endif %}
-  {% if image.0.authors %}<cite class="image-authors">{{ image.0.authors.all|author_list|safe }}</cite>{% endif %}
+  {% if image.0.authors %}<cite class="image-authors">{{ image.0.authors.all|author_list|safe }}</cite><br/>{% endif %}
   {% if image.0.body %}<span class="description">{{ image.0.body|safe|removetags:"script style" }}</span>{% endif %}
   </figcaption>
 </figure>

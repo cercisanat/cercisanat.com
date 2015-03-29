@@ -11,12 +11,14 @@ img.cover.last {
   margin-bottom: 0;
 }
 
-.issuecontents {
+.editorial {
     overflow-y: hidden;
     padding-right: 40px;
-    line-height: 2em;
+    line-height: 1.5em;
+    font-size: 1.7em;
+    font-family: 'Roboto Slab', sans-serif;
 }
 
-.issuecontents p {
+.editorial p {
     margin-bottom: 20px;
 }

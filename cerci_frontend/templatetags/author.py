@@ -22,12 +22,13 @@ def author_list_plain(authors):
     for author in authors:
         author_str += author.name + ', '
     return author_str[:-2]
-    
+
 
 @register.filter
 def filename(value):
     return os.path.basename(value.file.name)
-    
+
+
 @register.filter
 def remove_media(value):
     return value.replace('/media/', '').replace(' ', '')

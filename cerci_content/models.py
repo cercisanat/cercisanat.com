@@ -52,6 +52,41 @@ class Author(models.Model):
     def get_absolute_url(self):
         return "/yazar/%s" % self.slug
 
+    @property
+    def published_issues(self):
+        return self.issuecontent_set.prefetch_related(
+            'issue_set').filter(is_published=True)
+
+    @property
+    def contents(self):
+        return self.published_issues.filter(
+            is_figure=False).distinct('pk')
+
+    @property
+    def figures(self):
+        return self.published_issues.filter(
+            is_figure=True).distinct('pk')
+
+    @property
+    def figure_contents(self):
+        return IssueContent.objects.prefetch_related(
+            'issue_set').filter(
+            is_published=True, figures__in=self.figures).distinct('pk')
+
+    @property
+    def all_contents(self):
+        all_contents = set(list(self.contents) + list(self.figure_contents))
+        return all_contents
+
+    @property
+    def covers(self):
+        return self.issue_set.prefetch_related(
+            'issue2content_set',
+            'issue2content_set__content',
+            'issue2content_set__content__genres',
+            'issue2content_set__content__authors'
+            ).filter(is_published=True)
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)[:99]

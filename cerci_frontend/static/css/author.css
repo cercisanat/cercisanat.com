@@ -1,0 +1,24 @@
+.description {
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 2em;
+}
+
+.nav-tabs {
+    margin-top: 20px;
+}
+
+.covers {
+    margin-top: 20px;
+}
+
+img.cover:hover {
+  box-shadow: 0 0 20px #63AA9C;
+}
+
+img.cover {
+  max-width: 370px;
+  margin-bottom: 10px;
+}
+
+
+

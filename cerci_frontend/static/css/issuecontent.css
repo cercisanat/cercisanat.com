@@ -137,12 +137,31 @@ figcaption {
   padding-left: 10px;
   font-family: "Ubuntu",sans-serif;
   font-size: .8em;
+  max-width: 280px;
+}
+
+figcaption cite a,
+figcaption cite a:focus,
+figcaption cite a:visited,
+figcaption cite a:link{
+  color: white;
 }
 
 figcaption h1 {
   color: white;
   font-family: "Ubuntu",sans-serif;
   font-size: 1.2em;
+}
+
+.audio {
+    margin-bottom: 40px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 40px;
+}
+
+.audio-description {
+    margin-left: 10px;
+    margin-top: -20px;
 }
 
 section.issuecontent .figure-body.body {

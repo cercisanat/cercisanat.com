@@ -90,9 +90,9 @@ footer{
 ul.social > li > a {
     padding: 0px;
     margin: 0px;
-    margin-top: 5px;
+    margin-top: 15px;
     margin-right: 15px;
-    font-size: 3em;
+    font-size: 1.6em;
 }
 
 .row-centered {

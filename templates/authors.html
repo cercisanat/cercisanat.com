@@ -9,25 +9,20 @@
 {% endblock %}
 
 {% block content %}
-<section class="genre">
-    <h1>Yazarlar</h1>
-    <ul class="unstyled">
-        {% for author in authors %}
-        <li>
-            <div class="borderholder">
-                <div class="author image-wrapper pull-left">
-                    <a href="{% url 'author' author_slug=author.slug %}">
-                        <img class="cover pull-left" src="{{ author.image|thumbnail_url:'cover_list' }}" alt="Yazar" />
-                    </a>
-                </div>
-                <h1><a href="{% url 'author' author_slug=author.slug %}">{{ author.name }}</a></h1>
-                <p class="author-biography">{{ author.biography|truncatewords_html:50|striptags|safe }}</p>
-                <a class="more" href="{% url 'author' author_slug=author.slug %}" data-toggle="tooltip" data-placement="top" title="Devamını oku" data-container="body" ><img src="{% static "images/more.png" %}" /></a>
-            </div>
-            <div class="clearfix"></div>
-        </li>
-        <hr/>
-        {% endfor %}
+<section class="contents genre">
+    <ul class="list-unstyled">
+      {% for author in authors %}
+      <li>
+        <div class="author image-wrapper">
+          <a href="{% url 'author' author_slug=author.slug %}">
+            <img class="cover" src="{{ author.image|thumbnail_url:'author_avatar_thumbnail' }}" title="{{ author.name }}" alt="" />
+          </a>
+        </div>
+        <a href="{% url 'author' author_slug=author.slug %}">{{ author.name }}</a>
+        <div class="clearfix"></div>
+      </li>
+      <hr/>
+      {% endfor %}
     </ul>
 </section>
 {% endblock %}

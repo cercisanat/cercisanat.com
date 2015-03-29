@@ -27,23 +27,24 @@
         {% endif %}
     </section>
 </section>
-
 <div class="clearfix"></div>
-
 <ul class="nav nav-tabs">
   {% if author.contents %}
-  <li role="presentation" class="active"><a href="{% url 'author' author_slug=author.slug %}">YAZILAR</a></li>
+  <li role="presentation"><a href="{% url 'author' author_slug=author.slug %}">YAZILAR</a></li>
   {% endif %}
   {% if author.figure_contents %}
-  <li role="presentation"><a href="{% url 'author' author_slug=author.slug %}?illustrations=1">ÇİZİMLER</a></li>
+  <li role="presentation" class="active"><a href="{% url 'author' author_slug=author.slug %}?illustrations=1">ÇİZİMLER</a></li>
   {% endif %}
   {% if author.covers %}
   <li role="presentation"><a href="{% url 'author' author_slug=author.slug %}?covers=1">KAPAK TASARIMLARI</a></li>
   {% endif %}
+
 </ul>
 
+<div class="clearfix"></div>
+
 <section class="table-of-contents">
-  {% for content in author.contents %}
+  {% for content in author.figure_contents %}
       {% with content.issue_set.all.0 as issue %}
       {% if content.is_published %}
         <section class="issuecontent {% if issue2content.is_subject %}is-subject{% endif %}">

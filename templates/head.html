@@ -64,6 +64,7 @@ $(document).ready(
         });
 
         $('.another-subscription').on('click', function(e){
+            $.removeCookie('subscribed_to_newsletters', { expires : 999999 });
             $('.subscribe-success', subscription_form).hide();
             $('.subscribe-form').show();
             $('#id_email').val('');

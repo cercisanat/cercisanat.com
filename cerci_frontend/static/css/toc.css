@@ -1,0 +1,24 @@
+.table-of-contents {
+    margin-top: 20px;
+}
+
+.issuecontent {
+    position: relative;
+    margin-bottom: 40px;
+    min-height: 300px;
+    overflow: hidden;
+}
+
+.issuecontent-bg {
+    position: absolute;
+    opacity: .2;
+    z-index: 0;
+    width: 100%;
+    top: 0;
+}
+
+.issuecontent-link {
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+}

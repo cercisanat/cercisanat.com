@@ -1,20 +1,39 @@
-.issuecontent {
-    position: relative;
-    margin-bottom: 40px;
-    min-height: 300px;
-    padding: 20px;
+h1.number {
+    font-size: 2em;
 }
 
-.issuecontent-bg {
-    position: absolute;
-    opacity: .2;
-    z-index: 0;
-    width: 100%;
-    top: 0;
+.issue-info,
+.editorial {
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 1.5em;
+    line-height: 1.5em;
 }
 
-.issuecontent-link {
+.frontmatter .nav-pills li a{
+    background-color: #63AA9C;
+    color: white;
+    font-family: 'Ubuntu', sans-serif;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.frontmatter .nav-pills li a:hover{
+    background-color: white;
+    color: #63AA9C;
+}
+
+.issuecontent-wrapper {
     position: relative;
-    z-index: 1;
-    padding: 20px;
+}
+
+.is-subject {
+    width: 95px;
+    height: 31px;
+    top: 20px;
+    background-color: black;
+    z-index: 2;
+    color: white;
+    padding: 5px;
+    position: relative;
+    left: -12px;
 }

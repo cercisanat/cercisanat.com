@@ -23,9 +23,10 @@
     </a>
     </div>
     <div class="col-md-8 issuecontents-wrapper">
-      <div class="issuecontents">
+      <div class="editorial">
         <h2>{{ last_issue.editorial_title }}</h2>
-        {{ last_issue.editorial|safe }}
+        {{ last_issue.editorial|truncatewords_html:100|striptags|safe }}
+        <a class="more" href="{% url 'current_issue' issue_number=last_issue.number %}#editorial" data-toggle="tooltip" data-placement="top" title="Devamını oku" data-container="body" ><img src="{% static "images/more.png" %}" /></a>
       </div>
     </div>
   </section>

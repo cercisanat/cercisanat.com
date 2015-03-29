@@ -11,8 +11,9 @@
 {% block head %}
   {{ block.super }}
   {% compress css %}
-  <link rel="stylesheet" href="{% static "css/issue.css" %}" type="text/css"/>
+  <link rel="stylesheet" href="{% static "css/toc.css" %}" type="text/css"/>
   <link rel="stylesheet" href="{% static "css/issuecontent.css" %}" type="text/css"/>
+  <link rel="stylesheet" href="{% static "css/issue.css" %}" type="text/css"/>
   {% endcompress %}
   {% compress js %}
   <script type="text/javascript" src="{% static "js/jquery.expander.min.js" %}"></script>
@@ -60,46 +61,58 @@
         </nav>
     </div>
 
-    <hgroup class="page-header">
-        <h1 class="number">Sayı {{ issue.number }}, {{ issue.published_at|date:"F Y" }}
-        {% if user.is_staff %}
-        <a href="{% url 'admin:cerci_issue_issue_change' issue.id %}"><i class="fa fa-edit"></i></a>
-        {% endif %}
-        </h1>
-    </hgroup>
     <section class="frontmatter row">
         <div class="image-files-wrapper pull-left col-md-5">
             <a class="galleryitem" href="{{ issue.cover.url }}" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Daha büyük boyutlusunu görmek ve yakınlaştırabilmek için tıklayın.">
             <img class="cover" src="{{ issue.cover|thumbnail_url:'cover' }}" alt="Çerçi Sayı {{ issue.number }}, {{ issue.published_at|date:"F Y" }}" />
             </a>
-            {% if issue.cover_design %}<div class="cover-design"><strong>Kapak Tasarımı:</strong> {{ issue.cover_design.all|author_list|safe }}</div>{% endif %}
-            {% if issue.issuefile_set.all.count %}
-            <div class="files">
-                {% for file in issue.issuefile_set.all %}
-                <a class="file" href="{{ file.issue_file.url }}" download="{{ file.get_filename }}" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Bu dergiyi {{ file.format }} formatında indirebilrisiniz.">{{ file.format }}</a>
-                {% endfor %}
-            </div>
-            {% endif %}
         </div>
-        <section class="editorial pull-left col-md-7 ellipsis">
-            <h2>{{ issue.editorial_title }}</h2>
-            {{ issue.editorial|safe|removetags:"script style" }}
-            <section class="copyright_page">
-                {{ issue.copyright_page|safe|removetags:"script style" }}
-            </section>
-        </section>
-        <div class="issue-subject pull-right" target="_blank" data-toggle="tooltip" data-placement="top" title="Bu bölüm dosya konularından oluşuyor. Günümüz edebiyatından yer edinmiş, ona katkı sunmuş yazarları sayfalarımıza taşıyoruz. Onlara kulak verip seslerine ses oluyoruz. Böylece birlikte okumanın ve üretmenin keyfini yaşıyoruz.">
-            <h3><img src="{% static "images/subject.png" %}" /> Günebakan</h3>
-            <span>{{ issue.subject }}</span>
-            <div class="onhover">Yalnızca Günebakan'ları göster</div>
+        <div class="issue-info col-md-7">
+          <hgroup>
+              <h1 class="number">Sayı {{ issue.number }}, {{ issue.published_at|date:"F Y" }}
+              {% if user.is_staff %}
+              <a href="{% url 'admin:cerci_issue_issue_change' issue.id %}"><i class="fa fa-edit"></i></a>
+              {% endif %}
+              </h1>
+          </hgroup>
+          <ul class="nav nav-pills">
+            <li><a href="#editorial">EDİTÖRDEN</a></li>
+            <li><a href="#table-of-contents">İÇİNDEKİLER</a></li>
+          </ul>
+          
+          <section class="copyright_page">
+            <strong>Yazar ve Çizerlerimiz:</strong><br/>{{ issue.copyright_page|safe|removetags:"script style" }}<br/>
+            {% if issue.cover_design %}<strong>Kapak Tasarımı:</strong> {{ issue.cover_design.all|author_list|safe }}{% endif %}
+          </section>
+
+          {% if issue.issuefile_set.all.count %}
+          <div class="files">
+              {% for file in issue.issuefile_set.all %}
+              <a class="file" href="{{ file.issue_file.url }}" download="{{ file.get_filename }}" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Bu dergiyi {{ file.format }} formatında indirebilrisiniz.">{{ file.format }}</a>
+              {% endfor %}
+          </div>
+          {% endif %}
         </div>
     </section>
+    <h1 id="editorial" class="page-header">EDİTÖRDEN</h1>
+    <selection class="editorial">
+      <h2>{{ issue.editorial_title }}</h2>
+      {{ issue.editorial|safe|removetags:"script style" }}
+    </section>
+
+    <h1 id="table-of-contents" class="page-header">İÇİNDEKİLER</h1>
     <section class="table-of-contents">
-        <h1 class="page-header">İçindekiler</h1>
         {% for issue2content in issue.issue2content_set.all %}
             {% with issue2content.content as content %}
             {% if content.is_published %}
-              <section class="issuecontent {% if issue2content.is_subject %}is-subject{% endif %}">
+            <div class="issuecontet-wrapper">
+              {% if issue2content.is_subject %}
+                <div class="is-subject">
+                GÜNEBAKAN
+                </div>
+              {% endif %}
+
+              <section class="issuecontent"> 
                   {% if content.figures.exists %}
                   <img class="issuecontent-bg" src="{{ content.figures.all.0.image|thumbnail_url:'issuecontent_bg_image' }}" alt="İçerik Resmi" title="İçerik Resmi" />
                   {% elif content.is_figure %}
@@ -119,11 +132,9 @@
                     {{ content.body|truncatewords_html:100|striptags|safe }}
                     {% endif %}
                     <a class="more" href="{% url 'current_issuecontent' issue_number=issue.number contentslug=content.slug %}" data-toggle="tooltip" data-placement="top" title="Devamını oku" data-container="body" ><img src="{% static "images/more.png" %}" /></a>
-                    {% if issue2content.is_subject %}
-                    <img class="subject" src="{% static "images/subject.png" %}" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Günebakan" />
-                    {% endif %}
                   </div>
               </section>
+            </div>
             {% endif %}
             {% endwith %}
         {% endfor %}

@@ -1,5 +1,7 @@
 from django.conf import settings
 from django.shortcuts import render_to_response
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.http import HttpResponse, Http404
 from django.core.cache import cache
@@ -79,8 +81,29 @@ def author_list(request):
 
 
 def author(request, author_slug):
+    def get_page(contents, figure_contents, issue_covers):
+        all_contents = {'contents': contents,
+                        'illustrations': figure_contents,
+                        'covers': issue_covers}
+        filtered = filter(lambda x: all_contents[x], all_contents)
+        if len(filtered):
+            return filtered[0]
+
     author = get_object_or_404(Author, slug=author_slug, is_published=True)
-    return render_to_response('author.html',
+    illustrations = request.GET.get('illustrations')
+    covers = request.GET.get('covers')
+    template = 'author.html'
+    if illustrations:
+        template = 'author_illustrations.html'
+    if covers:
+        template = 'author_covers.html'
+    if not author.contents and not covers and not illustrations:
+        page = get_page(author.contents, author.figure_contents, author.covers)
+        return HttpResponseRedirect(
+            reverse('author',
+                    kwargs={'author_slug': author.slug}) + '?' + page + '=1')
+
+    return render_to_response(template,
                               {'author': author},
                               context_instance=RequestContext(request))
 
