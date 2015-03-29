@@ -34,7 +34,6 @@
                 <li><a href="{% url 'crew' %}">EKİP</a></li>
                 <li><a href="{% url 'rules' %}">SİTE KURALLARI</a></li>
                 <li><a href="{% url 'sendus' %}">YAZI GÖNDER</a></li>
-                <li><a href="{% url 'subscribe_form' %}">ABONE OL</a></li>
                 <li><a href="{% url 'contact' %}">İLETİŞİM</a></li>
                 <li><a href="{% url 'blog' %}">BLOG</a></li>
                 <li class="dropdown">
@@ -53,6 +52,31 @@
                   </li>
                   {% endfor %}
                   </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle"
+                      data-toggle="dropdown" role="button"
+                      aria-expanded="false"><i class="fa fa-book"></i>
+                  </a>
+                  <div class="dropdown-menu" role="menu">
+                    <div class="subscription-form">
+                      <h3>E-posta aboneliği</h3>
+                      <form action="{% url 'subscribe_form' %}" method="post" class="ajax-form subscribe-form">
+                      <p>
+                        Abone olun ve yeni sayımız çıktığı anda haberiniz olsun.<br/>
+                        (Abonelikten istediğiniz zaman ayrılabilirsiniz.)
+                      </p>
+                      {% csrf_token %}
+                      {{ subscribe_form|bootstrap:'forceplaceholder' }}
+                      <button type="submit" class="btn">Abone ol</button>
+                      </form>
+                      <div class="clearfix"></div>
+                      <div class="subscribe-success">
+                        E-posta aboneliğine üyeliğiniz başarıyla gerçekleşti.<br/>
+                        Bir kayıt daha yapmak için <a href="{% url 'subscribe_form' %}" class="another-subscription">tıklayın</a>
+                      </div>
+                    </div>
+                  </div>
                 </li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle"
