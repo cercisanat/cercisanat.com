@@ -38,8 +38,10 @@ def current_issue(request, issue_number):
         'issue2content_set__content__genres',
         'issue2content_set__content__authors'
     ), number=issue_number)
+    next = issue.get_contents()[0].content
     return render_to_response('issue.html',
-                              {'issue': issue},
+                              {'issue': issue,
+                               'next': next},
                               context_instance=RequestContext(request))
 
 
@@ -62,6 +64,8 @@ def current_issuecontent(request, issue_number, contentslug):
        (not issue.is_published or not issuecontent.is_published):
         preview = True
     prev = issuecontent.prev(issue)
+    if not prev:
+        prev = issue
     next = issuecontent.next(issue)
     template = 'issuecontent.html'
     return render_to_response(template,

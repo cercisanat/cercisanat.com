@@ -29,5 +29,16 @@ function(){
           }
       });
     }
+
+    $('.font-minus').click(function(){
+      var currentSize = parseInt($('body').css('font-size'), 10);
+      $('body').css('font-size', currentSize - 1 + 'px');
+    });
+
+    $('.font-plus').click(function(){
+      var currentSize = parseInt($('body').css('font-size'), 10);
+      $('body').css('font-size', currentSize + 1 + 'px');
+    });
+
     
 });

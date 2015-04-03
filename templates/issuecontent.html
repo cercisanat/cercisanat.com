@@ -10,6 +10,7 @@
   {{ block.super }}
   {% compress css %}
   <link rel="stylesheet" href="{% static "css/issuecontent.css" %}" type="text/css"/>
+  <link rel="stylesheet" href="{% static "css/toc.css" %}" type="text/css"/>
   {% endcompress %}
   {% compress js %}
   <script type="text/javascript" src="{% static "js/responsive/issuecontent.js" %}"></script>
@@ -55,68 +56,45 @@
 {% block content %}
 <section class="issuecontent clearfix">
     {% if issuecontent %}
-    {% if preview %}
-    <div class="preview-alert">
-      Dikkat! Bu yalnızca bir önizlemedir. İçerik henüz yayında değildir.
-    </div>
-    {% else %}
-    <div class="toc-container clearfix">
+      {% if preview %}
+        <div class="preview-alert">
+          Dikkat! Bu yalnızca bir önizlemedir. İçerik henüz yayında değildir.
+        </div>
+      {% else %}
+        {% include "partials/toc_container.html" %}
+      {% endif %}
+      
+      {% if issuecontent.is_figure %}
+        {% include "partials/figure_content.html" %}
+      {% else %}
+        {% include "partials/content.html" %}
+      {% endif %}
+      <div class="clearfix"></div>
+      {% if not preview %}
+          <!-- AddThis Button BEGIN -->
+          <div class="addthis_toolbox addthis_default_style ">
+          <a class="addthis_button_preferred_1"></a>
+          <a class="addthis_button_preferred_2"></a>
+          <a class="addthis_button_preferred_3"></a>
+          <a class="addthis_button_preferred_4"></a>
+          <a class="addthis_button_compact"></a>
+          <a class="addthis_counter addthis_bubble_style"></a>
+          </div>
+          <!-- AddThis Button END -->
+      {% endif %}
       <a href="{% if prev.get_absolute_url %}{{ prev.get_absolute_url }}{% else %}{% url 'current_issue' issue_number=issue.number %}{% endif %}"
-          class="prev pull-left tooltipped"
-          data-toggle="tooltip" data-placement="bottom" data-container="body"
-          title="Önceki"><i class="fa fa-arrow-left"></i>
-        </a>
-        <a href="/" class="home-link tooltipped" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Çerçi Sanat Anasayfa"></a>
-        <a href="#" class="toc-starter tooltipped" data-toggle="tooltip" data-placement="bottom" data-container="body" title="İçindekiler"><i class="fa fa-th-list"></i></a>
-        {% if next.get_absolute_url %}<a href="{{ next.get_absolute_url }}" class="next pull-right tooltipped" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Sonraki"><i class="fa fa-arrow-right"></i></a>{% endif %}
-        <nav class="toc">
-            <a class="issue_link" href="{% url 'current_issue' issue_number=issue.number %}" title="Dergi sayfasına geri dön">
-                <img class="cover pull-left" src="{{ issue.cover|thumbnail_url:'cover_toc' }}" alt="Çerçi Sayı {{ issue.number }}, {{ issue.published_at|date:"F Y" }}" />
-            </a>
-            <ol>
-              <li>
-              <strong><a href="{% url 'current_issue' issue_number=issue.number %}">İçindekiler</a></strong><br/>
-              <em>editörden</em>
-              </li>
-
-            {% for issue2content in issue.get_contents %}
-            {% with issue2content.content as content %}
-              {% if content == issuecontent %}
-              <li class="active">
-                <strong>{{ content.title }}</strong><br/>
-                <em>{{ content.authors.all|author_list_plain|safe }}</em>
-              </li>
-              {% else %}
-              <li>
-                <strong><a href="{% url 'current_issuecontent' issue_number=issue.number contentslug=content.slug %}">{{ content.title }}</a></strong><br/>
-                <em>{{ content.authors.all|author_list_plain|safe }}</em>
-              </li>
-              {% endif %}
-            {% endwith %}
-            {% endfor %}
-            </ol>
-        </nav>
-    </div>
-    {% endif %}
-    
-    {% if issuecontent.is_figure %}
-    {% include "partials/figure_content.html" %}
-    {% else %}
-    {% include "partials/content.html" %}
-    {% endif %}
-    <div class="clearfix"></div>
-    {% if not preview %}
-    <!-- AddThis Button BEGIN -->
-    <div class="addthis_toolbox addthis_default_style ">
-    <a class="addthis_button_preferred_1"></a>
-    <a class="addthis_button_preferred_2"></a>
-    <a class="addthis_button_preferred_3"></a>
-    <a class="addthis_button_preferred_4"></a>
-    <a class="addthis_button_compact"></a>
-    <a class="addthis_counter addthis_bubble_style"></a>
-    </div>
-    <!-- AddThis Button END -->
-    {% endif %}
+            class="icona large black prev pull-left tooltipped"
+            data-toggle="tooltip" data-placement="bottom" data-container="body"
+            title="Önceki">
+            <i class="fa fa-arrow-left"></i>
+      </a>
+      {% if next.get_absolute_url %}
+      <a href="{{ next.get_absolute_url }}" class="icona large black next pull-right tooltipped"
+            data-toggle="tooltip" data-placement="bottom" data-container="body"
+            title="Sonraki">
+            <i class="fa fa-arrow-right"></i>
+      </a>
+      {% endif %} 
 
 {% endif %}
 </section>

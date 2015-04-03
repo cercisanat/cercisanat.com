@@ -3,7 +3,7 @@
 }
 
 div.toc-container {
-    background-color: #424242;
+    background-color: black;
     color: white;
     margin-bottom: 10px;
     padding: 10px;
@@ -17,14 +17,6 @@ div.toc-container.fixed {
     right: 15%;
     max-height: 200px;
     overflow: hidden;
-}
-
-div.toc-container a.home-link,
-div.toc-container a.toc-starter {
-    color: white;
-    font-size: 2em;
-    font-weight: bold;
-    margin-right: 10px;
 }
 
 div.toc-container a.home-link {
@@ -50,7 +42,7 @@ nav.toc ol {
 
 nav.toc li {
     display: inline-block;
-    background-color: #000;
+    background-color: #424242;
     margin-top: 5px;
     margin-bottom: 5px;
     padding: 2px;
@@ -74,14 +66,6 @@ ul.authors li:first-child {
 
 nav.toc a {
     color: white;
-}
-
-.toc-container .prev,
-.toc-container .next {
-    color: white;
-    margin-right: 10px;
-    margin-left: 10px;
-    font-size: 25px;
 }
 
 h1, h2, h3, h4, h5, h6, .content p, .spot {

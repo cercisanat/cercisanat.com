@@ -1,0 +1,58 @@
+{% load thumbnail %}
+{% load author %}
+
+<div class="toc-container clearfix">
+  {% if prev %}
+  <a href="{{ prev.get_absolute_url }}"
+    class="icona prev pull-left tooltipped"
+    data-toggle="tooltip" data-placement="bottom" data-container="body"
+    title="Önceki"><i class="fa fa-arrow-left"></i>
+  </a>
+  {% endif %}
+  <a href="/" class="icona home-link tooltipped rotate"
+    data-toggle="tooltip" data-placement="bottom" data-container="body"
+    title="Çerçi Sanat Anasayfa"></a>
+  <a href="#" class="icona toc-starter tooltipped" data-toggle="tooltip"
+    data-placement="bottom" data-container="body" title="İçindekiler">
+    <i class="fa fa-th-list"></i></a>
+  {% if next %}
+    <a href="{{ next.get_absolute_url }}" class="icona next pull-right tooltipped"
+      data-toggle="tooltip" data-placement="bottom" data-container="body"
+      title="Sonraki"><i class="fa fa-arrow-right"></i></a>
+  {% endif %} 
+  <a href="#" class="font-plus icona pull-right" data-toggle="tooltip"
+    data-placement="bottom" data-container="body" title="Font +">
+    <i class="fa fa-font"></i>
+  </a> 
+  <a href="#" class="font-minus icona small pull-right" data-toggle="tooltip"
+    data-placement="bottom" data-container="body" title="Font -">
+    <i class="fa fa-font"></i>
+  </a>
+  <nav class="toc">
+      <a class="issue_link" href="{% url 'current_issue' issue_number=issue.number %}" title="Dergi sayfasına geri dön">
+          <img class="cover pull-left" src="{{ issue.cover|thumbnail_url:'cover_toc' }}" alt="Çerçi Sayı {{ issue.number }}, {{ issue.published_at|date:"F Y" }}" />
+      </a>
+      <ol>
+        <li>
+        <strong><a href="{% url 'current_issue' issue_number=issue.number %}">İçindekiler</a></strong><br/>
+        <em>editörden</em>
+        </li>
+
+      {% for issue2content in issue.get_contents %}
+      {% with issue2content.content as content %}
+        {% if content == issuecontent %}
+        <li class="active">
+          <strong>{{ content.title }}</strong><br/>
+          <em>{{ content.authors.all|author_list_plain|safe }}</em>
+        </li>
+        {% else %}
+        <li>
+          <strong><a href="{% url 'current_issuecontent' issue_number=issue.number contentslug=content.slug %}">{{ content.title }}</a></strong><br/>
+          <em>{{ content.authors.all|author_list_plain|safe }}</em>
+        </li>
+        {% endif %}
+      {% endwith %}
+      {% endfor %}
+      </ol>
+  </nav>
+</div>

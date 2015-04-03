@@ -22,3 +22,24 @@
     z-index: 1;
     padding: 20px;
 }
+
+.icona.black {
+    color: black !important;
+}
+
+.icona {
+    color: white !important;
+    margin-right: 10px !important;
+    margin-left: 10px !important;
+    font-size: 25px !important;
+}
+
+.icona.small {
+    font-size: 15px !important;
+    margin-top: 12px !important;
+}
+
+.icona.large {
+    font-size:  40px !important;
+}
+

@@ -23,7 +23,7 @@
                   <span class="icon-bar"></span>
               </button>
               <a href="/" class="navbar-brand">
-              <img src="{% static 'images/cerci_logo2_white.png' %}" style="height:30px" />
+              <img class="rotate" src="{% static 'images/cerci_logo2_white.png' %}" style="height:30px" />
               </a>
             </div>
 
@@ -132,7 +132,10 @@
       <div class="unnecessary-zone">
         <div class="row row-centered">
           <div class="col-centered">
-            <a href="/"><img src="{% static 'images/cerci_logo.png' %}" class="logo" /></a>
+            <a href="/" class="logo">
+              <img class="rotate-slow" src="{% static 'images/cerci_wheel_black2.png' %}" />
+              <img src="{% static 'images/cerci_black2.png' %}" />
+            </a>
           </div>
         </div>
         <hr/>

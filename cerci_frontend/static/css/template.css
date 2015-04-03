@@ -67,6 +67,44 @@ footer{
   margin-left: -15px;
 }
 
+.rotate-slow {
+    -moz-animation:1s rotateRight linear; 
+    -webkit-animation:1s rotateRight linear; 
+}
+
+.rotate {
+	-webkit-transition-duration: 0.8s;
+    -moz-transition-duration: 0.8s;
+    -o-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+     
+    -webkit-transition-property: -webkit-transform;
+    -moz-transition-property: -moz-transform;
+    -o-transition-property: -o-transform;
+    transition-property: transform;
+    overflow: hidden;
+}
+
+.rotate:hover {
+	-webkit-transform:rotate(360deg);
+    -moz-transform:rotate(360deg);
+    -o-transform:rotate(360deg);
+}
+
+@-moz-keyframes rotateRight{
+    0%{ -moz-transform:rotate(0deg); -moz-transform-origin:50% 50%; }
+    100%{ -moz-transform:rotate(360deg); }
+}
+
+@-webkit-keyframes rotateRight{
+    0%{ -webkit-transform:rotate(0deg); -webkit-transform-origin:50% 50%; }
+    100%{ -webkit-transform:rotate(360deg); }
+}
+
+a.logo, a.logo:hover, a.logo:focus, a.logo:active, a.logo:visited {
+    text-decoration: none;
+}
+
 .navbar {
     border-radius: 0;
 }

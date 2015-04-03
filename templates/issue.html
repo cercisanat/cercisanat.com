@@ -11,9 +11,9 @@
 {% block head %}
   {{ block.super }}
   {% compress css %}
-  <link rel="stylesheet" href="{% static "css/toc.css" %}" type="text/css"/>
   <link rel="stylesheet" href="{% static "css/issuecontent.css" %}" type="text/css"/>
   <link rel="stylesheet" href="{% static "css/issue.css" %}" type="text/css"/>
+  <link rel="stylesheet" href="{% static "css/toc.css" %}" type="text/css"/>
   {% endcompress %}
   {% compress js %}
   <script type="text/javascript" src="{% static "js/jquery.expander.min.js" %}"></script>
@@ -32,34 +32,7 @@
 {% block body %}
 <div class="container">
 <section class="issue contents clearfix">
-    <div class="toc-container clearfix">
-        <a href="/" class="home-link tooltipped" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Çerçi Sanat Anasayfa"></a>
-        <a href="#" class="toc-starter tooltipped" data-toggle="tooltip" data-placement="bottom" data-container="body" title="İçindekiler"><i class="fa fa-th-list"></i></a> 
-        <a href="{{ issue.get_contents.0.content.get_absolute_url }}" class="next pull-right tooltipped"
-          data-toggle="tooltip" data-placement="bottom" data-container="body"
-          title="Sonraki">
-          <i class="fa fa-arrow-right"></i>
-        </a>
-        <nav class="toc">
-            <a class="issue_link" href="{% url 'current_issue' issue_number=issue.number %}" title="Dergi sayfasına geri dön">
-                <img class="cover pull-left" src="{{ issue.cover|thumbnail_url:'cover_toc' }}" alt="Çerçi Sayı {{ issue.number }}, {{ issue.published_at|date:"F Y" }}" />
-            </a>
-            <ol>
-              <li class="active">
-              <strong>İçindekiler</strong><br/>
-              <em>editörden</em>
-              </li>
-            {% for issue2content in issue.get_contents %}
-            {% with issue2content.content as content %}
-              <li>
-                <strong><a href="{% url 'current_issuecontent' issue_number=issue.number contentslug=content.slug %}">{{ content.title }}</a></strong><br/>
-                <em>{{ content.authors.all|author_list_plain|safe }}</em>
-              </li>
-            {% endwith %}
-            {% endfor %}
-            </ol>
-        </nav>
-    </div>
+    {% include "partials/toc_container.html" %}
 
     <section class="frontmatter row">
         <div class="image-files-wrapper pull-left col-md-5">
@@ -131,7 +104,10 @@
                     {% else %}
                     {{ content.body|truncatewords_html:100|striptags|safe }}
                     {% endif %}
-                    <a class="more" href="{% url 'current_issuecontent' issue_number=issue.number contentslug=content.slug %}" data-toggle="tooltip" data-placement="top" title="Devamını oku" data-container="body" ><img src="{% static "images/more.png" %}" /></a>
+                    <a class="more" href="{% url 'current_issuecontent' issue_number=issue.number contentslug=content.slug %}"
+                      data-toggle="tooltip" data-placement="top" title="Devamını oku" data-container="body">
+                      <i class="fa fa-chevron-circle-right fa-lg"></i>
+                    </a>
                   </div>
               </section>
             </div>
