@@ -33,7 +33,7 @@ class Issue(models.Model):
         limit_choices_to={"issue": "self"},
         verbose_name=_('Contents'))
     is_published = models.BooleanField(
-        blank=True,
+        blank=True, default=False,
         verbose_name=_('Is Published'))
     published_at = models.DateField(
         null=True, blank=True, verbose_name=_('Published At'))
