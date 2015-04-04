@@ -1,0 +1,11 @@
+<ul class="nav nav-tabs">
+  {% if author.contents %}
+  <li role="presentation"{% if active == 0 %} class="active"{% endif %}><a href="{% url 'author' author_slug=author.slug %}">YAZILAR</a></li>
+  {% endif %}
+  {% if author.figure_contents %}
+  <li role="presentation"{% if active == 1 %} class="active"{% endif %}><a href="{% url 'author' author_slug=author.slug %}?illustrations=1">ÇİZİMLER</a></li>
+  {% endif %}
+  {% if author.covers %}
+  <li role="presentation"{% if active == 3 %} class="active"{% endif %}><a href="{% url 'author' author_slug=author.slug %}?covers=1">KAPAK TASARIMLARI</a></li>
+  {% endif %}
+</ul>

@@ -27,21 +27,10 @@
         {% endif %}
     </section>
 </section>
-
 <div class="clearfix"></div>
-
-<ul class="nav nav-tabs">
-  {% if author.contents %}
-  <li role="presentation" class="active"><a href="{% url 'author' author_slug=author.slug %}">YAZILAR</a></li>
-  {% endif %}
-  {% if author.figure_contents %}
-  <li role="presentation"><a href="{% url 'author' author_slug=author.slug %}?illustrations=1">ÇİZİMLER</a></li>
-  {% endif %}
-  {% if author.covers %}
-  <li role="presentation"><a href="{% url 'author' author_slug=author.slug %}?covers=1">KAPAK TASARIMLARI</a></li>
-  {% endif %}
-</ul>
-
+{% include "partials/author_tabs.html" with active=active %}
+<div class="clearfix"></div>
+{% if active == 0 %}
 <section class="table-of-contents">
   {% for content in author.contents %}
       {% with content.issue_set.all.0 as issue %}
@@ -68,5 +57,46 @@
       {% endwith %}
   {% endfor %}
 </section>
+{% endif %}
+{% if active == 1 %}
+<section class="table-of-contents">
+  {% for content in author.figure_contents %}
+      {% with content.issue_set.all.0 as issue %}
+      {% if content.is_published %}
+        <section class="issuecontent {% if issue2content.is_subject %}is-subject{% endif %}">
+            {% include "partials/toc_bg.html" %}
+            <div class="issuecontent-link">
+              <h1>
+                <a href="{% url 'current_issuecontent' issue_number=issue.number contentslug=content.slug %}">{{ content.title }}</a>
+              </h1>
+              <h2>{{ content.authors.all|author_list|safe }}</h2>
+              {% if content.spot %}
+              {{ content.spot|truncatewords_html:100|striptags|safe }}
+              {% else %}
+              {{ content.body|truncatewords_html:100|striptags|safe }}
+              {% endif %}
+              <a class="more" href="{% url 'current_issuecontent' issue_number=issue.number contentslug=content.slug %}" data-toggle="tooltip" data-placement="top" title="Devamını oku" data-container="body" ><img src="{% static "images/more.png" %}" /></a>
+              {% if issue2content.is_subject %}
+              <img class="subject" src="{% static "images/subject.png" %}" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Günebakan" />
+              {% endif %}
+            </div>
+        </section>
+      {% endif %}
+      {% endwith %}
+  {% endfor %}
+</section>
+{% endif %}
+
+{% if active == 2 %}
+<div class="row covers">
+  {% for issue in author.covers %}
+    <section class="issue col-md-4">
+      <a href="{% url 'current_issue' issue_number=issue.number %}">
+        <img class="cover" src="{{ issue.cover|thumbnail_url:'cover' }}" alt="{{ issue.subject }}" title="{{ issue.subject }}" />
+      </a>
+    </section>
+  {% endfor %}
+</div>
+{% endif %}
 
 {% endblock %}

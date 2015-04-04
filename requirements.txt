@@ -23,8 +23,8 @@ django-classy-tags==0.4
 django-compressor==1.4
 django-debug-toolbar==1.3.0
 django-extensions==1.5.2
-django-grappelli==2.6.4
-django-haystack==2.4.0.dev0
+-e git://github.com/cercisanat/django-grappelli.git#egg=grappelli
+-e git://github.com/tatterdemalion/django-haystack.git#egg=haystack
 django-image-cropping==1.0.1
 django-medusa==0.3.0
 django-mptt==0.7.0

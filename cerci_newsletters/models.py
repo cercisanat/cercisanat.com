@@ -39,7 +39,8 @@ class UnsubscribeToken(models.Model):
 
 class Newsletter(models.Model):
     title = models.CharField(max_length=255, verbose_name=_('Title'))
-    body = models.TextField(verbose_name=_('Body'))
+    template = models.CharField(max_length=255)
+    issue = models.ForeignKey('cerci_issue.Issue')
 
     created_at = models.DateTimeField(default=now(), editable=False,
                                       verbose_name=_('Created At'))
@@ -51,7 +52,7 @@ class Newsletter(models.Model):
 
     def save(self, *args, **kwargs):
         self.updated_at = now()
-        super(Subscriber, self).save(*args, **kwargs)
+        super(Newsletter, self).save(*args, **kwargs)
 
 
 class SentItem(models.Model):

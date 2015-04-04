@@ -190,6 +190,9 @@ THUMBNAIL_ALIASES = {
                                   'quality': 30},
         'issuecontent_bg_image_mobile': {'size': (768, 600), 'crop': '0,0',
                                          'quality': 30},
+        'email_cover': {'size': (420, 594), 'bw': True},
+        'email_issuecontent_image': {'size': (217, 239), 'bw': True,
+                                     'crop': '0,0'}
     },
 }
 

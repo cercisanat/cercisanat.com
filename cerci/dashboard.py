@@ -73,7 +73,7 @@ class CustomIndexDashboard(Dashboard):
 
         # append a group for "Administration" & "Applications"
         self.children.append(modules.AppList(
-            'Yönetim',
+            u'Yönetim',
             column=1,
             collapsible=True,
             css_classes=('grp-closed',),
@@ -81,14 +81,14 @@ class CustomIndexDashboard(Dashboard):
         ))
 
         self.children.append(modules.ModelList(
-            title='Çerçi',
+            title=u'Çerçi',
             column=1,
             models=('cerci_issue.*', 'cerci_content.*', 'cerci_newsletters.*')
         ))
 
         # append a recent actions module
         self.children.append(modules.RecentActions(
-            'Benim İşlem Geçmişim',
+            u'Benim İşlem Geçmişim',
             limit=10,
             collapsible=True,
             column=2,
@@ -96,7 +96,7 @@ class CustomIndexDashboard(Dashboard):
 
         # append a recent actions module
         self.children.append(AllRecentActions(
-            'Tüm İşlem Geçmişi',
+            u'Tüm İşlem Geçmişi',
             limit=10,
             collapsible=True,
             column=3,
@@ -111,13 +111,13 @@ class CustomIndexDashboard(Dashboard):
                     'title': 'Anasayfa',
                     'url': 'http://cercisanat.com',
                     'external': False,
-                    'description': 'Çerçi Sanat',
+                    'description': u'Çerçi Sanat',
                 },
                 {
-                    'title': 'Çerçi e-posta',
+                    'title': u'Çerçi e-posta',
                     'url': 'http://mail.cercisanat.com',
                     'external': True,
-                    'description': 'Çerçi Sanat E-posta',
+                    'description': u'Çerçi Sanat E-posta',
                 }
             )
         ))
