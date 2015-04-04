@@ -16,11 +16,11 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='author',
             name='created_at',
-            field=models.DateTimeField(default=datetime.datetime(2015, 4, 4, 7, 38, 27, 239793, tzinfo=utc), verbose_name='Created At'),
+            field=models.DateTimeField(default=datetime.datetime(2015, 4, 4, 20, 4, 8, 591211, tzinfo=utc), verbose_name='Olu\u015fturulma Tarihi'),
         ),
         migrations.AlterField(
             model_name='issuecontent',
             name='created_at',
-            field=models.DateTimeField(default=datetime.datetime(2015, 4, 4, 7, 38, 27, 241771, tzinfo=utc), verbose_name='Created At'),
+            field=models.DateTimeField(default=datetime.datetime(2015, 4, 4, 20, 4, 8, 593082, tzinfo=utc), verbose_name='Olu\u015fturulma Tarihi'),
         ),
     ]

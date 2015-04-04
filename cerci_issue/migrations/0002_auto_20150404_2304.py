@@ -16,6 +16,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='issue',
             name='created_at',
-            field=models.DateTimeField(default=datetime.datetime(2015, 4, 4, 7, 58, 27, 975250, tzinfo=utc), verbose_name='Created At'),
+            field=models.DateTimeField(default=datetime.datetime(2015, 4, 4, 20, 4, 17, 863161, tzinfo=utc), verbose_name='Olu\u015fturulma Tarihi'),
         ),
     ]

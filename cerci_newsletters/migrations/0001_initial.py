@@ -9,6 +9,7 @@ from django.utils.timezone import utc
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('cerci_issue', '0002_auto_20150404_2304'),
     ]
 
     operations = [
@@ -16,10 +17,11 @@ class Migration(migrations.Migration):
             name='Newsletter',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('title', models.CharField(max_length=255, verbose_name='Title')),
-                ('body', models.TextField(verbose_name='Body')),
-                ('created_at', models.DateTimeField(default=datetime.datetime(2015, 4, 4, 7, 38, 32, 280787, tzinfo=utc), verbose_name='Created At', editable=False)),
-                ('updated_at', models.DateTimeField(verbose_name='Updated At', editable=False)),
+                ('title', models.CharField(max_length=255, verbose_name='Ba\u015fl\u0131k')),
+                ('template', models.CharField(max_length=255)),
+                ('created_at', models.DateTimeField(default=datetime.datetime(2015, 4, 4, 20, 4, 17, 869363, tzinfo=utc), verbose_name='Olu\u015fturulma Tarihi', editable=False)),
+                ('updated_at', models.DateTimeField(verbose_name='G\xfcncelleme Tarihi', editable=False)),
+                ('issue', models.ForeignKey(to='cerci_issue.Issue')),
             ],
         ),
         migrations.CreateModel(
@@ -34,10 +36,10 @@ class Migration(migrations.Migration):
             name='Subscriber',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('name', models.CharField(max_length=255, null=True, verbose_name='Name', blank=True)),
+                ('name', models.CharField(max_length=255, null=True, verbose_name='\u0130sim', blank=True)),
                 ('email', models.EmailField(unique=True, max_length=255)),
-                ('created_at', models.DateTimeField(default=datetime.datetime(2015, 4, 4, 7, 38, 32, 278617, tzinfo=utc), verbose_name='Created At', editable=False)),
-                ('updated_at', models.DateTimeField(verbose_name='Updated At', editable=False)),
+                ('created_at', models.DateTimeField(default=datetime.datetime(2015, 4, 4, 20, 4, 17, 867363, tzinfo=utc), verbose_name='Olu\u015fturulma Tarihi', editable=False)),
+                ('updated_at', models.DateTimeField(verbose_name='G\xfcncelleme Tarihi', editable=False)),
             ],
         ),
         migrations.CreateModel(
@@ -45,8 +47,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('token', models.CharField(max_length=16, verbose_name='Token')),
-                ('created_at', models.DateTimeField(default=datetime.datetime(2015, 4, 4, 7, 38, 32, 279855, tzinfo=utc), verbose_name='Created At', editable=False)),
-                ('updated_at', models.DateTimeField(verbose_name='Updated At', editable=False)),
+                ('created_at', models.DateTimeField(default=datetime.datetime(2015, 4, 4, 20, 4, 17, 868127, tzinfo=utc), verbose_name='Olu\u015fturulma Tarihi', editable=False)),
+                ('updated_at', models.DateTimeField(verbose_name='G\xfcncelleme Tarihi', editable=False)),
                 ('subscriber', models.ForeignKey(verbose_name='Subscriber', to='cerci_newsletters.Subscriber', unique=True)),
             ],
         ),
