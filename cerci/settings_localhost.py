@@ -33,12 +33,3 @@ EMAIL_FILE_PATH = 'development/emails'
 
 COMPRESS_OFFLINE = False
 COMPRESS_ENABLED = False
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-EMAIL_HOST = 'smtp.yandex.ru'
-EMAIL_HOST_USER = 'noreply@cercisanat.com'
-EMAIL_HOST_PASSWORD = '0BJoVk9z'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-SERVER_EMAIL='noreply@cercisanat.com'
