@@ -1,166 +1,153 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+from django.db import models, migrations
 import datetime
-from south.db import db
-from south.v2 import SchemaMigration
-from django.db import models
+import mptt.fields
+from django.utils.timezone import utc
+from django.conf import settings
+import image_cropping.fields
+import taggit.managers
 
 
-class Migration(SchemaMigration):
+class Migration(migrations.Migration):
 
-    def forwards(self, orm):
-        # Adding model 'Genre'
-        db.create_table('cerci_content_genre', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('parent', self.gf('mptt.fields.TreeForeignKey')(blank=True, related_name='children', null=True, to=orm['cerci_content.Genre'])),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=100)),
-            ('slug', self.gf('django.db.models.fields.SlugField')(max_length=50)),
-            ('active', self.gf('django.db.models.fields.BooleanField')(default=True)),
-            ('lft', self.gf('django.db.models.fields.PositiveIntegerField')(db_index=True)),
-            ('rght', self.gf('django.db.models.fields.PositiveIntegerField')(db_index=True)),
-            ('tree_id', self.gf('django.db.models.fields.PositiveIntegerField')(db_index=True)),
-            ('level', self.gf('django.db.models.fields.PositiveIntegerField')(db_index=True)),
-        ))
-        db.send_create_signal('cerci_content', ['Genre'])
+    dependencies = [
+        ('taggit', '0001_initial'),
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
 
-        # Adding model 'Author'
-        db.create_table('cerci_content_author', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('user', self.gf('django.db.models.fields.related.OneToOneField')(blank=True, related_name='author', unique=True, null=True, to=orm['auth.User'])),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('slug', self.gf('django.db.models.fields.SlugField')(unique=True, max_length=100)),
-            ('biography', self.gf('django.db.models.fields.TextField')(blank=True)),
-            ('image', self.gf('django.db.models.fields.files.ImageField')(max_length=100, blank=True)),
-            ('cropping', self.gf('django.db.models.fields.CharField')(max_length=255, blank=True)),
-            ('is_published', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('created_at', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2013, 5, 8, 0, 0))),
-            ('updated_at', self.gf('django.db.models.fields.DateTimeField')()),
-        ))
-        db.send_create_signal('cerci_content', ['Author'])
-
-        # Adding model 'IssueContent'
-        db.create_table('cerci_content_issuecontent', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('title', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('slug', self.gf('django.db.models.fields.SlugField')(unique=True, max_length=100)),
-            ('body', self.gf('django.db.models.fields.TextField')()),
-            ('image', self.gf('django.db.models.fields.files.ImageField')(max_length=100, blank=True)),
-            ('is_subject', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('is_published', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('created_at', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2013, 5, 8, 0, 0))),
-            ('updated_at', self.gf('django.db.models.fields.DateTimeField')()),
-        ))
-        db.send_create_signal('cerci_content', ['IssueContent'])
-
-        # Adding M2M table for field genres on 'IssueContent'
-        db.create_table('cerci_content_issuecontent_genres', (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('issuecontent', models.ForeignKey(orm['cerci_content.issuecontent'], null=False)),
-            ('genre', models.ForeignKey(orm['cerci_content.genre'], null=False))
-        ))
-        db.create_unique('cerci_content_issuecontent_genres', ['issuecontent_id', 'genre_id'])
-
-        # Adding M2M table for field authors on 'IssueContent'
-        db.create_table('cerci_content_issuecontent_authors', (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('issuecontent', models.ForeignKey(orm['cerci_content.issuecontent'], null=False)),
-            ('author', models.ForeignKey(orm['cerci_content.author'], null=False))
-        ))
-        db.create_unique('cerci_content_issuecontent_authors', ['issuecontent_id', 'author_id'])
-
-
-    def backwards(self, orm):
-        # Deleting model 'Genre'
-        db.delete_table('cerci_content_genre')
-
-        # Deleting model 'Author'
-        db.delete_table('cerci_content_author')
-
-        # Deleting model 'IssueContent'
-        db.delete_table('cerci_content_issuecontent')
-
-        # Removing M2M table for field genres on 'IssueContent'
-        db.delete_table('cerci_content_issuecontent_genres')
-
-        # Removing M2M table for field authors on 'IssueContent'
-        db.delete_table('cerci_content_issuecontent_authors')
-
-
-    models = {
-        'auth.group': {
-            'Meta': {'object_name': 'Group'},
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '80'}),
-            'permissions': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['auth.Permission']", 'symmetrical': 'False', 'blank': 'True'})
-        },
-        'auth.permission': {
-            'Meta': {'ordering': "('content_type__app_label', 'content_type__model', 'codename')", 'unique_together': "(('content_type', 'codename'),)", 'object_name': 'Permission'},
-            'codename': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'content_type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['contenttypes.ContentType']"}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '50'})
-        },
-        'auth.user': {
-            'Meta': {'object_name': 'User'},
-            'date_joined': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-            'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'blank': 'True'}),
-            'first_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
-            'groups': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['auth.Group']", 'symmetrical': 'False', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'is_active': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
-            'is_staff': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'is_superuser': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'last_login': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-            'last_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
-            'password': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
-            'user_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['auth.Permission']", 'symmetrical': 'False', 'blank': 'True'}),
-            'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '30'})
-        },
-        'cerci_content.author': {
-            'Meta': {'object_name': 'Author'},
-            'biography': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            'created_at': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2013, 5, 8, 0, 0)'}),
-            'cropping': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'blank': 'True'}),
-            'is_published': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-            'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '100'}),
-            'updated_at': ('django.db.models.fields.DateTimeField', [], {}),
-            'user': ('django.db.models.fields.related.OneToOneField', [], {'blank': 'True', 'related_name': "'author'", 'unique': 'True', 'null': 'True', 'to': "orm['auth.User']"})
-        },
-        'cerci_content.genre': {
-            'Meta': {'object_name': 'Genre'},
-            'active': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'level': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'}),
-            'lft': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'parent': ('mptt.fields.TreeForeignKey', [], {'blank': 'True', 'related_name': "'children'", 'null': 'True', 'to': "orm['cerci_content.Genre']"}),
-            'rght': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'}),
-            'slug': ('django.db.models.fields.SlugField', [], {'max_length': '50'}),
-            'tree_id': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'})
-        },
-        'cerci_content.issuecontent': {
-            'Meta': {'object_name': 'IssueContent'},
-            'authors': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['cerci_content.Author']", 'symmetrical': 'False'}),
-            'body': ('django.db.models.fields.TextField', [], {}),
-            'created_at': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2013, 5, 8, 0, 0)'}),
-            'genres': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['cerci_content.Genre']", 'symmetrical': 'False'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'blank': 'True'}),
-            'is_published': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'is_subject': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '100'}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-            'updated_at': ('django.db.models.fields.DateTimeField', [], {})
-        },
-        'contenttypes.contenttype': {
-            'Meta': {'ordering': "('name',)", 'unique_together': "(('app_label', 'model'),)", 'object_name': 'ContentType', 'db_table': "'django_content_type'"},
-            'app_label': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
-        }
-    }
-
-    complete_apps = ['cerci_content']
+    operations = [
+        migrations.CreateModel(
+            name='Audio',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('title', models.CharField(max_length=255, verbose_name='Title')),
+                ('slug', models.SlugField(unique=True, max_length=100, verbose_name='Slug')),
+                ('description', models.TextField(null=True, verbose_name='Description', blank=True)),
+                ('audio', models.FileField(upload_to=b'audio/', verbose_name='Audio')),
+            ],
+            options={
+                'verbose_name': 'Audio',
+                'verbose_name_plural': 'Audios',
+            },
+        ),
+        migrations.CreateModel(
+            name='Author',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=255, verbose_name='Name')),
+                ('slug', models.SlugField(unique=True, max_length=100, verbose_name='Slug')),
+                ('biography', models.TextField(verbose_name='Biography', blank=True)),
+                ('image', image_cropping.fields.ImageCropField(upload_to=b'images/author/', verbose_name='Resim', blank=True)),
+                (b'cropping', image_cropping.fields.ImageRatioField(b'image', '360x430', hide_image_field=False, size_warning=False, allow_fullsize=False, free_crop=False, adapt_rotation=False, help_text=None, verbose_name='cropping')),
+                ('is_published', models.BooleanField(verbose_name='Is Published')),
+                ('created_at', models.DateTimeField(default=datetime.datetime(2015, 4, 4, 7, 38, 20, 316398, tzinfo=utc), verbose_name='Created At')),
+                ('updated_at', models.DateTimeField(verbose_name='Updated At')),
+                ('user', models.OneToOneField(related_name='author', null=True, blank=True, to=settings.AUTH_USER_MODEL, verbose_name='Kullan\u0131c\u0131')),
+            ],
+            options={
+                'verbose_name': 'Author',
+                'verbose_name_plural': 'Authors',
+            },
+        ),
+        migrations.CreateModel(
+            name='Gallery',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('title', models.CharField(max_length=255, null=True, verbose_name='Title', blank=True)),
+                ('slug', models.SlugField(unique=True, max_length=100, verbose_name='Slug')),
+                ('description', models.TextField(null=True, verbose_name='Description', blank=True)),
+                ('display_with', models.CharField(default=b'bootstrap_carousel', max_length=20, verbose_name='Display With', choices=[(b'bootstrap_carousel', 'Inline Gallery'), (b'photobox_gallery', 'Overlay')])),
+            ],
+            options={
+                'verbose_name': 'Gallery',
+                'verbose_name_plural': 'Galleries',
+            },
+        ),
+        migrations.CreateModel(
+            name='Gallery2Image',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('order', models.IntegerField(default=0, null=True, verbose_name='S\u0131ralama')),
+                ('gallery', models.ForeignKey(verbose_name='Gallery', to='cerci_content.Gallery')),
+            ],
+            options={
+                'ordering': ['order'],
+                'verbose_name': 'Resim',
+                'verbose_name_plural': 'Images',
+            },
+        ),
+        migrations.CreateModel(
+            name='GalleryImage',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('title', models.CharField(max_length=255, null=True, verbose_name='Title', blank=True)),
+                ('description', models.TextField(null=True, verbose_name='Description', blank=True)),
+                ('image', models.ImageField(help_text='Gallery Image', upload_to=b'images/gallery/', verbose_name='Resim', blank=True)),
+            ],
+            options={
+                'verbose_name': 'Gallery Image',
+                'verbose_name_plural': 'Gallery Images',
+            },
+        ),
+        migrations.CreateModel(
+            name='Genre',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=100, verbose_name='ad\u0131')),
+                ('slug', models.SlugField(verbose_name='slug')),
+                ('active', models.BooleanField(default=True, verbose_name='etkin')),
+                ('description', models.TextField(default=b'', null=True, verbose_name='Description', blank=True)),
+                ('spotting_order', models.IntegerField(verbose_name='S\u0131ralama')),
+                ('lft', models.PositiveIntegerField(editable=False, db_index=True)),
+                ('rght', models.PositiveIntegerField(editable=False, db_index=True)),
+                ('tree_id', models.PositiveIntegerField(editable=False, db_index=True)),
+                ('level', models.PositiveIntegerField(editable=False, db_index=True)),
+                ('parent', mptt.fields.TreeForeignKey(related_name='children', verbose_name='parent', blank=True, to='cerci_content.Genre', null=True)),
+            ],
+            options={
+                'ordering': ['spotting_order'],
+                'verbose_name': 'Genre',
+                'verbose_name_plural': 'Genres',
+            },
+        ),
+        migrations.CreateModel(
+            name='IssueContent',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('title', models.CharField(max_length=255, null=True, verbose_name='Title', blank=True)),
+                ('slug', models.SlugField(unique=True, max_length=100, verbose_name='Slug')),
+                ('image', models.ImageField(help_text='This image will be used for social sharing sites.', upload_to=b'images/illustrations/', verbose_name='Resim', blank=True)),
+                ('is_figure', models.BooleanField(default=False, verbose_name='Is this content a figure?')),
+                ('spot', models.TextField(null=True, verbose_name='Spot', blank=True)),
+                ('body', models.TextField(null=True, verbose_name='Body', blank=True)),
+                ('is_published', models.BooleanField(verbose_name='Is Published')),
+                ('created_at', models.DateTimeField(default=datetime.datetime(2015, 4, 4, 7, 38, 20, 318680, tzinfo=utc), verbose_name='Created At')),
+                ('updated_at', models.DateTimeField(verbose_name='Updated At')),
+                ('audios', models.ManyToManyField(to='cerci_content.Audio', null=True, verbose_name='Audio', blank=True)),
+                ('authors', models.ManyToManyField(to='cerci_content.Author', verbose_name='Author')),
+                ('figures', models.ManyToManyField(to='cerci_content.IssueContent', null=True, verbose_name='Figures', blank=True)),
+                ('genres', models.ManyToManyField(to='cerci_content.Genre', null=True, verbose_name='Genre', blank=True)),
+                ('tags', taggit.managers.TaggableManager(to='taggit.Tag', through='taggit.TaggedItem', blank=True, help_text='A comma-separated list of tags.', verbose_name='Tags')),
+            ],
+            options={
+                'verbose_name': 'Issue Content',
+                'verbose_name_plural': 'Issue Contents',
+            },
+        ),
+        migrations.AddField(
+            model_name='gallery2image',
+            name='image',
+            field=models.ForeignKey(verbose_name='GalleryImage', to='cerci_content.GalleryImage'),
+        ),
+        migrations.AddField(
+            model_name='gallery',
+            name='images',
+            field=models.ManyToManyField(to='cerci_content.GalleryImage', verbose_name='Images', through='cerci_content.Gallery2Image'),
+        ),
+        migrations.AlterUniqueTogether(
+            name='gallery2image',
+            unique_together=set([('gallery', 'image')]),
+        ),
+    ]
