@@ -47,4 +47,8 @@ h1.number {
     .image-files-wrapper img {
         width: 100%;
     }
+
+    body {
+        font-size: 1em;
+    }
 }
