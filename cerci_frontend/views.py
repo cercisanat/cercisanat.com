@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.views.decorators.cache import cache_page
 from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
@@ -22,6 +23,7 @@ def get_issues():
         is_published=True).order_by('-published_at')
 
 
+@cache_page(2592000)
 def home(request):
     issues = get_issues()
     return render_to_response(
@@ -31,6 +33,7 @@ def home(request):
         context_instance=RequestContext(request))
 
 
+@cache_page(2592000)
 def current_issue(request, issue_number):
     issue = get_object_or_404(Issue.objects.prefetch_related(
         'issue2content_set',
@@ -45,6 +48,7 @@ def current_issue(request, issue_number):
                               context_instance=RequestContext(request))
 
 
+@cache_page(2592000)
 def current_issuecontent(request, issue_number, contentslug):
     """
     We should display the content within its related issue. Since a content can
@@ -77,6 +81,7 @@ def current_issuecontent(request, issue_number, contentslug):
                               context_instance=RequestContext(request))
 
 
+@cache_page(2592000)
 def author_list(request):
     authors = Author.objects.filter(is_published=True).order_by('name')
     return render_to_response('authors.html',
@@ -113,6 +118,7 @@ def author(request, author_slug):
                               context_instance=RequestContext(request))
 
 
+@cache_page(2592000)
 def genre(request, genreslug):
     genre = get_object_or_404(Genre, slug=genreslug)
     contents = genre.issuecontent_set.prefetch_related(
@@ -125,6 +131,7 @@ def genre(request, genreslug):
                               context_instance=RequestContext(request))
 
 
+@cache_page(2592000)
 def tag(request, tagslug):
     tag = get_object_or_404(Tag, slug=tagslug)
     contents = IssueContent.objects.prefetch_related(
@@ -136,6 +143,7 @@ def tag(request, tagslug):
                               context_instance=RequestContext(request))
 
 
+@cache_page(2592000)
 def masterhead(request):
     return render_to_response('masterhead.html',
                               {},
@@ -152,5 +160,6 @@ def blog(request):
                               context_instance=RequestContext(request))
 
 
+@cache_page(2592000)
 def yandex_proof(request):
     return HttpResponse('0d42572b3ba6')
