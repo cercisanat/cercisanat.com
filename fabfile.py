@@ -14,7 +14,7 @@ env.roledefs = {
 environments = {
     "dev": {
         'code_dir': '/var/sites/cerci/dev',
-        'workon': 'cerci_dev'
+        'workon': 'cerci_new'
     },
     "staging": {
         'code_dir': '/var/sites/cerci/staging',

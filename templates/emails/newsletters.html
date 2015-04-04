@@ -22,7 +22,7 @@ a:hover#ff { background-color: #6CF !important; text-decoration: none !important
                         <!--header-->
                         <table cellspacing="0" border="0" cellpadding="0" width="624">
                             <tr>
-                                <td valign="top"> <img src="/static/emails/spacer-top.jpg" height="12" width="624" />
+                                <td valign="top"> <img src="{{ domain }}/static/emails/spacer-top.jpg" height="12" width="624" />
                                     <!--header content-->
                                     <table cellspacing="0" border="0" cellpadding="0" width="624">
                                         <tr>
@@ -32,11 +32,11 @@ a:hover#ff { background-color: #6CF !important; text-decoration: none !important
                                                     ÇERÇİ SANAT {{ issue.published_at|date:"F Y" }}
                                                 </h2>
                                             </td>
-                                            <td id="issue" valign="top" style="background-image: url('/static/emails/issue-no.jpg'); background-color: #4b98d7; background-repeat: no-repeat; background-position: top; width: 109px; height: 109px;" bgcolor="#4b98d7">
+                                            <td id="issue" valign="top" style="background-image: url('{{ domain }}/static/emails/issue-no.jpg'); background-color: #4b98d7; background-repeat: no-repeat; background-position: top; width: 109px; height: 109px;" bgcolor="#4b98d7">
                                                 <!--number-->
                                                 <table width="104" align="right" border="0" cellspacing="0" cellpadding="0">
                                                     <tr>
-                                                        <td width="52" height="73" valign="bottom"><img align="right" src="/static/emails/no.jpg" width="43" height="35"></td>
+                                                        <td width="52" height="73" valign="bottom"><img align="right" src="{{ domain }}/static/emails/no.jpg" width="43" height="35"></td>
                                                         <td width="52" valign="bottom">
                                                           <h3 style="margin: 0px; padding:0; font-size: 32px; font-family: Helvetica, Arial, sans-serif; color: #FFF;">{{ issue.number }}</h3>
                                                         </td>
@@ -54,7 +54,7 @@ a:hover#ff { background-color: #6CF !important; text-decoration: none !important
                         <!--line break-->
                         <table cellspacing="0" border="0" cellpadding="0" width="624">
                             <tr>
-                                <td height="50" valign="middle" width="624"><img src="/static/emails/line-break-2.jpg" height="13" width="624" /></td>
+                                <td height="50" valign="middle" width="624"><img src="{{ domain }}/static/emails/line-break-2.jpg" height="13" width="624" /></td>
                             </tr>
                         </table>
                         <!--/line break-->
@@ -71,7 +71,7 @@ a:hover#ff { background-color: #6CF !important; text-decoration: none !important
                                                     <img src="{{ domain }}{{ issue.cover|thumbnail_url:'email_cover' }}" alt="image dsc" style="border: solid 1px #FFF; box-shadow: 2px 2px 6px #333; -webkit-box-shadow: 2px 2px 6px #333; -khtml-box-shadow: 2px 2px 6px #333; -moz-box-shadow: 2px 2px 6px #333;" width="622" />
                                                     </a>
                                                 </p>
-                                                <p style="font-size: 17px; line-height: 24px; font-family: Georgia, 'Times New Roman', Times, serif; color: #333; margin: 0px;"><img src="/static/emails/spacer-ten.jpg" height="10" width="624" /></p>
+                                                <p style="font-size: 17px; line-height: 24px; font-family: Georgia, 'Times New Roman', Times, serif; color: #333; margin: 0px;"><img src="{{ domain }}/static/emails/spacer-ten.jpg" height="10" width="624" /></p>
                                                 <h2 style="font-size: 36px; font-family: Helvetica, Arial, sans-serif; color: #333 !important; margin: 0px;">{{ issue.editorial_title }}</h2>
                                                 <p style="font-size: 17px; line-height: 24px; font-family: Georgia, 'Times New Roman', Times, serif; color: #333; margin: 0px;">{{ issue.editorial|safe }}</p>
                                             </td>
@@ -81,7 +81,7 @@ a:hover#ff { background-color: #6CF !important; text-decoration: none !important
                                     <!--line break-->
                                     <table cellspacing="0" border="0" cellpadding="0" width="624">
                                         <tr>
-                                            <td height="30" valign="middle" width="624"><img src="/static/emails/line-break-2.jpg" height="13" width="624" /></td>
+                                            <td height="30" valign="middle" width="624"><img src="{{ domain }}/static/emails/line-break-2.jpg" height="13" width="624" /></td>
                                         </tr>
                                     </table>
                                     <!--/line break-->
@@ -97,7 +97,7 @@ a:hover#ff { background-color: #6CF !important; text-decoration: none !important
                                                 <!--line break-->
                                                 <table cellspacing="0" border="0" cellpadding="0" width="624">
                                                     <tr>
-                                                        <td height="35" valign="top"> <img src="/static/emails/line-break.jpg" height="10" width="624" /> </td>
+                                                        <td height="35" valign="top"> <img src="{{ domain }}/static/emails/line-break.jpg" height="10" width="624" /> </td>
                                                     </tr>
                                                 </table>
                                                 <!--/line break-->
@@ -137,7 +137,7 @@ a:hover#ff { background-color: #6CF !important; text-decoration: none !important
                                     <!--line break-->
                                     <table cellspacing="0" border="0" cellpadding="0" width="624">
                                         <tr>
-                                            <td height="30" valign="middle" width="624"><img src="/static/emails/line-break-2.jpg" height="13" width="624" /></td>
+                                            <td height="30" valign="middle" width="624"><img src="{{ domain }}/static/emails/line-break-2.jpg" height="13" width="624" /></td>
                                         </tr>
                                     </table>
                                     <!--/line break-->
@@ -154,7 +154,7 @@ a:hover#ff { background-color: #6CF !important; text-decoration: none !important
                                                     <br />
                                                     <br />
                                                     ÇERÇİ SANAT</p>
-                                                <p style="font-size: 17px; line-height: 24px; font-family: Georgia, 'Times New Roman', Times, serif; color: #333; margin: 0px;"><img src="/static/emails/spacer-ten.jpg" height="10" width="624" /></p>
+                                                <p style="font-size: 17px; line-height: 24px; font-family: Georgia, 'Times New Roman', Times, serif; color: #333; margin: 0px;"><img src="{{ domain }}/static/emails/spacer-ten.jpg" height="10" width="624" /></p>
                                             </td>
                                         </tr>
                                     </table>
