@@ -5,7 +5,7 @@ from categories.models import CategoryBase
 from image_cropping import ImageCropField, ImageRatioField
 from django.template.defaultfilters import slugify
 from django.utils.timezone import now
-from taggit_autocomplete.managers import TaggableManager
+from taggit.managers import TaggableManager
 
 
 class Genre(CategoryBase):
