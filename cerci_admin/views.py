@@ -43,4 +43,4 @@ def thumbnail_by_id(request, id):
     thumbnail = get_thumbnailer(figure.image).get_thumbnail(
         {'size': (50, 50)})
     thumbnail.open()
-    return HttpResponse(thumbnail.read(), mimetype="image/jpeg")
+    return HttpResponse(thumbnail.read(), content_type="image/jpeg")
