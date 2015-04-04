@@ -1,84 +1,62 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+from django.db import models, migrations
 import datetime
-from south.db import db
-from south.v2 import SchemaMigration
-from django.db import models
+from django.utils.timezone import utc
 
 
-class Migration(SchemaMigration):
+class Migration(migrations.Migration):
 
-    def forwards(self, orm):
-        # Adding model 'Subscriber'
-        db.create_table(u'cerci_newsletters_subscriber', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank=True)),
-            ('email', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('created_at', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2014, 4, 19, 0, 0))),
-            ('updated_at', self.gf('django.db.models.fields.DateTimeField')()),
-        ))
-        db.send_create_signal(u'cerci_newsletters', ['Subscriber'])
+    dependencies = [
+    ]
 
-        # Adding model 'Newsletter'
-        db.create_table(u'cerci_newsletters_newsletter', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('title', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('body', self.gf('django.db.models.fields.TextField')()),
-            ('created_at', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2014, 4, 19, 0, 0))),
-            ('updated_at', self.gf('django.db.models.fields.DateTimeField')()),
-        ))
-        db.send_create_signal(u'cerci_newsletters', ['Newsletter'])
-
-        # Adding model 'SentItem'
-        db.create_table(u'cerci_newsletters_sentitem', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('newsletter', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['cerci_newsletters.Newsletter'])),
-            ('subscriber', self.gf('django.db.models.fields.related.ForeignKey')(related_name='sent_to', to=orm['cerci_newsletters.Subscriber'])),
-            ('sent_at', self.gf('django.db.models.fields.DateTimeField')()),
-        ))
-        db.send_create_signal(u'cerci_newsletters', ['SentItem'])
-
-        # Adding unique constraint on 'SentItem', fields ['newsletter', 'subscriber']
-        db.create_unique(u'cerci_newsletters_sentitem', ['newsletter_id', 'subscriber_id'])
-
-
-    def backwards(self, orm):
-        # Removing unique constraint on 'SentItem', fields ['newsletter', 'subscriber']
-        db.delete_unique(u'cerci_newsletters_sentitem', ['newsletter_id', 'subscriber_id'])
-
-        # Deleting model 'Subscriber'
-        db.delete_table(u'cerci_newsletters_subscriber')
-
-        # Deleting model 'Newsletter'
-        db.delete_table(u'cerci_newsletters_newsletter')
-
-        # Deleting model 'SentItem'
-        db.delete_table(u'cerci_newsletters_sentitem')
-
-
-    models = {
-        u'cerci_newsletters.newsletter': {
-            'Meta': {'object_name': 'Newsletter'},
-            'body': ('django.db.models.fields.TextField', [], {}),
-            'created_at': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2014, 4, 19, 0, 0)'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-            'updated_at': ('django.db.models.fields.DateTimeField', [], {})
-        },
-        u'cerci_newsletters.sentitem': {
-            'Meta': {'unique_together': "(('newsletter', 'subscriber'),)", 'object_name': 'SentItem'},
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'newsletter': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['cerci_newsletters.Newsletter']"}),
-            'sent_at': ('django.db.models.fields.DateTimeField', [], {}),
-            'subscriber': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'sent_to'", 'to': u"orm['cerci_newsletters.Subscriber']"})
-        },
-        u'cerci_newsletters.subscriber': {
-            'Meta': {'object_name': 'Subscriber'},
-            'created_at': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2014, 4, 19, 0, 0)'}),
-            'email': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
-            'updated_at': ('django.db.models.fields.DateTimeField', [], {})
-        }
-    }
-
-    complete_apps = ['cerci_newsletters']
+    operations = [
+        migrations.CreateModel(
+            name='Newsletter',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('title', models.CharField(max_length=255, verbose_name='Title')),
+                ('body', models.TextField(verbose_name='Body')),
+                ('created_at', models.DateTimeField(default=datetime.datetime(2015, 4, 4, 7, 38, 32, 280787, tzinfo=utc), verbose_name='Created At', editable=False)),
+                ('updated_at', models.DateTimeField(verbose_name='Updated At', editable=False)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='SentItem',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('sent_at', models.DateTimeField(verbose_name='Sent At')),
+                ('newsletter', models.ForeignKey(verbose_name='Newsletter', to='cerci_newsletters.Newsletter')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Subscriber',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=255, null=True, verbose_name='Name', blank=True)),
+                ('email', models.EmailField(unique=True, max_length=255)),
+                ('created_at', models.DateTimeField(default=datetime.datetime(2015, 4, 4, 7, 38, 32, 278617, tzinfo=utc), verbose_name='Created At', editable=False)),
+                ('updated_at', models.DateTimeField(verbose_name='Updated At', editable=False)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='UnsubscribeToken',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('token', models.CharField(max_length=16, verbose_name='Token')),
+                ('created_at', models.DateTimeField(default=datetime.datetime(2015, 4, 4, 7, 38, 32, 279855, tzinfo=utc), verbose_name='Created At', editable=False)),
+                ('updated_at', models.DateTimeField(verbose_name='Updated At', editable=False)),
+                ('subscriber', models.ForeignKey(verbose_name='Subscriber', to='cerci_newsletters.Subscriber', unique=True)),
+            ],
+        ),
+        migrations.AddField(
+            model_name='sentitem',
+            name='subscriber',
+            field=models.ForeignKey(related_name='sent_to', verbose_name='Subscriber', to='cerci_newsletters.Subscriber'),
+        ),
+        migrations.AlterUniqueTogether(
+            name='sentitem',
+            unique_together=set([('newsletter', 'subscriber')]),
+        ),
+    ]

@@ -19,7 +19,6 @@ urlpatterns = patterns(
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^ckeditor/', include('ckeditor.urls')),
     url(r'^arama/', include('haystack.urls')),
-    url(r'^taggit_autocomplete/', include('taggit_autocomplete.urls')),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
         {'document_root': settings.MEDIA_ROOT}),
 )
