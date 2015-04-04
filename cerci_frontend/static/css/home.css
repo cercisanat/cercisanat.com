@@ -22,3 +22,36 @@ img.cover.last {
 .editorial p {
     margin-bottom: 20px;
 }
+
+#issues-mobile {
+    display: none;
+}
+
+@media (max-width: 1200px) {
+    img.cover {
+        width: 100%;
+    }
+
+    .editorial {
+        font-size: 1.4em;
+    }
+}
+
+@media (max-width: 768px) {
+    .editorial {
+        font-size: 1em;
+    }
+
+    #issues {
+        display: none;
+    }
+
+    #issues-mobile {
+        display: block;
+    }
+}
+@media (max-width: 385px) {
+    img.cover {
+        width: 100%;
+    }
+}

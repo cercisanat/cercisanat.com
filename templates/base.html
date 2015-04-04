@@ -130,7 +130,7 @@
       {% endfor %}
       {% block genres %}
       <div class="unnecessary-zone">
-        <div class="row row-centered">
+        <div class="row row-centered logo-wrapper">
           <div class="col-centered">
             <a href="/" class="logo">
               <img class="rotate-slow" src="{% static 'images/cerci_wheel_black2.png' %}" />
@@ -138,8 +138,7 @@
             </a>
           </div>
         </div>
-        <hr/>
-        <div class="row row-centered">
+        <div class="row row-centered genres-wrapper">
           <div class="col-centered">
             <ul class="auto-active list-inline genres">
             {% for genre in genres %}
@@ -157,7 +156,6 @@
             </ul>
           </div>
         </div>
-        <hr/>
       </div>
       {% endblock %}
 

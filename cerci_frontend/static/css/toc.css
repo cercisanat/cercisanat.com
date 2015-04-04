@@ -43,3 +43,75 @@
     font-size:  40px !important;
 }
 
+div.toc-container {
+    background-color: black;
+    color: white;
+    margin-bottom: 10px;
+    padding: 10px;
+    z-index: 1000;
+}
+
+div.toc-container.fixed {
+    position: fixed;
+    top: 0;
+    left: 15%;
+    right: 15%;
+    overflow: hidden;
+}
+
+div.toc-container a.home-link {
+    background-image: url('../images/cerci_logo2_white.png');
+    width: 24px !important;
+    height: 24px;
+    display: inline-block;
+    background-size: 24px;
+    margin-left: 18px;
+}
+
+nav.toc {
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: white;
+    overflow: hidden;
+}
+
+nav.toc .toc-contents-wrapper {
+    overflow-y: scroll;
+}
+
+nav.toc .toc-contents {
+    overflow: hidden;
+}
+
+nav.toc ol {
+}
+
+nav.toc li {
+    display: block;
+    background-color: #424242;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 2px;
+}
+
+nav.toc li.active,
+nav.toc li.active a {
+    background-color: white;
+    color: #333;
+}
+
+
+@media (max-width: 767px) {
+    div.toc-container.fixed {
+        width: 100%;
+        left: 0;
+        top: 0;
+        right: 0;
+    }
+
+    div.toc-container .cover {
+        display: none;
+    }
+}

@@ -29,30 +29,34 @@
     <i class="fa fa-font"></i>
   </a>
   <nav class="toc">
-      <a class="issue_link" href="{% url 'current_issue' issue_number=issue.number %}" title="Dergi sayfasına geri dön">
-          <img class="cover pull-left" src="{{ issue.cover|thumbnail_url:'cover_toc' }}" alt="Çerçi Sayı {{ issue.number }}, {{ issue.published_at|date:"F Y" }}" />
-      </a>
-      <ol>
-        <li>
-        <strong><a href="{% url 'current_issue' issue_number=issue.number %}">İçindekiler</a></strong><br/>
-        <em>editörden</em>
-        </li>
+    <a class="issue_link" href="{% url 'current_issue' issue_number=issue.number %}" title="Dergi sayfasına geri dön">
+        <img class="cover pull-left" src="{{ issue.cover|thumbnail_url:'cover_toc' }}" alt="Çerçi Sayı {{ issue.number }}, {{ issue.published_at|date:"F Y" }}" />
+    </a>
+    <div class="toc-contents-wrapper">
+      <div class="toc-contents">
+        <ol>
+          <li>
+          <strong><a href="{% url 'current_issue' issue_number=issue.number %}">İçindekiler</a></strong><br/>
+          <em>editörden</em>
+          </li>
 
-      {% for issue2content in issue.get_contents %}
-      {% with issue2content.content as content %}
-        {% if content == issuecontent %}
-        <li class="active">
-          <strong>{{ content.title }}</strong><br/>
-          <em>{{ content.authors.all|author_list_plain|safe }}</em>
-        </li>
-        {% else %}
-        <li>
-          <strong><a href="{% url 'current_issuecontent' issue_number=issue.number contentslug=content.slug %}">{{ content.title }}</a></strong><br/>
-          <em>{{ content.authors.all|author_list_plain|safe }}</em>
-        </li>
-        {% endif %}
-      {% endwith %}
-      {% endfor %}
-      </ol>
+        {% for issue2content in issue.get_contents %}
+        {% with issue2content.content as content %}
+          {% if content == issuecontent %}
+          <li class="active">
+            <strong>{{ content.title }}</strong><br/>
+            <em>{{ content.authors.all|author_list_plain|safe }}</em>
+          </li>
+          {% else %}
+          <li>
+            <strong><a href="{% url 'current_issuecontent' issue_number=issue.number contentslug=content.slug %}">{{ content.title }}</a></strong><br/>
+            <em>{{ content.authors.all|author_list_plain|safe }}</em>
+          </li>
+          {% endif %}
+        {% endwith %}
+        {% endfor %}
+        </ol>
+      </div>
+    </div>
   </nav>
 </div>

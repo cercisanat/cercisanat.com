@@ -1,0 +1,17 @@
+{% load thumbnail %}
+{% if content.figures.exists %}
+  <img class="issuecontent-bg" src="#"
+    data-src="{{ content.figures.all.0.image|thumbnail_url:'issuecontent_bg_image' }}" 
+    data-src-mobile="{{ content.figures.all.0.image|thumbnail_url:'issuecontent_bg_image_mobile' }}"
+    alt="İçerik Resmi" title="İçerik Resmi" />
+{% elif content.is_figure %}
+  <img class="issuecontent-bg" src="#"
+    data-src="{{ content.image|thumbnail_url:'issuecontent_bg_image' }}"
+    data-src-mobile="{{ content.image|thumbnail_url:'issuecontent_bg_image_mobile' }}"
+    alt="İçerik Resmi" title="İçerik Resmi" />
+{% else %}
+  <img class="issuecontent-bg" scr="#"
+    data-src="{{ issue.cover|thumbnail_url:'issuecontent_bg_image'}}"
+    data-src-mobile="{{ issue.cover|thumbnail_url:'issuecontent_bg_image_mobile'}}"
+    alt="Kapak Resmi" title="Kapak Resmi" />
+{% endif %}

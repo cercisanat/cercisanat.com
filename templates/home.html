@@ -34,7 +34,7 @@
 </div>
 <hr/>
 <h1>ÖNCEKİ SAYILAR</h1>
-<div class="row">
+<div class="row issues" id="issues">
   {% for issue in issues %}
     <section class="issue col-md-4">
       <a href="{% url 'current_issue' issue_number=issue.number %}">
@@ -42,5 +42,40 @@
       </a>
     </section>
   {% endfor %}
+</div>
+<div class="row">
+<div id="issues-mobile" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    {% for issue in issues %}
+    <li data-target="#issues-mobile" data-slide-to="0" {% if forloop.first %}class="active"{% endif %}></li>
+    {% endfor %}
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    {% for issue in issues %}
+      <div class="item issue{% if forloop.first %} active{% endif %}">
+        <a href="{% url 'current_issue' issue_number=issue.number %}">
+          <img class="cover" src="{{ issue.cover|thumbnail_url:'cover' }}" alt="{{ issue.subject }}" title="{{ issue.subject }}" />
+        </a>
+        <div class="carousel-caption">
+          Sayı {{ issue.number }}, {{ issue.published_at|date:"F Y" }}
+        </div>
+      </div>
+    {% endfor %}  
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#issues-mobile" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Önceki</span>
+  </a>
+  <a class="right carousel-control" href="#issues-mobile" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Sonraki</span>
+  </a>
+</div>
+
 </div>
 {% endblock %}

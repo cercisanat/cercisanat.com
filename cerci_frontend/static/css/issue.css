@@ -37,3 +37,14 @@ h1.number {
     position: relative;
     left: -12px;
 }
+
+@media (max-width: 767px) {
+    .image-files-wrapper {
+        width:100%;
+        float: none !important;
+    }
+
+    .image-files-wrapper img {
+        width: 100%;
+    }
+}

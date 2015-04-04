@@ -7,10 +7,13 @@ function(){
 
     var tocStarter = $('div.toc-container a.toc-starter');
     var tocContainer = $('div.toc-container');
+    var tocContentsWrapper = $('div.toc-contents-wrapper');
     if (tocContainer.get(0) !== undefined) {
-      tocContainer.css('max-height', ($(window).height() -10 )+'px');
+      tocContainer.css('max-height', ($(window).height())+'px');
+      tocContentsWrapper.css('height', ($(window).height() - 50)+'px');
       $(window).resize(function() {
-          tocContainer.css('max-height', ($(window).height() -10 )+'px');
+          tocContainer.css('max-height', ($(window).height())+'px');
+          tocContentsWrapper.css('height', ($(window).height() - 50)+'px');
       });
       tocStarter.click(function(e) {
           e.preventDefault();

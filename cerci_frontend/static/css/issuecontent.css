@@ -2,58 +2,6 @@
     overflow: hidden;
 }
 
-div.toc-container {
-    background-color: black;
-    color: white;
-    margin-bottom: 10px;
-    padding: 10px;
-    z-index: 1000;
-}
-
-div.toc-container.fixed {
-    position: fixed;
-    top: 0;
-    left: 15%;
-    right: 15%;
-    max-height: 200px;
-    overflow: hidden;
-}
-
-div.toc-container a.home-link {
-    background-image: url('../images/cerci_logo2_white.png');
-    width: 24px !important;
-    height: 24px;
-    display: inline-block;
-    background-size: 24px;
-    margin-left: 18px;
-}
-
-nav.toc {
-    display: none;
-    top: 0;
-    left: 0;
-    width: 100%;
-    color: white;
-}
-
-nav.toc ol {
-    margin: 0 50px 10px 215px;
-}
-
-nav.toc li {
-    display: inline-block;
-    background-color: #424242;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding: 2px;
-}
-
-nav.toc li.active,
-nav.toc li.active a {
-    background-color: white;
-    color: #333;
-}
-
 ul.authors li {
     border-left: 2px solid white; 
     padding-left: 0.3em;
@@ -113,7 +61,7 @@ cite {
 figure {
   background-color: black;
   color: white;
-  margin: 15px;
+  margin: 15px 15px 15px 0;
 }
 
 figcaption {
@@ -226,4 +174,19 @@ blockquote:after {
     line-height: 0.1em;
     margin-left: 0.25em;
     vertical-align: -0.6em;
+}
+
+
+@media (max-width: 767px) {
+    body {
+        font-size: 1em;
+    }
+
+    figure.image-container {
+        float: none !important;
+    }
+
+    figure.image-container img {
+        width: 100%;
+    }
 }

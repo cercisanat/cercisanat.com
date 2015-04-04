@@ -16,14 +16,8 @@
       {% with content.issue_set.all.0 as issue %}
       {% if content.is_published %}
         <section class="issuecontent {% if issue2content.is_subject %}is-subject{% endif %}">
-            {% if content.figures.exists %}
-            <img class="issuecontent-bg" src="{{ content.figures.all.0.image|thumbnail_url:'issuecontent_bg_image' }}" alt="İçerik Resmi" title="İçerik Resmi" />
-            {% elif content.is_figure %}
-            <img class="issuecontent-bg" src="{{ content.image|thumbnail_url:'issuecontent_bg_image' }}" alt="İçerik Resmi" title="İçerik Resmi" />
-            {% else %}
-            <img class="issuecontent-bg" src="{{ issue.cover|thumbnail_url:'issuecontent_bg_image'}}" alt="Kapak Resmi" title="Kapak Resmi" />
-            {% endif %}
-
+            {% include "partials/toc_bg.html" %}
+            
             <div class="issuecontent-link">
               <h1>
                 <a href="{% url 'current_issuecontent' issue_number=issue.number contentslug=content.slug %}">{{ content.title }}</a>
