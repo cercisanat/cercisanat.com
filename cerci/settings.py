@@ -135,14 +135,12 @@ INSTALLED_APPS = (
     # 'categories',
     'categories.editor',
     'taggit',
-    'taggit_autocomplete',
     'haystack',
     'ckeditor',
     'bshell',
     'debug_toolbar',
     'django_extensions',
     'reversion',
-    'south',
 )
 
 # A sample logging configuration. The only tangible logging
