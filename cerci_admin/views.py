@@ -1,4 +1,5 @@
 from cerci_issue.models import Issue, IssueContent
+from django.core.cache import cache
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.utils.translation import ugettext as _
@@ -15,6 +16,7 @@ def publish_issue(request, issue_id):
     for content in issue.contents.all():
         content.is_published = True
         content.save()
+    cache.clear()
     messages.add_message(
         request,
         messages.SUCCESS,

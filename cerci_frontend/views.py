@@ -1,11 +1,12 @@
 from django.conf import settings
+from django.core.cache import cache
 from django.views.decorators.cache import cache_page
 from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
+from django.template.loader import get_template
 from django.http import HttpResponse, Http404
-from django.core.cache import cache
 from cerci_content.models import IssueContent, Author, Genre
 from cerci_issue.models import Issue
 from django.shortcuts import get_object_or_404
@@ -48,7 +49,6 @@ def current_issue(request, issue_number):
                               context_instance=RequestContext(request))
 
 
-@cache_page(2592000)
 def current_issuecontent(request, issue_number, contentslug):
     """
     We should display the content within its related issue. Since a content can
@@ -57,28 +57,36 @@ def current_issuecontent(request, issue_number, contentslug):
     sake of short urls.
     """
     preview = False
+    key = 'issuecontent_%s_%s' % (issue_number, contentslug)
+    rendered = cache.get(key)
+    user_is_editor = request.user.has_perm('cerci_content.add_issuecontent')
+    if rendered and not user_is_editor:
+        return HttpResponse(rendered)
+
     issuecontent = get_object_or_404(IssueContent.objects.prefetch_related(
         'figures', 'genres', 'authors'
     ), slug=contentslug)
     issue = get_object_or_404(Issue, number=issue_number)
-    if not request.user.has_perm('cerci_content.add_issuecontent') and \
-       (not issue.is_published or not issuecontent.is_published):
+    is_published = issue.is_published and issuecontent.is_published
+    if not user_is_editor and not is_published:
         raise Http404
-    if request.user.has_perm('cerci_content.add_issuecontent') and \
-       (not issue.is_published or not issuecontent.is_published):
+    if user_is_editor and not is_published:
         preview = True
     prev = issuecontent.prev(issue)
     if not prev:
         prev = issue
     next = issuecontent.next(issue)
-    template = 'issuecontent.html'
-    return render_to_response(template,
-                              {'issue': issue,
-                               'issuecontent': issuecontent,
-                               'next': next,
-                               'prev': prev,
-                               'preview': preview},
-                              context_instance=RequestContext(request))
+    template = get_template('issuecontent.html')
+    context = {'issue': issue,
+               'issuecontent': issuecontent,
+               'next': next,
+               'prev': prev,
+               'preview': preview}
+    request_context = RequestContext(request, context)
+    rendered = template.render(request_context)
+    if not user_is_editor:
+        cache.set(key, rendered, 2592000)
+    return HttpResponse(rendered)
 
 
 @cache_page(2592000)
@@ -89,6 +97,7 @@ def author_list(request):
                               context_instance=RequestContext(request))
 
 
+@cache_page(2592000)
 def author(request, author_slug):
     def get_page(contents, figure_contents, issue_covers):
         all_contents = {'contents': contents,
@@ -98,7 +107,6 @@ def author(request, author_slug):
         if len(filtered):
             return filtered[0]
 
-    author = get_object_or_404(Author, slug=author_slug, is_published=True)
     illustrations = request.GET.get('illustrations')
     covers = request.GET.get('covers')
     active = 0
@@ -106,6 +114,7 @@ def author(request, author_slug):
         active = 1
     if covers:
         active = 2
+    author = get_object_or_404(Author, slug=author_slug, is_published=True)
     if not author.contents and not covers and not illustrations:
         page = get_page(author.contents, author.figure_contents, author.covers)
         return HttpResponseRedirect(
