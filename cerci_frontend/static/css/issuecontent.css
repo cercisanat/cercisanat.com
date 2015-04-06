@@ -176,6 +176,11 @@ blockquote:after {
     vertical-align: -0.6em;
 }
 
+img.ortala {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
 
 @media (max-width: 767px) {
     body {
