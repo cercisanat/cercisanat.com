@@ -122,7 +122,7 @@ class IssueContent(models.Model):
     spot = models.TextField(verbose_name=_('Spot'), blank=True, null=True)
     body = models.TextField(verbose_name=_('Body'), blank=True, null=True)
     is_published = models.BooleanField(verbose_name=_('Is Published'),
-                                       blank=True)
+                                       blank=True, default=False)
     created_at = models.DateTimeField(default=now(),
                                       verbose_name=_('Created At'))
     updated_at = models.DateTimeField(verbose_name=_('Updated At'))

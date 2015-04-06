@@ -15,6 +15,9 @@ def publish_issue(request, issue_id):
     issue.save()
     for content in issue.contents.all():
         content.is_published = True
+        for figure in content.figures.all():
+            figure.is_published = True
+            figure.save()
         content.save()
     cache.clear()
     messages.add_message(
@@ -31,6 +34,9 @@ def unpublish_issue(request, issue_id):
     issue.save()
     for content in issue.contents.all():
         content.is_published = False
+        for figure in content.figures.all():
+            figure.is_published = False
+            figure.save()
         content.save()
     messages.add_message(
         request,
