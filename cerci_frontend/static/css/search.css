@@ -1,0 +1,10 @@
+.author{
+    min-height: 120px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.author h1 {
+    margin-left: 20px;
+}

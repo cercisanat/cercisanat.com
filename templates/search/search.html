@@ -6,6 +6,7 @@
 {% block head %}
   {{ block.super }}
   <link rel="stylesheet" href="{% static "css/search.css" %}" type="text/css"/>
+  <link rel="stylesheet" href="{% static "css/toc.css" %}" type="text/css"/>
   <script type="text/javascript">
   $(document).ready(function(){
     var $advanced = $('.advanced');
@@ -23,23 +24,6 @@
   </script>
 {% endblock %}
 
-
-{% block header %}
-<div class="starters">
-  <div class="search-starter"><i class="icon-search icon-white"></i></div>
-</div>
-{% endblock %}
-
-{% block genres %}
-{% endblock %}
-
-{% block logo %}
-<a class="logo" href="{% url 'home' %}"></a>
-{% endblock %}
-
-{% block navigation %}
-{% endblock %}
-
 {% block content %}
     <h2>Arama</h2>
 
@@ -55,49 +39,44 @@
     </form>
     {% if query %}
         <h3>Sonuçlar</h3>
-
         {% for result in page.object_list %}
-            <p>
-                {% if result.object.get_absolute_url %}
-                    {% if result.content_type == 'cerci_content.issuecontent' %}
-                    {% with result.object.issue_set.all as issues %}
-                    {% if issues.exists %}
-                    <div class="borderholder">
-                        <div class="issue image-wrapper pull-left">
-                            <a href="{{ result.object.get_absolute_url }}">
-                                {% if result.object.figures.exists %}
-                                <img class="cover pull-left" src="{{ result.object.figures.all.0.image|thumbnail_url:'cover_list' }}" alt="İçerik Resmi" title="İçerik Resmi" />
-                                {% else %}
-                                <img class="cover pull-left" src="{{ result.object.issue_set.latest.cover|thumbnail_url:'cover_list' }}" alt="Kapak Resmi" title="Kapak Resmi" />
-                                {% endif %}
-                            </a>
-                        </div>
-                        <h1><a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a></h1>
-                        <h2>{{ result.object.authors.all|author_list|safe }}</h2>
-                        <p class="content-body">{{ result.object.body|truncatewords_html:50|striptags|safe }}</p>
-                        <a class="more" href="{{ result.object.get_absolute_url }}" data-toggle="tooltip" data-placement="top" title="Devamını oku" data-container="body" ><img src="{% static "images/more.png" %}" /></a>
-                    </div>
-                    {% endif %}
-                    {% endwith %}
-                    {% endif %}
-                    {% if result.content_type == 'cerci_content.author' %}
-                    <div class="borderholder">
-                        <div class="author image-wrapper pull-left">
-                            <a href="{{ result.object.get_absolute_url }}">
-                                <img class="cover pull-left" src="{% thumbnail result.object.image 100x141 box=author.cropping crop detail bw %}" alt="Yazar" title="Yazar" />
-                            </a>
-                        </div>
-                        <h1><a href="{{ result.object.get_absolute_url }}">{{ result.object.name }}</a></h1>
-                        <p class="content-body">{{ result.object.biography|truncatewords_html:50|striptags|safe }}</p>
-                        <a class="more" href="{{ result.object.get_absolute_url }}" data-toggle="tooltip" data-placement="top" title="Devamını oku" data-container="body" ><img src="{% static "images/more.png" %}" /></a>
-                    </div>
-                    {% endif %}
+        {% if result.model_name == "issuecontent" %}
+        {% with result.object as content %}
+        {% with content.issue_set.all.0 as issue %}
+        <section class="issuecontent{% if content.is_subject %} is-subject{% endif %}">
+          {% include "partials/toc_bg.html" %}
+          <div class="issuecontent-link">
+            <h1>
+              <a href="{% url 'current_issuecontent' issue_number=issue.number contentslug=content.slug %}">{{ content.title }}</a>
+            </h1>
+            <h2>{{ content.authors.all|author_list|safe }}</h2>
+            {% if content.spot %}
+            {{ content.spot|truncatewords_html:100|striptags|safe }}
+            {% else %}
+            {{ content.body|truncatewords_html:100|striptags|safe }}
+            {% endif %}
+            {% include "partials/tags.html" %}
+            <a class="more" href="{% url 'current_issuecontent' issue_number=issue.number contentslug=content.slug %}" data-toggle="tooltip" data-placement="top" title="Devamını oku" data-container="body" ><img src="{% static "images/more.png" %}" /></a>
+            {% if issue2content.is_subject %}
+            <img class="subject" src="{% static "images/subject.png" %}" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Günebakan" />
+            {% endif %}
+          </div>
 
-                    <div class="clearfix"></div>
-                {% endif %}
-            </p>
-        {% empty %}
-            <p>Sonuç Bulunamadı</p>
+        </section>
+        {% endwith %}
+        {% endwith %}
+        {% endif %}
+        {% if result.model_name == "author" %}
+        {% with result.object as author %}
+        <section class="author">
+          {% if author.image %}
+          <img class="author-image pull-left" src="{% thumbnail author.image 100x100 box=author.cropping crop detail bw %}" alt="{{ author.name }}" title="{{ author.name }}" />
+          {% endif %}
+          <h1 class="pull-left">YAZAR: <a href="{% url 'author' author_slug=author.slug %}">{{ author.name }}</a></h1>
+        </section>
+        {% endwith %}
+        {% endif %}
+        <div class="clearfix"></div>
         {% endfor %}
 
         {% if page.has_previous or page.has_next %}
