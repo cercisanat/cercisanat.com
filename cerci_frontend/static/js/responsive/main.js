@@ -24,6 +24,7 @@ $(document).ready(function(){
     var subscription_form = $('.subscription-form');
     $('.more').tooltip();
     $('.less').tooltip();
+    $('.genres li a.genre').tooltip();
     $('.carousel').carousel('pause');
     if ($.cookie('subscribed_to_newsletters')) {
         $('.subscribe-form').hide();

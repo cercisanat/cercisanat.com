@@ -133,7 +133,7 @@
         <div class="row row-centered logo-wrapper">
           <div class="col-centered">
             <a href="/" class="logo">
-              <img class="rotate-slow" src="{% static 'images/cerci_wheel_black2.png' %}" />
+              <img class="add-rotate-slow" src="{% static 'images/cerci_wheel_black2.png' %}" />
               <img src="{% static 'images/cerci_black2.png' %}" />
             </a>
           </div>
@@ -146,7 +146,7 @@
             <li class="separator">/</li>
             {% endif %}
             <li>
-              <a data-toggle="tooltip" data-placement="bottom"
+              <a class="genre" data-toggle="tooltip" data-placement="bottom"
                 title="{{ genre.description|safe }}" data-html="true"
                 href="{% url 'genre' genreslug=genre.slug %}">
                 {{ genre.name|turkish_upper }}
