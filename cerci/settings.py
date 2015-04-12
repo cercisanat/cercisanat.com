@@ -93,6 +93,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'cerci.urls'
@@ -137,6 +138,7 @@ INSTALLED_APPS = (
     'haystack',
     'ckeditor',
     'bshell',
+    'debug_toolbar',
     'django_extensions',
     'reversion',
 )
@@ -250,3 +252,13 @@ CACHES = {
         'LOCATION': os.path.join(PROJECT_ROOT, 'cache'),
     }
 }
+
+from settings_main import *
+if ENVIRONMENT == 'localhost':
+    from settings_localhost import *
+if ENVIRONMENT == 'dev':
+    from settings_dev import *
+if ENVIRONMENT == 'staging':
+    from settings_staging import *
+if ENVIRONMENT == 'prod':
+    from settings_prod import *

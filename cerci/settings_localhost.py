@@ -1,4 +1,4 @@
-from cerci.settings import *
+# Django settings for cerci project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -16,10 +16,7 @@ DATABASES = {
 
 
 # DEBUG TOOLBAR SETTINGS
-INSTALLED_APPS = list(INSTALLED_APPS)
-INSTALLED_APPS.append('debug_toolbar')
-MIDDLEWARE_CLASSES = list(MIDDLEWARE_CLASSES)
-MIDDLEWARE_CLASSES.append('debug_toolbar.middleware.DebugToolbarMiddleware')
+
 INTERNAL_IPS = ('127.0.0.1',)
 
 DEBUG_TOOLBAR_CONFIG = {
@@ -36,6 +33,3 @@ EMAIL_FILE_PATH = 'development/emails'
 
 COMPRESS_OFFLINE = False
 COMPRESS_ENABLED = False
-
-
-ENVIRONMENT = 'localhost'
