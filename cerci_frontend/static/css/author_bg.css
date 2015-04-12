@@ -1,0 +1,32 @@
+.author {
+    position: relative;
+    margin-bottom: 40px;
+    min-height: 300px;
+    overflow: hidden;
+}
+
+.author-bg {
+    position: absolute;
+    opacity: .2;
+    z-index: 0;
+    width: 100%;
+    top: -65px;
+}
+
+.author-link {
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+}
+
+@media (max-width: 1200px) {
+    .author-bg {
+        top: 0;
+    }
+}
+
+@media (max-width: 500px) {
+    .author-bg {
+        width: auto;
+    }
+}

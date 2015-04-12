@@ -7,6 +7,7 @@
   {{ block.super }}
   <link rel="stylesheet" href="{% static "css/search.css" %}" type="text/css"/>
   <link rel="stylesheet" href="{% static "css/toc.css" %}" type="text/css"/>
+  <link rel="stylesheet" href="{% static "css/author_bg.css" %}" type="text/css"/>
   <script type="text/javascript">
   $(document).ready(function(){
     var $advanced = $('.advanced');
@@ -70,9 +71,19 @@
         {% with result.object as author %}
         <section class="author">
           {% if author.image %}
-          <img class="author-image pull-left" src="{% thumbnail author.image 100x100 box=author.cropping crop detail bw %}" alt="{{ author.name }}" title="{{ author.name }}" />
+            {% include "partials/author_bg.html" %}
           {% endif %}
-          <h1 class="pull-left">YAZAR: <a href="{% url 'author' author_slug=author.slug %}">{{ author.name }}</a></h1>
+          <div class="author-link">
+            <a href="{% url 'author' author_slug=author.slug %}">
+              <img class="author-image pull-left" src="{% thumbnail author.image 100x100 box=author.cropping crop detail bw %}" alt="{{ author.name }}" title="{{ author.name }}" />
+            </a>
+            <div class="desc pull-left">
+              <h1>
+                <a href="{% url 'author' author_slug=author.slug %}">{{ author.name }}</a>
+              </h1>
+              <p>{{ author.biography }}</p>
+            </div>
+          </div>
         </section>
         {% endwith %}
         {% endif %}

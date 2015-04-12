@@ -20,6 +20,10 @@ $(document).ready(function(){
     $('.issuecontent-bg').each(function(){
       $(this).attr('src', $(this).data(bg_src));
     });
+    $('.author-bg').each(function(){
+      $(this).attr('src', $(this).data(bg_src));
+    });
+
 
     var subscription_form = $('.subscription-form');
     $('.more').tooltip();
