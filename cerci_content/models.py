@@ -178,6 +178,9 @@ class GalleryImage(models.Model):
                               verbose_name=_('Image'),
                               help_text=_('Gallery Image'))
 
+    def __unicode__(self):
+        return self.title or self.description or "gallery"
+
     class Meta:
         verbose_name = _('Gallery Image')
         verbose_name_plural = _('Gallery Images')
