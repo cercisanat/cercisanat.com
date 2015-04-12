@@ -41,7 +41,7 @@ def current_issue(request, issue_number):
         'issue2content_set__content',
         'issue2content_set__content__genres',
         'issue2content_set__content__authors'
-    ), number=issue_number)
+    ).filter(is_published=True), number=issue_number)
     next = issue.get_contents()[0].content
     return render_to_response('issue.html',
                               {'issue': issue,
