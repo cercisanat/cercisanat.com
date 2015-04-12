@@ -58,4 +58,8 @@ def thumbnail_by_id(request, id):
 def clear_cache(request):
     next = request.GET.get('next', '/')
     cache.clear()
+    messages.add_message(
+        request,
+        messages.SUCCESS,
+        _("Cache cleared"))
     return HttpResponseRedirect(next)
