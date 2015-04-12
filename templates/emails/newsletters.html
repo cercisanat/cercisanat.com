@@ -93,7 +93,6 @@ a:hover#ff { background-color: #6CF !important; text-decoration: none !important
                                                 <h3 style="font-size: 24px; font-family: Helvetica, Arial, sans-serif; color: #333 !important; margin: 0px;">İÇİNDEKİLER</h3>
                                                 {% for issue2content in issue.issue2content_set.all %}
                                                 {% with issue2content.content as content %}
-                                                {% if content.is_published %}
                                                 <!--line break-->
                                                 <table cellspacing="0" border="0" cellpadding="0" width="624">
                                                     <tr>
@@ -127,7 +126,6 @@ a:hover#ff { background-color: #6CF !important; text-decoration: none !important
                                                         </td>
                                                     </tr>
                                                 </table>
-                                                {% endif %}
                                                 {% endwith %}
                                                 {% endfor %}
                                             </td>
