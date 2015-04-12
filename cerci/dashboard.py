@@ -118,6 +118,12 @@ class CustomIndexDashboard(Dashboard):
                     'url': 'http://mail.cercisanat.com',
                     'external': True,
                     'description': u'Çerçi Sanat E-posta',
+                },
+                {
+                    'title': u'Önbelleği sil',
+                    'url': '/admin/cerci_cache/clear/?next=/admin/',
+                    'external': False,
+                    'description': u'Önbelleği sik',
                 }
             )
         ))

@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.utils.translation import ugettext as _
 from django.contrib.admin.views.decorators import staff_member_required
 from easy_thumbnails.files import get_thumbnailer
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 
 @staff_member_required
@@ -52,3 +52,10 @@ def thumbnail_by_id(request, id):
         {'size': (50, 50)})
     thumbnail.open()
     return HttpResponse(thumbnail.read(), content_type="image/jpeg")
+
+
+@staff_member_required
+def clear_cache(request):
+    next = request.GET.get('next', '/')
+    cache.clear()
+    return HttpResponseRedirect(next)
