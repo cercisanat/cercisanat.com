@@ -87,6 +87,8 @@ class AuthorAdmin(ImageCroppingMixin, admin.ModelAdmin):
     search_fields = ['name']
     prepopulated_fields = {'slug': ('name',), }
     readonly_fields = ("created_at", "updated_at",)
+    list_display = ('name', 'is_published', 'created_at', 'updated_at')
+    list_filter = ('is_published', 'created_at', 'updated_at')
 
 admin.site.register(Author, AuthorAdmin)
 
