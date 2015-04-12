@@ -100,30 +100,33 @@ def author_list(request):
 @cache_page(2592000)
 def author(request, author_slug):
     def get_page(contents, figure_contents, issue_covers):
+        index = {'contents': 0, 'illustrations': 1, 'covers': 2}
         all_contents = {'contents': contents,
                         'illustrations': figure_contents,
                         'covers': issue_covers}
         filtered = filter(lambda x: all_contents[x], all_contents)
         if len(filtered):
-            return filtered[0]
+            return index.get(filtered[0])
+        return
 
-    illustrations = request.GET.get('illustrations')
-    covers = request.GET.get('covers')
-    active = 0
-    if illustrations:
-        active = 1
-    if covers:
-        active = 2
     author = get_object_or_404(Author, slug=author_slug, is_published=True)
-    if not author.contents and not covers and not illustrations:
-        page = get_page(author.contents, author.figure_contents, author.covers)
-        return HttpResponseRedirect(
-            reverse('author',
-                    kwargs={'author_slug': author.slug}) + '?' + page + '=1')
-
+    active = int(request.GET.get('tab', 0))
+    if author.all_contents:
+        hascontent = True
+        if not author.contents and not request.GET.get('tab'):
+            page = get_page(
+                author.contents,
+                author.figure_contents, author.covers) or 'none'
+            return HttpResponseRedirect(
+                reverse('author',
+                        kwargs={
+                            'author_slug': author.slug}) + '?tab=%s' % page)
+    else:
+        hascontent = False
     return render_to_response('author.html',
                               {'author': author,
-                               'active': active},
+                               'active': active,
+                               'hascontent': hascontent},
                               context_instance=RequestContext(request))
 
 
