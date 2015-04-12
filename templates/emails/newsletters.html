@@ -110,7 +110,7 @@ a:hover#ff { background-color: #6CF !important; text-decoration: none !important
                                                                 {% else %}
                                                                 {{ content.body|truncatewords_html:40|striptags|safe }}
                                                                 {% endif %}
-                                                                <a href="#" style="color: #4b98d7; text-decoration: none;">Ötesini oku ›</a>
+                                                                <a href="{{ domain }}{{ content.get_absolute_url }}" style="color: #4b98d7; text-decoration: none;">Devamını oku ›</a>
                                                             </p>
                                                         </td>
                                                         <td valign="top" width="246">
