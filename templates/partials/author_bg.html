@@ -1,7 +1,5 @@
 {% load static %}
-{% if author.image %}
-  <img class="author-bg" src="#"
+<img class="author-bg" src="#"
     data-src="{% static "images/author-bg.jpg" %}"
     data-src-mobile="{% static "images/author-bg.jpg" %}"
     alt="{{ author.name }}" title="{{ author.name }}" />
-{% endif %}

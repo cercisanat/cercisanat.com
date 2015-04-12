@@ -70,13 +70,13 @@
         {% if result.model_name == "author" %}
         {% with result.object as author %}
         <section class="author">
-          {% if author.image %}
-            {% include "partials/author_bg.html" %}
-          {% endif %}
+          {% include "partials/author_bg.html" %}
           <div class="author-link">
+            {% if author.image %}   
             <a href="{% url 'author' author_slug=author.slug %}">
               <img class="author-image pull-left" src="{% thumbnail author.image 100x100 box=author.cropping crop detail bw %}" alt="{{ author.name }}" title="{{ author.name }}" />
             </a>
+            {% endif %}
             <div class="desc pull-left">
               <h1>
                 <a href="{% url 'author' author_slug=author.slug %}">{{ author.name }}</a>
