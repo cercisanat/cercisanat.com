@@ -1,11 +1,11 @@
 from cerci_issue.models import Issue, IssueContent
-from django.core.cache import cache
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.utils.translation import ugettext as _
 from django.contrib.admin.views.decorators import staff_member_required
 from easy_thumbnails.files import get_thumbnailer
 from django.http import HttpResponse, HttpResponseRedirect
+from utils.cache import destroy_cache
 
 
 @staff_member_required
@@ -42,7 +42,7 @@ def thumbnail_by_id(request, id):
 @staff_member_required
 def clear_cache(request):
     next = request.GET.get('next', '/')
-    cache.clear()
+    destroy_cache()
     messages.add_message(
         request,
         messages.SUCCESS,

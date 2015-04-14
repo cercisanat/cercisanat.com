@@ -34,21 +34,34 @@ def home(request):
         context_instance=RequestContext(request))
 
 
-@cache_page(2592000)
 def current_issue(request, issue_number):
+    key = 'issue_%s' % issue_number
+    rendered = cache.get(key)
+    user_is_editor = request.user.has_perm('cerci_content.add_issuecontent')
+    if rendered and not user_is_editor:
+        return HttpResponse(rendered)
+
     issue = get_object_or_404(Issue.objects.prefetch_related(
         'issue2content_set',
         'issue2content_set__content',
         'issue2content_set__content__genres',
         'issue2content_set__content__authors'
     ), number=issue_number)
-    if not request.user.is_staff and not issue.is_published:
+    if not user_is_editor and not issue.is_published:
         raise Http404()
-    next = issue.get_contents()[0].content
-    return render_to_response('issue.html',
-                              {'issue': issue,
-                               'next': next},
-                              context_instance=RequestContext(request))
+    next = None
+    contents = issue.get_contents()
+    if len(contents):
+        next = contents[0].content
+
+    template = get_template('issue.html')
+    context = {'issue': issue,
+               'next': next}
+    request_context = RequestContext(request, context)
+    rendered = template.render(request_context)
+    if not user_is_editor:
+        cache.set(key, rendered, 2592000)
+    return HttpResponse(rendered)
 
 
 def current_issuecontent(request, issue_number, contentslug):

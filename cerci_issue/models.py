@@ -1,10 +1,11 @@
 from django.db import models
-from cerci_content.models import IssueContent, Author
 from datetime import datetime
 from django.utils.translation import ugettext as _
 from django.template.defaultfilters import slugify
 from django.utils.timezone import now
-from django.core.cache import cache
+
+from cerci_content.models import IssueContent, Author
+from utils.cache import destroy_cache
 
 
 def get_unused_contents():
@@ -76,7 +77,7 @@ class Issue(models.Model):
                 figure.is_published = True
                 figure.save()
             content.save()
-        cache.clear()
+        destroy_cache()
 
     def unpublish(self):
         self.is_published = False
@@ -87,7 +88,7 @@ class Issue(models.Model):
                 figure.is_published = False
                 figure.save()
             content.save()
-        cache.clear()
+        destroy_cache()
 
     @staticmethod
     def autocomplete_search_fields():
