@@ -4,6 +4,7 @@ from datetime import datetime
 from django.utils.translation import ugettext as _
 from django.template.defaultfilters import slugify
 from django.utils.timezone import now
+from django.core.cache import cache
 
 
 def get_unused_contents():
@@ -65,6 +66,28 @@ class Issue(models.Model):
             self.slug = slugify(self.subject)[:99]
         self.updated_at = now()
         super(Issue, self).save(*args, **kwargs)
+
+    def publish(self):
+        self.is_published = True
+        self.save()
+        for content in self.contents.all():
+            content.is_published = True
+            for figure in content.figures.all():
+                figure.is_published = True
+                figure.save()
+            content.save()
+        cache.clear()
+
+    def unpublish(self):
+        self.is_published = False
+        self.save()
+        for content in self.contents.all():
+            content.is_published = False
+            for figure in content.figures.all():
+                figure.is_published = False
+                figure.save()
+            content.save()
+        cache.clear()
 
     @staticmethod
     def autocomplete_search_fields():

@@ -11,15 +11,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 @staff_member_required
 def publish_issue(request, issue_id):
     issue = Issue.objects.get(pk=issue_id)
-    issue.is_published = True
-    issue.save()
-    for content in issue.contents.all():
-        content.is_published = True
-        for figure in content.figures.all():
-            figure.is_published = True
-            figure.save()
-        content.save()
-    cache.clear()
+    issue.publish()
     messages.add_message(
         request,
         messages.SUCCESS,
@@ -30,14 +22,7 @@ def publish_issue(request, issue_id):
 @staff_member_required
 def unpublish_issue(request, issue_id):
     issue = Issue.objects.get(pk=issue_id)
-    issue.is_published = False
-    issue.save()
-    for content in issue.contents.all():
-        content.is_published = False
-        for figure in content.figures.all():
-            figure.is_published = False
-            figure.save()
-        content.save()
+    issue.unpublish()
     messages.add_message(
         request,
         messages.WARNING,

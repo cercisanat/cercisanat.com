@@ -41,7 +41,9 @@ def current_issue(request, issue_number):
         'issue2content_set__content',
         'issue2content_set__content__genres',
         'issue2content_set__content__authors'
-    ).filter(is_published=True), number=issue_number)
+    ), number=issue_number)
+    if not request.user.is_staff and not issue.is_published:
+        raise Http404()
     next = issue.get_contents()[0].content
     return render_to_response('issue.html',
                               {'issue': issue,
