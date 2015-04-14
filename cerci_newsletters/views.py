@@ -10,6 +10,7 @@ from django.template.loader import render_to_string
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.contrib.admin.views.decorators import staff_member_required
 
 from ajax_forms.views import AjaxModelFormView
 
@@ -75,6 +76,7 @@ class UnsubscribeView(TemplateView):
             return self.render_to_response(context)
 
 
+@staff_member_required
 def email_template_debug(request, issue_number):
     issue = Issue.objects.get(number=issue_number)
     domain = settings.SITE_URL
