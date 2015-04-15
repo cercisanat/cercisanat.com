@@ -5,5 +5,5 @@ from .models import Subscriber
 
 class SubscribeForm(forms.ModelForm):
     class Meta:
-        fields = "__all__"
+        exclude = ['is_staff']
         model = Subscriber
