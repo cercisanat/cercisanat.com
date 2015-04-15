@@ -70,11 +70,19 @@ class IssueContentAdmin(reversion.VersionAdmin):
 
     def get_issues_list(self, obj):
         issues = '<ul>'
-        for issue in obj.link_to_issue.all():
+        if obj.is_figure:
+            issue_list = []
+            issuecontents = obj.issuecontent_set.all()
+            for content in issuecontents:
+                for issue in content.link_to_issue.all():
+                    issue_list.append([issue, 'figure: '])
+        else:
+            issue_list = [[i, ''] for i in obj.link_to_issue.all()]
+        for issue in issue_list:
             change_url = urlresolvers.reverse('admin:cerci_issue_issue_change',
-                                              args=(issue.issue.id,))
-            issues += '<li><a href="%s">%s</a></li>' % (change_url,
-                                                        issue.issue.subject)
+                                              args=(issue[0].issue.id,))
+            issues += '<li><a href="%s">%s%s</a></li>' % (
+                change_url, issue[1], issue[0].issue.subject)
         return issues + '</ul>'
     get_issues_list.short_description = _('Issue')
     get_issues_list.allow_tags = True
