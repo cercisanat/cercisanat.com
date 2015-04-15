@@ -135,7 +135,7 @@ def author(request, author_slug):
     if not user_is_editor and not author.is_published:
         raise Http404()
 
-    if author.all_contents:
+    if author.all_contents or author.covers:
         hascontent = True
         if not author.contents and not request.GET.get('tab'):
             page = get_page(
