@@ -112,7 +112,6 @@ def author_list(request):
                               context_instance=RequestContext(request))
 
 
-@cache_page(2592000)
 def author(request, author_slug):
     def get_page(contents, figures, figure_contents, issue_covers):
         index = {'contents': 0, 'figures': 1, 'figures_used': 2,  'covers': 3}
@@ -125,8 +124,17 @@ def author(request, author_slug):
             return index.get(filtered[0])
         return
 
-    author = get_object_or_404(Author, slug=author_slug, is_published=True)
     active = int(request.GET.get('tab', 0))
+    key = 'author_%s_%s' % (author_slug, active)
+    rendered = cache.get(key)
+    user_is_editor = request.user.has_perm('cerci_content.add_issuecontent')
+    if rendered and not user_is_editor:
+        return HttpResponse(rendered)
+
+    author = get_object_or_404(Author, slug=author_slug)
+    if not user_is_editor and not author.is_published:
+        raise Http404()
+
     if author.all_contents:
         hascontent = True
         if not author.contents and not request.GET.get('tab'):
@@ -139,11 +147,16 @@ def author(request, author_slug):
                             'author_slug': author.slug}) + '?tab=%s' % page)
     else:
         hascontent = False
-    return render_to_response('author.html',
-                              {'author': author,
-                               'active': active,
-                               'hascontent': hascontent},
-                              context_instance=RequestContext(request))
+
+    template = get_template('author.html')
+    context = {'author': author,
+               'active': active,
+               'hascontent': hascontent}
+    request_context = RequestContext(request, context)
+    rendered = template.render(request_context)
+    if not user_is_editor:
+        cache.set(key, rendered, 2592000)
+    return HttpResponse(rendered)
 
 
 @cache_page(2592000)
