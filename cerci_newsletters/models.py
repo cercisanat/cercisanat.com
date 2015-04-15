@@ -7,6 +7,7 @@ class Subscriber(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True,
                             verbose_name=_('Name'))
     email = models.EmailField(max_length=255, unique=True)
+    is_staff = models.BooleanField(default=False)
     created_at = models.DateTimeField(default=now(), editable=False,
                                       verbose_name=_('Created At'))
     updated_at = models.DateTimeField(editable=False,
