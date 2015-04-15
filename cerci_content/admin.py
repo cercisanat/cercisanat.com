@@ -76,6 +76,8 @@ class IssueContentAdmin(reversion.VersionAdmin):
             for content in issuecontents:
                 for issue in content.link_to_issue.all():
                     issue_list.append([issue, 'figure: '])
+            for issue in obj.link_to_issue.all():
+                issue_list.append([issue, ''])
         else:
             issue_list = [[i, ''] for i in obj.link_to_issue.all()]
         for issue in issue_list:
