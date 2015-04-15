@@ -9,7 +9,7 @@
   <cite class="gt_767 authors">{{ issuecontent.authors.all|author_list|safe }}</cite>
   <div class="content figure-content">
     <figure>
-      <img src="{{ issuecontent.image.url }}" alt="İçerik görseli" />
+      <img src="{{ issuecontent.image|thumbnail_url:'issuecontent_figure_image' }}" alt="İçerik görseli" />
       <figcaption>
         {% if issuecontent.body %}<span class="description">{{ issuecontent.body|safe|removetags:"script style" }}</span>{% endif %}
       </figcaption>
