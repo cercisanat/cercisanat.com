@@ -53,29 +53,34 @@ class Author(models.Model):
         return "/yazar/%s" % self.slug
 
     @property
-    def published_issues(self):
+    def published_contents(self):
         return self.issuecontent_set.prefetch_related(
-            'issue_set').filter(is_published=True)
+            'issue_set').filter(is_published=True, issue__isnull=False)
 
     @property
     def contents(self):
-        return self.published_issues.filter(
+        return self.published_contents.filter(
             is_figure=False).distinct()
 
     @property
     def figures(self):
-        return self.published_issues.filter(
+        return self.published_contents.filter(
             is_figure=True).distinct()
 
     @property
     def figure_contents(self):
+        figures = self.issuecontent_set.prefetch_related(
+            'issue_set').filter(is_published=True)
         return IssueContent.objects.prefetch_related(
             'issue_set').filter(
-            is_published=True, figures__in=self.figures).distinct()
+            is_published=True, figures__in=figures).distinct()
 
     @property
     def all_contents(self):
-        all_contents = set(list(self.contents) + list(self.figure_contents))
+        contents = list(self.contents)
+        figures = list(self.figures)
+        figure_contents = list(self.figure_contents)
+        all_contents = set(contents + figures + figure_contents)
         return all_contents
 
     @property

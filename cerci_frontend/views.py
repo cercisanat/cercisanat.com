@@ -114,10 +114,11 @@ def author_list(request):
 
 @cache_page(2592000)
 def author(request, author_slug):
-    def get_page(contents, figure_contents, issue_covers):
-        index = {'contents': 0, 'illustrations': 1, 'covers': 2}
+    def get_page(contents, figures, figure_contents, issue_covers):
+        index = {'contents': 0, 'figures': 1, 'figures_used': 2,  'covers': 3}
         all_contents = {'contents': contents,
-                        'illustrations': figure_contents,
+                        'figures': figures,
+                        'figures_used': figure_contents,
                         'covers': issue_covers}
         filtered = filter(lambda x: all_contents[x], all_contents)
         if len(filtered):
@@ -130,7 +131,7 @@ def author(request, author_slug):
         hascontent = True
         if not author.contents and not request.GET.get('tab'):
             page = get_page(
-                author.contents,
+                author.contents, author.figures,
                 author.figure_contents, author.covers) or 'none'
             return HttpResponseRedirect(
                 reverse('author',
