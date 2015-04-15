@@ -22,7 +22,7 @@ environments = {
     },
     "prod": {
         'code_dir': '/var/sites/cerci/www',
-        'workon': 'cerci'
+        'workon': 'cerci_new'
     }
 }
 
