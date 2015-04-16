@@ -72,6 +72,10 @@ figcaption {
   max-width: 280px;
 }
 
+figcaption a,
+figcaption a:focus,
+figcaption a:visited,
+figcaption a:link,
 figcaption cite a,
 figcaption cite a:focus,
 figcaption cite a:visited,
