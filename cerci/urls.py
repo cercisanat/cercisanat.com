@@ -29,10 +29,10 @@ if settings.ENVIRONMENT == 'prod':
     urlpatterns += url(
         r'^robots\.txt$',
         lambda r: HttpResponse(
-            "User-agent: *\nAllow: /\nDisallow: /admin", mimetype="text/plain")
+            "User-agent: *\nAllow: /\nDisallow: /admin", content_type="text/plain")
     ),
 else:
     urlpatterns += url(
         r'^robots\.txt$',
         lambda r: HttpResponse(
-            "User-agent: *\nDisallow: /", mimetype="text/plain")),
+            "User-agent: *\nDisallow: /", content_type="text/plain")),
