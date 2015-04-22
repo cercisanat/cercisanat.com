@@ -25,7 +25,7 @@ def get_issues():
 
 
 @cache_page(2592000)
-def home(request):
+def home(request, year=None):
     issues = get_issues()
     return render_to_response(
         'home.html',
