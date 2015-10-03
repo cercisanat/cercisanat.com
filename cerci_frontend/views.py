@@ -1,3 +1,5 @@
+#coding: utf-8
+
 from django.conf import settings
 from django.core.cache import cache
 from django.views.decorators.cache import cache_page
@@ -105,10 +107,18 @@ def current_issuecontent(request, issue_number, contentslug):
 
 
 @cache_page(2592000)
-def author_list(request):
-    authors = Author.objects.filter(is_published=True).order_by('name')
+def author_list(request, initial='A'):
+    order = u"ABCÇDEFGĞHIİJKLMNOÖPQRSŞTUÜXWVYZ"
+    initials = sorted(
+        set([i[0] for i in Author.objects.filter(
+            is_published=True).values_list('name', flat=True)]),
+        key=lambda i: order.index(i) if i in order else 1000)
+    authors = Author.objects.filter(is_published=True,
+                                    name__startswith=initial).order_by('name')
     return render_to_response('authors.html',
-                              {'authors': authors},
+                              {'authors': authors,
+                               'initial': initial,
+                               'initials': initials},
                               context_instance=RequestContext(request))
 
 
