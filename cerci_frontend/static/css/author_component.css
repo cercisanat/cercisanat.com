@@ -1,0 +1,21 @@
+.author-component {
+    font-size: .8em;
+    font-family: 'Ubuntu', sans-serif;
+    float: none;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    max-width: 300px;
+    text-align: center;
+}
+
+.author-component a,
+.author-component a:hover,
+.author-component a:visited,
+.author-component a:link, 
+.author-component h1,
+.author-component h2,
+.author-component h3,
+.author-component h4 {
+    font-family: 'Ubuntu', sans-serif;
+    text-decoration: none;
+}

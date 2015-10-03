@@ -59,4 +59,5 @@ def deploy(name='dev'):
         run('mkdir -p media/ckeditor')
         run('./manage.py collectstatic --noinput')
         run('./manage.py compress')
+        run('./manage.py clear_cache')
     restart()

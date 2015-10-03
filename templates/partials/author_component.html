@@ -1,0 +1,14 @@
+{% load thumbnail %}
+
+{% if authors|length <= 1 and authors.0.image %}
+{% with authors.0 as author %}
+<div class="author-component">
+    <a href="{% url 'author' author_slug=author.slug %}">
+      <img class="img-circle"
+        src="{% thumbnail author.image 200x200 box=author.cropping crop detail bw %}" />
+      <h3>{{ author.name }}</h3>
+        Diğer eserleri
+    </a>
+</div>
+{% endwith %}
+{% endif %}

@@ -10,7 +10,7 @@
     <a href="{% url 'admin:cerci_content_issuecontent_change' issuecontent.id %}"><i class="fa fa-edit"></i></a>
     {% endif %}
     </h1>
-    {% include "partials/author.html" with authors=issuecontent.authors.all %}
+    <cite class="author">{{ issuecontent.authors.all|author_list|safe }}</cite>
 </hgroup>
 
 {% with issuecontent.figures.all as image %}
@@ -27,11 +27,12 @@
 </figure>
 {% endif %}
 <div class="body {% if image.count and issuecontent.genres.all.0.slug == 'siir' %}col-md-6 poem{% endif %}">
-    <div class="content">
-        {% if issuecontent.spot %}
-          <blockquote class="spot">{{ issuecontent.spot|safe|removetags:"script style" }}</blockquote>
-        {% endif %}
-        {{ issuecontent.body|removetags:"script style"|youtube_embed_url|audio_embed|gallery_embed|safe }}
-    </div>
+  <div class="content">
+      {% if issuecontent.spot %}
+        <blockquote class="spot">{{ issuecontent.spot|safe|removetags:"script style" }}</blockquote>
+      {% endif %}
+      {{ issuecontent.body|removetags:"script style"|youtube_embed_url|audio_embed|gallery_embed|safe }}
+    {% include "partials/author_component.html" with authors=issuecontent.authors.all %}
+  </div>
 </div>
 {% endwith %}

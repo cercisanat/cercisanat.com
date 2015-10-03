@@ -21,7 +21,7 @@
           <img class="author-image pull-left col-md-4" src="{% thumbnail author.image 360x430 box=author.cropping crop detail bw %}" alt="{{ author.name }}" title="{{ author.name }}" />
         {% endif %}
         {% if author.biography %}
-            {{ author.biography }}
+            {{ author.biography|urlizetrunc:15 }}
         {% else %}
             <div class="clearfix"></div>
         {% endif %}
