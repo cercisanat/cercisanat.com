@@ -6,7 +6,7 @@
   <a href="{% url 'admin:cerci_content_issuecontent_change' issuecontent.id %}"><i class="icon-edit"></i></a>
   {% endif %}
   </h1>
-  {% include "partials/author.html" with authors=issuecontent.authors.all %}
+  <cite class="gt_767 authors">{{ issuecontent.authors.all|author_list|safe }}</cite>
   <div class="content figure-content">
     <figure>
       <img src="{{ issuecontent.image|thumbnail_url:'issuecontent_figure_image' }}" alt="İçerik görseli" />

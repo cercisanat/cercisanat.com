@@ -35,7 +35,7 @@ class Author(models.Model):
     biography = models.TextField(blank=True, verbose_name=_('Biography'))
     image = ImageCropField(upload_to="images/author/",
                            blank=True, verbose_name=_('Image'))
-    cropping = ImageRatioField('image', '360x430')
+    cropping = ImageRatioField('image', '360x360')
     is_published = models.BooleanField(verbose_name=_('Is Published'),
                                        blank=True)
     created_at = models.DateTimeField(default=now(),

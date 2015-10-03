@@ -4,6 +4,15 @@
 {% load audio %}
 {% load gallery %}
 
+<hgroup class="main-hgroup">
+    <h1 class="title" id="content-{{issuecontent.id }}">{{ issuecontent.title }}
+    {% if user.is_staff %}
+    <a href="{% url 'admin:cerci_content_issuecontent_change' issuecontent.id %}"><i class="fa fa-edit"></i></a>
+    {% endif %}
+    </h1>
+    {% include "partials/author.html" with authors=issuecontent.authors.all %}
+</hgroup>
+
 {% with issuecontent.figures.all as image %}
 {% if image.count %}
 <figure class="image-container pull-left span3 {% if image.count and issuecontent.genres.all.0.slug == 'siir' %}poem{% endif %}">
@@ -18,14 +27,6 @@
 </figure>
 {% endif %}
 <div class="body {% if image.count and issuecontent.genres.all.0.slug == 'siir' %}col-md-6 poem{% endif %}">
-    <hgroup class="main-hgroup">
-    <h1 class="title" id="content-{{issuecontent.id }}">{{ issuecontent.title }}
-    {% if user.is_staff %}
-    <a href="{% url 'admin:cerci_content_issuecontent_change' issuecontent.id %}"><i class="fa fa-edit"></i></a>
-    {% endif %}
-    </h1>
-    {% include "partials/author.html" with authors=issuecontent.authors.all %}
-    </hgroup>
     <div class="content">
         {% if issuecontent.spot %}
           <blockquote class="spot">{{ issuecontent.spot|safe|removetags:"script style" }}</blockquote>
