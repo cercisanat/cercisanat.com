@@ -19,7 +19,13 @@
   <section class="issue">
     <div class="col-md-4">
     <a href="{% url 'current_issue' issue_number=last_issue.number %}">
-      <img class="cover last" src="{{ last_issue.cover|thumbnail_url:'cover' }}" alt="{{ last_issue.subject }}" title="{{ last_issue.subject }}" />
+      {% if last_issue.cover_video %}
+        <video width="380" height="500" autoplay loop>
+          <source src="{{ last_issue.cover_video.url }}" type="video/mp4" />
+        </video>
+      {% else %}
+        <img class="cover last" src="{{ last_issue.cover|thumbnail_url:'cover' }}" alt="{{ last_issue.subject }}" title="{{ last_issue.subject }}" />
+      {% endif %}
     </a>
     </div>
     <div class="col-md-8 issuecontents-wrapper">

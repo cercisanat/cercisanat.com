@@ -28,6 +28,11 @@ class Issue(models.Model):
     cover = models.ImageField(
         upload_to="images/issue/",
         verbose_name=_('Cover'))
+    cover_video = models.FileField(
+        null=True,
+        upload_to="videos/issue/",
+        verbose_name=_('Cover Video')
+    )
     cover_design = models.ManyToManyField(
         Author, verbose_name=_('Cover Design'), null=True)
     contents = models.ManyToManyField(

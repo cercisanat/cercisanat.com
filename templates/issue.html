@@ -36,9 +36,15 @@
 
     <section class="frontmatter row">
         <div class="image-files-wrapper pull-left col-md-5">
-            <a class="galleryitem" href="{{ issue.cover.url }}" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Daha büyük boyutlusunu görmek ve yakınlaştırabilmek için tıklayın.">
-            <img class="cover" src="{{ issue.cover|thumbnail_url:'cover' }}" alt="Çerçi Sayı {{ issue.number }}, {{ issue.published_at|date:"F Y" }}" />
-            </a>
+          {% if issue.cover_video %}
+          <video width="380" height="500" autoplay loop>
+            <source src="{{ issue.cover_video.url }}" type="video/mp4" />
+          </video>
+          {% else %}
+          <a class="galleryitem" href="{{ issue.cover.url }}" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Daha büyük boyutlusunu görmek ve yakınlaştırabilmek için tıklayın.">
+          <img class="cover" src="{{ issue.cover|thumbnail_url:'cover' }}" alt="Çerçi Sayı {{ issue.number }}, {{ issue.published_at|date:"F Y" }}" />
+          </a>
+          {% endif %}
         </div>
         <div class="issue-info col-md-7">
           <hgroup>
