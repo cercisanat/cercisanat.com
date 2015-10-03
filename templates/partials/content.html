@@ -24,7 +24,7 @@
     <a href="{% url 'admin:cerci_content_issuecontent_change' issuecontent.id %}"><i class="fa fa-edit"></i></a>
     {% endif %}
     </h1>
-    <cite class="authors">{{ issuecontent.authors.all|author_list|safe }}</cite>
+    {% include "partials/author.html" with authors=issuecontent.authors.all %}
     </hgroup>
     <div class="content">
         {% if issuecontent.spot %}

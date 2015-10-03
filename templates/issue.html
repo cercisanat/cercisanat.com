@@ -49,7 +49,9 @@
               </h1>
           </hgroup>
           <ul class="nav nav-pills">
+            {% if issue.editorial %}
             <li><a href="#editorial">EDİTÖRDEN</a></li>
+            {% endif %}
             <li><a href="#table-of-contents">İÇİNDEKİLER</a></li>
           </ul>
           
@@ -67,11 +69,14 @@
           {% endif %}
         </div>
     </section>
+    
+    {% if issue.editorial %}
     <h1 id="editorial" class="page-header">EDİTÖRDEN</h1>
-    <selection class="editorial">
+    <section class="editorial">
       <h2>{{ issue.editorial_title }}</h2>
       {{ issue.editorial|safe|removetags:"script style" }}
     </section>
+    {% endif %}
 
     <h1 id="table-of-contents" class="page-header">İÇİNDEKİLER</h1>
     <section class="table-of-contents">

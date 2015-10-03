@@ -2,6 +2,10 @@
     overflow: hidden;
 }
 
+cite.authors {
+    font-size: 1.2em;
+}
+
 ul.authors li {
     border-left: 2px solid white; 
     padding-left: 0.3em;

@@ -33,3 +33,9 @@ EMAIL_FILE_PATH = 'development/emails'
 
 COMPRESS_OFFLINE = False
 COMPRESS_ENABLED = False
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}

@@ -1,0 +1,12 @@
+{% load thumbnail %}
+
+<div class="row">
+{% for author in authors %}
+  <div class="col-md-2 author-with-image">
+    {% if author.image %}
+    <img src="{% thumbnail author.image 100x100 box=author.cropping crop detail bw %}"><br/>
+    {% endif %}
+    <cite class="authors">{{ author.name }}</cite>
+  </div>
+{% endfor %}
+</div>

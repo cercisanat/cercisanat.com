@@ -23,12 +23,24 @@
     </a>
     </div>
     <div class="col-md-8 issuecontents-wrapper">
+      {% if last_issue.editorial %}
       <div class="editorial">
         <h2>{{ last_issue.editorial_title }}</h2>
         {{ last_issue.editorial|truncatewords_html:100|striptags|safe }}
         <a class="more" href="{% url 'current_issue' issue_number=last_issue.number %}#editorial" data-toggle="tooltip" data-placement="top" title="Devamını oku" data-container="body">
           <i class="fa fa-chevron-circle-right fa-lg"></i></a>
       </div>
+      {% else %}
+        {% for issue2content in last_issue.issue2content_set.all %}
+          {% with issue2content.content as content %}
+            <div class="issuecontet-wrapper">
+              <h3>
+                <a href="{% url 'current_issuecontent' issue_number=last_issue.number contentslug=content.slug %}">{{ content.title }}</a>
+              </h3>
+            </div>
+          {% endwith %}
+        {% endfor %}
+      {% endif %}
     </div>
   </section>
 </div>
