@@ -18,16 +18,18 @@
   </li>
   {% endfor %}
   </ul>
-  <h2 class="page-header">{{ initial }}</h2>
+  <h1 class="page-header">{{ initial }}</h1>
     <ul class="list-unstyled">
       {% for author in authors %}
       <li>
         <div class="author image-wrapper pull-left">
           <a href="{% url 'author' author_slug=author.slug %}">
-            <img class="cover" src="{% thumbnail author.image 100x100 box=author.cropping crop detail bw %}" title="{{ author.name }}" alt="" />
+            <img class="cover" src="{% thumbnail author.image 50x50 box=author.cropping crop detail bw %}" title="{{ author.name }}" alt="" />
           </a>
         </div>
-        <a class="pull-left" href="{% url 'author' author_slug=author.slug %}">{{ author.name }}</a>
+        <h3>
+          <a class="pull-left" href="{% url 'author' author_slug=author.slug %}">{{ author.name }}</a>
+        </h3>
         <div class="clearfix"></div>
       </li>
       <hr/>
