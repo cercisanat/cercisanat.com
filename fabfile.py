@@ -55,9 +55,9 @@ def deploy(name='dev'):
 
     with prefix('source /usr/local/bin/'
                 'virtualenvwrapper.sh '
-                '&& workon %s' % environments[name]['workon']):
+                '&& workon %s' % environments[name]['workon']): 
+        run('./manage.py clear_cache')
         run('mkdir -p media/ckeditor')
         run('./manage.py collectstatic --noinput')
         run('./manage.py compress')
-        run('./manage.py clear_cache')
     restart()
