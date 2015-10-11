@@ -20,7 +20,7 @@
     <div class="col-md-4">
     <a href="{% url 'current_issue' issue_number=last_issue.number %}">
       {% if last_issue.cover_video %}
-        <video width="380" height="500" autoplay loop>
+        <video width="380" height="500" autoplay loop poster="{{ last_issue.cover|thumbnail_url:'cover' }}">
           <source src="{{ last_issue.cover_video.url }}" type="video/mp4" />
         </video>
       {% else %}
