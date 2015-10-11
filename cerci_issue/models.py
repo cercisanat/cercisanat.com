@@ -29,7 +29,7 @@ class Issue(models.Model):
         upload_to="images/issue/",
         verbose_name=_('Cover'))
     cover_video = models.FileField(
-        null=True,
+        null=True, blank=True,
         upload_to="videos/issue/",
         verbose_name=_('Cover Video')
     )
