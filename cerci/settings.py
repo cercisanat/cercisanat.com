@@ -93,7 +93,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'cerci.urls'
@@ -138,9 +137,9 @@ INSTALLED_APPS = (
     'haystack',
     'ckeditor',
     'bshell',
-    'debug_toolbar',
     'django_extensions',
     'reversion',
+    'django_medusa',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -203,7 +202,6 @@ THUMBNAIL_PROCESSORS = (
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.debug',
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
     'django.core.context_processors.static',
@@ -252,6 +250,13 @@ CACHES = {
         'LOCATION': os.path.join(PROJECT_ROOT, 'cache'),
     }
 }
+
+MEDUSA_RENDERER_CLASS = "cerci.cerci_renderer.CerciStaticSiteRenderer"
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+MEDUSA_DEPLOY_DIR = os.path.join(
+    PROJECT_DIR, '../../', "cercisanat.github.io"
+)
+MEDUSA_MULTITHREAD = False
 
 from settings_main import *
 if ENVIRONMENT == 'localhost':
